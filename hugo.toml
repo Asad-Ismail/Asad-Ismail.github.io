@@ -21,10 +21,6 @@ style = "github-dark"
     name = "Projects"
     url = "/projects/"
     weight = 2
-  [[menu.main]]
-    name = "About"
-    url = "/about/"
-    weight = 2
 
 
 [params]
@@ -58,9 +54,9 @@ style = "github-dark"
   name = "Github"
   icon = "fa-brands fa-github fa-2x"
   weight = 1
-  url = "https://github.com/johndoe/"
+  url = "https://github.com/Asad-Ismail"
 [[params.social]]
 name = "LinkedIn"
 icon = "fa-brands fa-linkedin fa-2x"
 weight = 4
-url = "https://www.linkedin.com/in/johndoe/"
+url = "https://www.linkedin.com/in/asadismaeel/"

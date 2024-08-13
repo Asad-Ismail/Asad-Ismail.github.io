@@ -2,18 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Asad Ismail</title>
-    <link>https://Asad-Ismail.github.io/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Asad Ismail</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Aug 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://Asad-Ismail.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 14 Aug 2024 00:37:07 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>About</title>
-      <link>https://Asad-Ismail.github.io/about/</link>
-      <pubDate>Mon, 12 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://Asad-Ismail.github.io/about/</guid>
-      <description>Hi, I am Asad Link to heading I specialize in training ML models and building ML pipelines. With a passion for transforming data into actionable insights, I have been involved in a variety of projects ranging from predictive analytics to deep learning implementations. My goal is to push the boundaries of what&amp;rsquo;s possible with AI and ML.&#xA;Experience Link to heading Data Scientist at XYZ Company Machine Learning Engineer at ABC Corporation Skills Link to heading Languages: Python, R, SQL Frameworks: TensorFlow, PyTorch, Scikit-Learn Tools: Docker, Kubernetes, Git Projects Link to heading Project A: A brief description of the project.</description>
+      <title>t 2 video blog</title>
+      <link>http://localhost:1313/posts/text2video/</link>
+      <pubDate>Wed, 14 Aug 2024 00:37:07 +0200</pubDate>
+      <guid>http://localhost:1313/posts/text2video/</guid>
+      <description> This will be about Text 2 Video generation Link to heading </description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/posts/ml_aws_deployment/</link>
+      <pubDate>Wed, 14 Aug 2024 00:36:50 +0200</pubDate>
+      <guid>http://localhost:1313/posts/ml_aws_deployment/</guid>
+      <description> This will be about ML Model deployment Link to heading </description>
     </item>
   </channel>
 </rss>

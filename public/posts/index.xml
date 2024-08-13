@@ -2,11 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Asad Ismail</title>
-    <link>https://Asad-Ismail.github.io/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on Asad Ismail</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate></lastBuildDate>
-    <atom:link href="https://Asad-Ismail.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 14 Aug 2024 00:37:07 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>t 2 video blog</title>
+      <link>http://localhost:1313/posts/text2video/</link>
+      <pubDate>Wed, 14 Aug 2024 00:37:07 +0200</pubDate>
+      <guid>http://localhost:1313/posts/text2video/</guid>
+      <description> This will be about Text 2 Video generation Link to heading </description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/posts/ml_aws_deployment/</link>
+      <pubDate>Wed, 14 Aug 2024 00:36:50 +0200</pubDate>
+      <guid>http://localhost:1313/posts/ml_aws_deployment/</guid>
+      <description> This will be about ML Model deployment Link to heading </description>
+    </item>
   </channel>
 </rss>
