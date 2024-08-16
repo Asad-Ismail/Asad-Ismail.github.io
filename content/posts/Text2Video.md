@@ -12,4 +12,4 @@ series = []
 +++
 
 
-## This will be  about Text 2 Video generation
+## Curerntly being developed
