@@ -23,6 +23,9 @@ style = "github-dark"
     weight = 2
 
 
+[markup.goldmark.renderer]
+  unsafe = true
+
 [params]
   enableFontAwesome = true
   author = "Asad Ismail"

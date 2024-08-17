@@ -10,9 +10,9 @@
     <atom:link href="https://Asad-Ismail.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Machine Learning Model deployment</title>
-      <link>https://Asad-Ismail.github.io/posts/ml_aws_deployment/</link>
+      <link>https://Asad-Ismail.github.io/posts/ml_deployment/</link>
       <pubDate>Fri, 16 Aug 2024 00:36:50 +0200</pubDate>
-      <guid>https://Asad-Ismail.github.io/posts/ml_aws_deployment/</guid>
+      <guid>https://Asad-Ismail.github.io/posts/ml_deployment/</guid>
       <description>Machine Learning Model Deployment Link to heading After successfully building your ML/DL model in a notebook, the next critical step is deployment—getting your model out into the world to serve customers. There are two primary avenues for deploying machine learning models:&#xA;Edge Deployment Cloud Deployment Edge Deployment Link to heading Edge deployment involves placing the model directly on the device where it will be used. This approach is particularly valuable in situations where:</description>
     </item>
     <item>

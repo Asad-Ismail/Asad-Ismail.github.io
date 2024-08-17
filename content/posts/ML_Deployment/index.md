@@ -41,9 +41,7 @@ Cloud deployment allows you to leverage the power and flexibility of cloud compu
 Below is a visual representation of the market share among major cloud providers for ML model deployment. The data is from 2022, and it's possible that Azure, with its partnership with OpenAI, has already surpassed AWS.
 
 
-![Major cloud providers usage 2022](/images/cloud_providers.png){.custom-size}
->
-
+{{< customimage src="/images/cloud_providers.png" alt="Cloud Market Share" caption="Cloud Market share @2022" width="50%" >}}
 
 
 ### Focus on AWS for ML Deployment
