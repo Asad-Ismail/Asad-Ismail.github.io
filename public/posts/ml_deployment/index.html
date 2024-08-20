@@ -157,7 +157,7 @@
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              3-minute read
+              5-minute read
             </span>
           </div>
           
@@ -235,68 +235,111 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>For this discussion, we will focus on deploying models using AWS, though Azure and GCP offer similar services. Here are the key types of ML deployments available on AWS:</p>
-<h4 id="aws-batch">
-  AWS Batch
-  <a class="heading-link" href="#aws-batch">
+<p>In this discussion, we&rsquo;ll focus on deploying machine learning models using AWS, although Azure and GCP offer similar services. Below are the key types of ML deployments available on AWS.</p>
+<h4 id="aws-batch-processing">
+  AWS Batch Processing
+  <a class="heading-link" href="#aws-batch-processing">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h4>
+<p>AWS Batch is a versatile batch processing service that enables you to run large-scale computing workloads on AWS.</p>
+<p><strong>Advantages:</strong></p>
 <ul>
-<li><strong>Convert the model to Docker file</strong>: Run this Docker container by events or scheduled tasks.</li>
+<li><strong>Versatility:</strong> Suitable for a wide range of batch jobs, beyond just machine learning.</li>
+<li><strong>Custom Docker Containers:</strong> Supports running jobs within custom Docker images, offering flexibility in the environment setup.</li>
+<li><strong>Broad Use Cases:</strong> Applicable for tasks like data processing, image rendering, and large-scale simulations.</li>
 </ul>
-<h4 id="sagemaker-batch-processing">
-  SageMaker Batch Processing
-  <a class="heading-link" href="#sagemaker-batch-processing">
+<p><strong>Disadvantages:</strong></p>
+<ul>
+<li><strong>General-Purpose Nature:</strong> Not specifically optimized for machine learning tasks, which might require additional setup or configuration.</li>
+<li><strong>Potentially Complex Configuration:</strong> Depending on the use case, configuring batch jobs might require more detailed setup compared to services tailored to specific tasks like ML.</li>
+</ul>
+<h4 id="sagemaker-batch-transform">
+  SageMaker Batch Transform
+  <a class="heading-link" href="#sagemaker-batch-transform">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h4>
+<p>SageMaker Batch Transform is designed specifically for batch inference tasks in machine learning.</p>
+<p><strong>Advantages:</strong></p>
 <ul>
-<li><strong>Payload Size</strong>: Max 100 MB mini-batch payload size.</li>
-<li><strong>Higher Throughput</strong>: Suitable for large batch processing.</li>
-<li><strong>Event-Triggered</strong>: Triggered via S3 events, for example.</li>
+<li><strong>ML-Specific:</strong> Optimized for batch processing of machine learning model inferences, ensuring a streamlined workflow.</li>
+<li><strong>Seamless Integration:</strong> Easily integrates with other SageMaker services like training and deployment, simplifying the end-to-end ML process.</li>
+<li><strong>High Throughput:</strong> Designed for large-scale ML tasks, allowing for efficient processing of extensive datasets.</li>
+<li><strong>Event-Driven:</strong> Can be triggered by S3 events, enabling automated processing of new data as it arrives.</li>
 </ul>
-<h4 id="real-time-endpoints">
+<p><strong>Disadvantages:</strong></p>
+<ul>
+<li><strong>Limited to ML Use Cases:</strong> Not suitable for non-ML batch processing tasks, which limits its flexibility compared to AWS Batch.</li>
+<li><strong>Dependent on SageMaker Ecosystem:</strong> While integration is an advantage, it also means that it&rsquo;s less flexible if you need to use non-SageMaker services.</li>
+</ul>
+<h3 id="real-time-endpoints">
   Real-Time Endpoints
   <a class="heading-link" href="#real-time-endpoints">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h4>
-<p><strong>Pros:</strong></p>
+</h3>
+<p>Real-Time Endpoints in SageMaker are used for scenarios where immediate inference is required. They provide a scalable and low-latency way to get predictions as soon as data is sent to the model.</p>
+<p><strong>Advantages:</strong></p>
 <ul>
-<li><strong>Low Latency</strong>: Ideal for scenarios where immediate responses are crucial.</li>
-<li><strong>API Integration</strong>: Invoke the endpoint with your data (e.g., JSON input) via HTTP requests, receiving predictions almost instantly.</li>
-<li><strong>Auto-Scaling</strong>: AWS automatically scales the endpoint based on demand.</li>
-<li><strong>Flexible Options</strong>: Support for both CPU and GPU instances.</li>
+<li><strong>Low Latency:</strong> Delivers immediate responses, making it ideal for real-time applications.</li>
+<li><strong>API Integration:</strong> Can be easily invoked via HTTP requests, making it straightforward to integrate into existing applications.</li>
+<li><strong>Auto-Scaling:</strong> Automatically adjusts the number of instances based on demand, ensuring performance consistency.</li>
+<li><strong>Flexible Instance Options:</strong> Offers both CPU and GPU instances, catering to different performance needs.</li>
 </ul>
-<p><strong>Cons:</strong></p>
+<p><strong>Disadvantages:</strong></p>
 <ul>
-<li><strong>Payload Size Limit</strong>: The maximum allowed payload is 6MB, which can be restrictive for high-resolution images, necessitating downscaling or compression.</li>
-<li><strong>Timeout Limit</strong>: The model must return results within 60 seconds, which may be limiting for complex computations.</li>
+<li><strong>Payload Size Limit:</strong> The maximum input size is 6 MB, which might require you to downscale or compress larger inputs.</li>
+<li><strong>Timeout Constraints:</strong> The model needs to return results within 60 seconds, which can be limiting for more complex models.</li>
 </ul>
-<h4 id="async-endpoints">
-  Async Endpoints
-  <a class="heading-link" href="#async-endpoints">
+<h3 id="asynchronous-endpoints">
+  Asynchronous Endpoints
+  <a class="heading-link" href="#asynchronous-endpoints">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h4>
-<p><strong>Pros:</strong></p>
+</h3>
+<p>Asynchronous Endpoints are designed for scenarios where inference does not need to be instantaneous. They allow for processing larger payloads and longer processing times, making them suitable for more complex or batch-like tasks.</p>
+<p><strong>Advantages:</strong></p>
 <ul>
-<li><strong>Queue Inputs</strong>: Queue inputs for processing later.</li>
-<li><strong>API Integration</strong>: Similar to real-time endpoints but with different operational characteristics.</li>
-<li><strong>Auto-Scaling</strong>: AWS automatically scales the endpoint based on demand.</li>
-<li><strong>Flexible Options</strong>: Support for both CPU and GPU instances.</li>
-<li><strong>Larger Payload Size</strong>: Supports up to 1GB payload size.</li>
-<li><strong>Longer Timeout</strong>: Allows up to 15 minutes of processing time.</li>
+<li><strong>Handles Larger Payloads:</strong> Supports input sizes up to 1 GB, which is significantly higher than real-time endpoints.</li>
+<li><strong>Extended Processing Time:</strong> Allows up to 15 minutes for inference, accommodating more complex computations.</li>
+<li><strong>Queue Inputs:</strong> Inputs can be queued, which is useful for handling large volumes of data that do not require immediate processing.</li>
+<li><strong>Auto-Scaling:</strong> Automatically scales based on demand, similar to real-time endpoints.</li>
 </ul>
-<p><strong>Cons:</strong></p>
+<p><strong>Disadvantages:</strong></p>
 <ul>
-<li><strong>Near Real-Time</strong>: Offers near real-time performance, but not as immediate as real-time endpoints.</li>
+<li><strong>Near Real-Time Performance:</strong> While it supports larger payloads and longer processing times, the latency is higher compared to real-time endpoints.</li>
+<li><strong>More Complex Workflow:</strong> Managing asynchronous jobs might require more careful monitoring and management compared to the simpler real-time endpoint approach.</li>
 </ul>
+<h3 id="sagemaker-serverless-inference">
+  Sagemaker Serverless Inference
+  <a class="heading-link" href="#sagemaker-serverless-inference">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Serverless Inference enables to deploy and scale ML models without configuring or managing any of the underlying infrastructure. We can use serveless inference for cpu only loads for requests where there is idle time between requests.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li><strong>Autoscaling:</strong> Serverless Inference scales your endpoint down to 0, helping you to minimize your costs.</li>
+</ul>
+<p><strong>Disadvantages:</strong></p>
+<ul>
+<li><strong>CPU inference:</strong> Currently it supports only cpu compute.</li>
+<li><strong>Cold start:</strong> We have to tolerate cold start for intial requests.</li>
+</ul>
+<p>I will now go over throw show the code for Sagemaker Batch Transform, Real Time endpoints and Async Endpoints with the example of Instance segmentation using Detectron2 MaskRCNN implementation. Why instance segemntation example? I believe it is not covered as much as object detection and classification when it has the most utility in industry for computer vision tasks as it combine object detection with segmentation giving the class information along with precise object boundary for measurements. I will train the model using detectron2 example. Train it on sample dataset provided in detectron2 repo, the focus is not on the training but deployment but for the sake of completeness I will go over through complete example.</p>
+<h2 id="training-instance-segmenation">
+  Training Instance Segmenation
+  <a class="heading-link" href="#training-instance-segmenation">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
 
       </div>
 

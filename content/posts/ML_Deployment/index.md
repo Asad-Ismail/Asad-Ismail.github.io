@@ -46,42 +46,87 @@ Below is a visual representation of the market share among major cloud providers
 
 ### Focus on AWS for ML Deployment
 
-For this discussion, we will focus on deploying models using AWS, though Azure and GCP offer similar services. Here are the key types of ML deployments available on AWS:
+In this discussion, we'll focus on deploying machine learning models using AWS, although Azure and GCP offer similar services. Below are the key types of ML deployments available on AWS.
 
-#### AWS Batch
 
-- **Convert the model to Docker file**: Run this Docker container by events or scheduled tasks.
+#### AWS Batch Processing
 
-#### SageMaker Batch Processing
+AWS Batch is a versatile batch processing service that enables you to run large-scale computing workloads on AWS.
 
-- **Payload Size**: Max 100 MB mini-batch payload size.
-- **Higher Throughput**: Suitable for large batch processing.
-- **Event-Triggered**: Triggered via S3 events, for example.
+**Advantages:**
+- **Versatility:** Suitable for a wide range of batch jobs, beyond just machine learning.
+- **Custom Docker Containers:** Supports running jobs within custom Docker images, offering flexibility in the environment setup.
+- **Broad Use Cases:** Applicable for tasks like data processing, image rendering, and large-scale simulations.
 
-#### Real-Time Endpoints
+**Disadvantages:**
+- **General-Purpose Nature:** Not specifically optimized for machine learning tasks, which might require additional setup or configuration.
+- **Potentially Complex Configuration:** Depending on the use case, configuring batch jobs might require more detailed setup compared to services tailored to specific tasks like ML.
 
-**Pros:**
-- **Low Latency**: Ideal for scenarios where immediate responses are crucial.
-- **API Integration**: Invoke the endpoint with your data (e.g., JSON input) via HTTP requests, receiving predictions almost instantly.
-- **Auto-Scaling**: AWS automatically scales the endpoint based on demand.
-- **Flexible Options**: Support for both CPU and GPU instances.
+#### SageMaker Batch Transform
 
-**Cons:**
-- **Payload Size Limit**: The maximum allowed payload is 6MB, which can be restrictive for high-resolution images, necessitating downscaling or compression.
-- **Timeout Limit**: The model must return results within 60 seconds, which may be limiting for complex computations.
+SageMaker Batch Transform is designed specifically for batch inference tasks in machine learning.
 
-#### Async Endpoints
+**Advantages:**
+- **ML-Specific:** Optimized for batch processing of machine learning model inferences, ensuring a streamlined workflow.
+- **Seamless Integration:** Easily integrates with other SageMaker services like training and deployment, simplifying the end-to-end ML process.
+- **High Throughput:** Designed for large-scale ML tasks, allowing for efficient processing of extensive datasets.
+- **Event-Driven:** Can be triggered by S3 events, enabling automated processing of new data as it arrives.
 
-**Pros:**
-- **Queue Inputs**: Queue inputs for processing later.
-- **API Integration**: Similar to real-time endpoints but with different operational characteristics.
-- **Auto-Scaling**: AWS automatically scales the endpoint based on demand.
-- **Flexible Options**: Support for both CPU and GPU instances.
-- **Larger Payload Size**: Supports up to 1GB payload size.
-- **Longer Timeout**: Allows up to 15 minutes of processing time.
+**Disadvantages:**
+- **Limited to ML Use Cases:** Not suitable for non-ML batch processing tasks, which limits its flexibility compared to AWS Batch.
+- **Dependent on SageMaker Ecosystem:** While integration is an advantage, it also means that it's less flexible if you need to use non-SageMaker services.
 
-**Cons:**
-- **Near Real-Time**: Offers near real-time performance, but not as immediate as real-time endpoints.
+### Real-Time Endpoints
+
+Real-Time Endpoints in SageMaker are used for scenarios where immediate inference is required. They provide a scalable and low-latency way to get predictions as soon as data is sent to the model.
+
+**Advantages:**
+- **Low Latency:** Delivers immediate responses, making it ideal for real-time applications.
+- **API Integration:** Can be easily invoked via HTTP requests, making it straightforward to integrate into existing applications.
+- **Auto-Scaling:** Automatically adjusts the number of instances based on demand, ensuring performance consistency.
+- **Flexible Instance Options:** Offers both CPU and GPU instances, catering to different performance needs.
+
+**Disadvantages:**
+- **Payload Size Limit:** The maximum input size is 6 MB, which might require you to downscale or compress larger inputs.
+- **Timeout Constraints:** The model needs to return results within 60 seconds, which can be limiting for more complex models.
+
+### Asynchronous Endpoints
+
+Asynchronous Endpoints are designed for scenarios where inference does not need to be instantaneous. They allow for processing larger payloads and longer processing times, making them suitable for more complex or batch-like tasks.
+
+**Advantages:**
+- **Handles Larger Payloads:** Supports input sizes up to 1 GB, which is significantly higher than real-time endpoints.
+- **Extended Processing Time:** Allows up to 15 minutes for inference, accommodating more complex computations.
+- **Queue Inputs:** Inputs can be queued, which is useful for handling large volumes of data that do not require immediate processing.
+- **Auto-Scaling:** Automatically scales based on demand, similar to real-time endpoints.
+
+**Disadvantages:**
+- **Near Real-Time Performance:** While it supports larger payloads and longer processing times, the latency is higher compared to real-time endpoints.
+- **More Complex Workflow:** Managing asynchronous jobs might require more careful monitoring and management compared to the simpler real-time endpoint approach.
+
+
+### Sagemaker Serverless Inference
+
+Serverless Inference enables to deploy and scale ML models without configuring or managing any of the underlying infrastructure. We can use serveless inference for cpu only loads for requests where there is idle time between requests.
+
+**Advantages:**
+- **Autoscaling:** Serverless Inference scales your endpoint down to 0, helping you to minimize your costs.
+
+**Disadvantages:**
+- **CPU inference:** Currently it supports only cpu compute.
+- **Cold start:** We have to tolerate cold start for intial requests.
+
+
+
+I will now go over throw show the code for Sagemaker Batch Transform, Real Time endpoints and Async Endpoints with the example of Instance segmentation using Detectron2 MaskRCNN implementation. Why instance segemntation example? I believe it is not covered as much as object detection and classification when it has the most utility in industry for computer vision tasks as it combine object detection with segmentation giving the class information along with precise object boundary for measurements. I will train the model using detectron2 example. Train it on sample dataset provided in detectron2 repo, the focus is not on the training but deployment but for the sake of completeness I will go over through complete example.
+
+## Training Instance Segmenation 
+
+
+
+
+
+
 
 
 
