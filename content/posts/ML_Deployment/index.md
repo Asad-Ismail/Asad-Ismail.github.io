@@ -117,10 +117,23 @@ Serverless Inference enables to deploy and scale ML models without configuring o
 - **Cold start:** We have to tolerate cold start for intial requests.
 
 
+More details here https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints.html
+
 
 I will now go over throw show the code for Sagemaker Batch Transform, Real Time endpoints and Async Endpoints with the example of Instance segmentation using Detectron2 MaskRCNN implementation. Why instance segemntation example? I believe it is not covered as much as object detection and classification when it has the most utility in industry for computer vision tasks as it combine object detection with segmentation giving the class information along with precise object boundary for measurements. I will train the model using detectron2 example. Train it on sample dataset provided in detectron2 repo, the focus is not on the training but deployment but for the sake of completeness I will go over through complete example.
 
-## Training Instance Segmenation 
+## Instance Segmenation infernce
+
+An example of basic training and inference of detectron2 maskrcnn model is given in this repo https://github.com/facebookresearch/detectron2?tab=readme-ov-file
+This is how we can use trained model on CoCo dataset for inference
+
+
+
+
+
+
+
+
 
 
 
