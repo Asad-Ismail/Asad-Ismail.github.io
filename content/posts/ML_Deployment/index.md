@@ -122,14 +122,38 @@ More details here https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-end
 
 I will now go over throw show the code for Sagemaker Batch Transform, Real Time endpoints and Async Endpoints with the example of Instance segmentation using Detectron2 MaskRCNN implementation. Why instance segemntation example? I believe it is not covered as much as object detection and classification when it has the most utility in industry for computer vision tasks as it combine object detection with segmentation giving the class information along with precise object boundary for measurements. I will train the model using detectron2 example. Train it on sample dataset provided in detectron2 repo, the focus is not on the training but deployment but for the sake of completeness I will go over through complete example.
 
-## Instance Segmenation infernce
+## Instance Segmenation Training and inference Locally
 
 An example of basic training and inference of detectron2 maskrcnn model is given in this repo https://github.com/facebookresearch/detectron2?tab=readme-ov-file
-This is how we can use trained model on CoCo dataset for inference
+
+A simple example of training maskrcnn model 
+```python
+from detectron2.config import get_cfg
+cfg = get_cfg()
+model_arch="COCO-InstanceSegmentation/mask_rcnn_R_101_C4_3x.yaml"
+cfg.merge_from_file(model_zoo.get_config_file(model_arch))
+trainer = DefaultTrainer(cfg) 
+trainer.resume_or_load(resume=False)
+trainer.train()
+```
 
 
+and we can use this model to perorm inference like below
 
+```python
+from detectron2.config import get_cfg
+from detectron2.engine import DefaultPredictor
+cfg = get_cfg()
+model_arch="COCO-InstanceSegmentation/mask_rcnn_R_101_C4_3x.yaml"
+cfg.merge_from_file(model_zoo.get_config_file(model_arch))
+cfg.MODEL.WEIGHTS = os.path.join(cfg.OUTPUT_DIR, "model_final.pth")  # path to the model we just trained
+cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7   # set a custom testing threshold
+predictor = DefaultPredictor(cfg)
+im = cv2.imread(d["file_name"])
+outputs = predictor(im)
+```
 
+see full example here https://colab.research.google.com/drive/16jcaJoc6bCFAQ96jDe2HwtXj7BMD_-m5#scrollTo=U5LhISJqWXgM
 
 
 

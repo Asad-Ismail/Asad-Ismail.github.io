@@ -157,7 +157,7 @@
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              5-minute read
+              6-minute read
             </span>
           </div>
           
@@ -332,14 +332,36 @@
 <li><strong>CPU inference:</strong> Currently it supports only cpu compute.</li>
 <li><strong>Cold start:</strong> We have to tolerate cold start for intial requests.</li>
 </ul>
+<p>More details here <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints.html"  class="external-link" target="_blank" rel="noopener">https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints.html</a></p>
 <p>I will now go over throw show the code for Sagemaker Batch Transform, Real Time endpoints and Async Endpoints with the example of Instance segmentation using Detectron2 MaskRCNN implementation. Why instance segemntation example? I believe it is not covered as much as object detection and classification when it has the most utility in industry for computer vision tasks as it combine object detection with segmentation giving the class information along with precise object boundary for measurements. I will train the model using detectron2 example. Train it on sample dataset provided in detectron2 repo, the focus is not on the training but deployment but for the sake of completeness I will go over through complete example.</p>
-<h2 id="training-instance-segmenation">
-  Training Instance Segmenation
-  <a class="heading-link" href="#training-instance-segmenation">
+<h2 id="instance-segmenation-training-and-inference-locally">
+  Instance Segmenation Training and inference Locally
+  <a class="heading-link" href="#instance-segmenation-training-and-inference-locally">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
+<p>An example of basic training and inference of detectron2 maskrcnn model is given in this repo <a href="https://github.com/facebookresearch/detectron2?tab=readme-ov-file"  class="external-link" target="_blank" rel="noopener">https://github.com/facebookresearch/detectron2?tab=readme-ov-file</a></p>
+<p>A simple example of training maskrcnn model</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">detectron2.config</span> <span style="color:#ff7b72">import</span> get_cfg
+</span></span><span style="display:flex;"><span>cfg <span style="color:#ff7b72;font-weight:bold">=</span> get_cfg()
+</span></span><span style="display:flex;"><span>model_arch<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;COCO-InstanceSegmentation/mask_rcnn_R_101_C4_3x.yaml&#34;</span>
+</span></span><span style="display:flex;"><span>cfg<span style="color:#ff7b72;font-weight:bold">.</span>merge_from_file(model_zoo<span style="color:#ff7b72;font-weight:bold">.</span>get_config_file(model_arch))
+</span></span><span style="display:flex;"><span>trainer <span style="color:#ff7b72;font-weight:bold">=</span> DefaultTrainer(cfg) 
+</span></span><span style="display:flex;"><span>trainer<span style="color:#ff7b72;font-weight:bold">.</span>resume_or_load(resume<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">False</span>)
+</span></span><span style="display:flex;"><span>trainer<span style="color:#ff7b72;font-weight:bold">.</span>train()
+</span></span></code></pre></div><p>and we can use this model to perorm inference like below</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">detectron2.config</span> <span style="color:#ff7b72">import</span> get_cfg
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">detectron2.engine</span> <span style="color:#ff7b72">import</span> DefaultPredictor
+</span></span><span style="display:flex;"><span>cfg <span style="color:#ff7b72;font-weight:bold">=</span> get_cfg()
+</span></span><span style="display:flex;"><span>model_arch<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;COCO-InstanceSegmentation/mask_rcnn_R_101_C4_3x.yaml&#34;</span>
+</span></span><span style="display:flex;"><span>cfg<span style="color:#ff7b72;font-weight:bold">.</span>merge_from_file(model_zoo<span style="color:#ff7b72;font-weight:bold">.</span>get_config_file(model_arch))
+</span></span><span style="display:flex;"><span>cfg<span style="color:#ff7b72;font-weight:bold">.</span>MODEL<span style="color:#ff7b72;font-weight:bold">.</span>WEIGHTS <span style="color:#ff7b72;font-weight:bold">=</span> os<span style="color:#ff7b72;font-weight:bold">.</span>path<span style="color:#ff7b72;font-weight:bold">.</span>join(cfg<span style="color:#ff7b72;font-weight:bold">.</span>OUTPUT_DIR, <span style="color:#a5d6ff">&#34;model_final.pth&#34;</span>)  <span style="color:#8b949e;font-style:italic"># path to the model we just trained</span>
+</span></span><span style="display:flex;"><span>cfg<span style="color:#ff7b72;font-weight:bold">.</span>MODEL<span style="color:#ff7b72;font-weight:bold">.</span>ROI_HEADS<span style="color:#ff7b72;font-weight:bold">.</span>SCORE_THRESH_TEST <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0.7</span>   <span style="color:#8b949e;font-style:italic"># set a custom testing threshold</span>
+</span></span><span style="display:flex;"><span>predictor <span style="color:#ff7b72;font-weight:bold">=</span> DefaultPredictor(cfg)
+</span></span><span style="display:flex;"><span>im <span style="color:#ff7b72;font-weight:bold">=</span> cv2<span style="color:#ff7b72;font-weight:bold">.</span>imread(d[<span style="color:#a5d6ff">&#34;file_name&#34;</span>])
+</span></span><span style="display:flex;"><span>outputs <span style="color:#ff7b72;font-weight:bold">=</span> predictor(im)
+</span></span></code></pre></div><p>see full example here <a href="https://colab.research.google.com/drive/16jcaJoc6bCFAQ96jDe2HwtXj7BMD_-m5#scrollTo=U5LhISJqWXgM"  class="external-link" target="_blank" rel="noopener">https://colab.research.google.com/drive/16jcaJoc6bCFAQ96jDe2HwtXj7BMD_-m5#scrollTo=U5LhISJqWXgM</a></p>
 
       </div>
 
