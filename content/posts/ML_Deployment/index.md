@@ -156,6 +156,15 @@ outputs = predictor(im)
 see full example here https://colab.research.google.com/drive/16jcaJoc6bCFAQ96jDe2HwtXj7BMD_-m5#scrollTo=U5LhISJqWXgM
 
 
+Once we have trained, evaluated and tested the model we want to deploy the model. We will show the most general case of deployment to build our own custom container so it is aplicable to pretty much all ML models not tied down to specific container proided by sagemaker.
+
+## AWS Batch processing 
+
+
+
+
+
+
 
 
 
