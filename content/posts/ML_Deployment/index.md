@@ -272,7 +272,7 @@ response = predictor.predict(test_image)
 ```
 
 
-## Aync Inference
+## Async Inference
 
 For scenarios where immediate responses are not critical and you need to handle large payloads or longer processing times, you can deploy your model using SageMaker's Asynchronous Inference. This method allows your endpoint to process requests asynchronously, making it suitable for batch processing or complex computations.
 
