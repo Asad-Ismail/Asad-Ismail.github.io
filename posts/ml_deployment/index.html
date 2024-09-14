@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
   Machine Learning Model deployment · Asad Ismail
 </title>
@@ -22,7 +22,7 @@
   <meta name="twitter:title" content="Machine Learning Model deployment">
   <meta name="twitter:description" content="Machine learning deployment">
 
-<meta property="og:url" content="https://Asad-Ismail.github.io/posts/ml_deployment/">
+<meta property="og:url" content="http://localhost:1313/posts/ml_deployment/">
   <meta property="og:site_name" content="Asad Ismail">
   <meta property="og:title" content="Machine Learning Model deployment">
   <meta property="og:description" content="Machine learning deployment">
@@ -35,7 +35,7 @@
 
 
 
-<link rel="canonical" href="https://Asad-Ismail.github.io/posts/ml_deployment/">
+<link rel="canonical" href="http://localhost:1313/posts/ml_deployment/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -45,7 +45,7 @@
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.e927f7340e309d76dcb8fda85f1531ae7341aa9cd0b7f3ab77885dae77b1a0a2.css" integrity="sha256-6Sf3NA4wnXbcuP2oXxUxrnNBqpzQt/Ord4hdrnexoKI=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
 
 
 
@@ -55,7 +55,7 @@
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
   
 
 
@@ -103,7 +103,7 @@
     <nav class="navigation">
   <section class="container">
     
-    <a class="navigation-title" href="https://Asad-Ismail.github.io/">
+    <a class="navigation-title" href="http://localhost:1313/">
       Asad Ismail
     </a>
     
@@ -142,7 +142,7 @@
       <header>
         <div class="post-title">
           <h1 class="title">
-            <a class="title-link" href="https://Asad-Ismail.github.io/posts/ml_deployment/">
+            <a class="title-link" href="http://localhost:1313/posts/ml_deployment/">
               Machine Learning Model deployment
             </a>
           </h1>
@@ -340,7 +340,7 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>An example of basic training and inference of detectron2 maskrcnn model is given in this repo <a href="https://github.com/facebookresearch/detectron2?tab=readme-ov-file"  class="external-link" target="_blank" rel="noopener">https://github.com/facebookresearch/detectron2?tab=readme-ov-file</a></p>
+<p>An example of basic training and inference of detectron2 maskrcnn model is given in this repo <a href="https://github.com/facebookresearch/detectron2?tab=readme-ov-file"  class="external-link" target="_blank" rel="noopener">Detectron2</a></p>
 <p>A simple example of training maskrcnn model</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">detectron2.config</span> <span style="color:#ff7b72">import</span> get_cfg
 </span></span><span style="display:flex;"><span>cfg <span style="color:#ff7b72;font-weight:bold">=</span> get_cfg()
@@ -370,36 +370,36 @@
   </a>
 </h2>
 <p>Before deploying our models to any of the deployment strategies, we need to first dockerize our model. Below is the Dockerfile for Async and Real-Time Endpoints:</p>
-<pre tabindex="0"><code>FROM nvcr.io/nvidia/pytorch:23.12-py3 as build
-
-RUN apt update &amp;&amp; DEBIAN_FRONTEND=&#34;noninteractive&#34; apt -y install tzdata &amp;&amp; \
-    apt install -y zip libgl1-mesa-glx netbase libopencv-dev libopenblas-dev nginx &amp;&amp; \
-    apt clean &amp;&amp; rm -rf /var/lib/apt/lists/*
-
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py &amp;&amp; \
-    python get-pip.py &amp;&amp; \
-    python -m pip install pip==24.2 --no-cache-dir
-
-COPY ./scripts /opt/program
-
-# Set work directory and install Python dependencies
-WORKDIR /opt/program
-## specific torch and torchvision version
-RUN pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 --extra-index-url https://download.pytorch.org/whl/cu113 --no-cache-dir
-
-RUN pip install -r requirements.txt --no-cache-dir
-
-# Set environment variables
-ENV PYTHONUNBUFFERED=TRUE \
-    PYTHONDONTWRITEBYTECODE=TRUE \
-    PATH=&#34;/opt/program:${PATH}&#34;
-
-RUN chmod +x /opt/program/serve
-</code></pre><p>To build docker and push to ECR</p>
-<pre tabindex="0"><code>docker build -t $image_tag -f $dockerfile .
-docker tag $image_tag $account.dkr.ecr.$region.amazonaws.com/$repo_name:latest
-docker push $account.dkr.ecr.$region.amazonaws.com/$repo_name:latest
-</code></pre><p>It essentially gets the base NVIDIA image from NGC and installs dependencies for running Detectron2.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>FROM nvcr.io/nvidia/pytorch:23.12-py3 as build
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>RUN apt update <span style="color:#ff7b72;font-weight:bold">&amp;&amp;</span> <span style="color:#79c0ff">DEBIAN_FRONTEND</span><span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;noninteractive&#34;</span> apt -y install tzdata <span style="color:#ff7b72;font-weight:bold">&amp;&amp;</span> <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>    apt install -y zip libgl1-mesa-glx netbase libopencv-dev libopenblas-dev nginx <span style="color:#ff7b72;font-weight:bold">&amp;&amp;</span> <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>    apt clean <span style="color:#ff7b72;font-weight:bold">&amp;&amp;</span> rm -rf /var/lib/apt/lists/*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py <span style="color:#ff7b72;font-weight:bold">&amp;&amp;</span> <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>    python get-pip.py <span style="color:#ff7b72;font-weight:bold">&amp;&amp;</span> <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>    python -m pip install <span style="color:#79c0ff">pip</span><span style="color:#ff7b72;font-weight:bold">==</span>24.2 --no-cache-dir
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>COPY ./scripts /opt/program
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Set work directory and install Python dependencies</span>
+</span></span><span style="display:flex;"><span>WORKDIR /opt/program
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## specific torch and torchvision version</span>
+</span></span><span style="display:flex;"><span>RUN pip install <span style="color:#79c0ff">torch</span><span style="color:#ff7b72;font-weight:bold">==</span>1.12.1+cu113 <span style="color:#79c0ff">torchvision</span><span style="color:#ff7b72;font-weight:bold">==</span>0.13.1+cu113 --extra-index-url https://download.pytorch.org/whl/cu113 --no-cache-dir
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>RUN pip install -r requirements.txt --no-cache-dir
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Set environment variables</span>
+</span></span><span style="display:flex;"><span>ENV <span style="color:#79c0ff">PYTHONUNBUFFERED</span><span style="color:#ff7b72;font-weight:bold">=</span>TRUE <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>    <span style="color:#79c0ff">PYTHONDONTWRITEBYTECODE</span><span style="color:#ff7b72;font-weight:bold">=</span>TRUE <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>    <span style="color:#79c0ff">PATH</span><span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;/opt/program:</span><span style="color:#a5d6ff">${</span><span style="color:#79c0ff">PATH</span><span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>RUN chmod +x /opt/program/serve
+</span></span></code></pre></div><p>To build docker and push to ECR</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker build -t <span style="color:#79c0ff">$image_tag</span> -f <span style="color:#79c0ff">$dockerfile</span> .
+</span></span><span style="display:flex;"><span>docker tag <span style="color:#79c0ff">$image_tag</span> <span style="color:#79c0ff">$account</span>.dkr.ecr.<span style="color:#79c0ff">$region</span>.amazonaws.com/<span style="color:#79c0ff">$repo_name</span>:latest
+</span></span><span style="display:flex;"><span>docker push <span style="color:#79c0ff">$account</span>.dkr.ecr.<span style="color:#79c0ff">$region</span>.amazonaws.com/<span style="color:#79c0ff">$repo_name</span>:latest
+</span></span></code></pre></div><p>It essentially gets the base NVIDIA image from NGC and installs dependencies for running Detectron2.</p>
 <h2 id="registering-the-model">
   Registering the Model
   <a class="heading-link" href="#registering-the-model">
@@ -408,36 +408,36 @@ docker push $account.dkr.ecr.$region.amazonaws.com/$repo_name:latest
   </a>
 </h2>
 <p>To properly arrange and register the models and have proper metadata assigned to them, it is better to arrange models in Model Groups. We can also skip this step and go directly to the next step, but I highly recommend it. The model at this point is defined by two things: a model container, which was pushed to ECR in the last step, and a gzipped model file, which contains the model config file and model weights. Using both, we can deploy the model in SageMaker.</p>
-<pre tabindex="0"><code>
-model_package_group_name = &#34;name-of-model-group&#34;
-model_package_group_input_dict = {
- &#34;ModelPackageGroupName&#34; : model_package_group_name,
- &#34;ModelPackageGroupDescription&#34; : &#34;Test Sample model package group&#34;
-}
-create_model_package_group_response = sm_client.create_model_package_group(**model_package_group_input_dict)
-
-modelpackage_inference_specification =  {
-    &#34;InferenceSpecification&#34;: {
-      &#34;Containers&#34;: [
-         {
-            &#34;Image&#34;: image_uri,
-            &#34;ModelDataUrl&#34;: model_url
-         }
-      ],
-      &#34;SupportedContentTypes&#34;: [ &#34;json&#34; ],
-      &#34;SupportedResponseMIMETypes&#34;: [ &#34;json/csv&#34; ],
-   }
- }
-
- create_model_package_input_dict = {
-    &#34;ModelPackageGroupName&#34; : model_package_group_name,
-    &#34;ModelPackageDescription&#34; : &#34;Model to do something x&#34;,
-    &#34;ModelApprovalStatus&#34; : &#34;PendingManualApproval&#34;
-}
-create_model_package_input_dict.update(modelpackage_inference_specification)
-create_model_package_response = sm_client.create_model_package(**create_model_package_input_dict)
-model_package_arn = create_model_package_response[&#34;ModelPackageArn&#34;]
-</code></pre><h2 id="real-time-endpoints-1">
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model_package_group_name <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;name-of-model-group&#34;</span>
+</span></span><span style="display:flex;"><span>model_package_group_input_dict <span style="color:#ff7b72;font-weight:bold">=</span> {
+</span></span><span style="display:flex;"><span> <span style="color:#a5d6ff">&#34;ModelPackageGroupName&#34;</span> : model_package_group_name,
+</span></span><span style="display:flex;"><span> <span style="color:#a5d6ff">&#34;ModelPackageGroupDescription&#34;</span> : <span style="color:#a5d6ff">&#34;Test Sample model package group&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>create_model_package_group_response <span style="color:#ff7b72;font-weight:bold">=</span> sm_client<span style="color:#ff7b72;font-weight:bold">.</span>create_model_package_group(<span style="color:#ff7b72;font-weight:bold">**</span>model_package_group_input_dict)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>modelpackage_inference_specification <span style="color:#ff7b72;font-weight:bold">=</span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;InferenceSpecification&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#a5d6ff">&#34;Containers&#34;</span>: [
+</span></span><span style="display:flex;"><span>         {
+</span></span><span style="display:flex;"><span>            <span style="color:#a5d6ff">&#34;Image&#34;</span>: image_uri,
+</span></span><span style="display:flex;"><span>            <span style="color:#a5d6ff">&#34;ModelDataUrl&#34;</span>: model_url
+</span></span><span style="display:flex;"><span>         }
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>      <span style="color:#a5d6ff">&#34;SupportedContentTypes&#34;</span>: [ <span style="color:#a5d6ff">&#34;json&#34;</span> ],
+</span></span><span style="display:flex;"><span>      <span style="color:#a5d6ff">&#34;SupportedResponseMIMETypes&#34;</span>: [ <span style="color:#a5d6ff">&#34;json/csv&#34;</span> ],
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span> }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> create_model_package_input_dict <span style="color:#ff7b72;font-weight:bold">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;ModelPackageGroupName&#34;</span> : model_package_group_name,
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;ModelPackageDescription&#34;</span> : <span style="color:#a5d6ff">&#34;Model to do something x&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;ModelApprovalStatus&#34;</span> : <span style="color:#a5d6ff">&#34;PendingManualApproval&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>create_model_package_input_dict<span style="color:#ff7b72;font-weight:bold">.</span>update(modelpackage_inference_specification)
+</span></span><span style="display:flex;"><span>create_model_package_response <span style="color:#ff7b72;font-weight:bold">=</span> sm_client<span style="color:#ff7b72;font-weight:bold">.</span>create_model_package(<span style="color:#ff7b72;font-weight:bold">**</span>create_model_package_input_dict)
+</span></span><span style="display:flex;"><span>model_package_arn <span style="color:#ff7b72;font-weight:bold">=</span> create_model_package_response[<span style="color:#a5d6ff">&#34;ModelPackageArn&#34;</span>]
+</span></span></code></pre></div><h2 id="real-time-endpoints-1">
   Real Time endpoints
   <a class="heading-link" href="#real-time-endpoints-1">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
@@ -445,31 +445,31 @@ model_package_arn = create_model_package_response[&#34;ModelPackageArn&#34;]
   </a>
 </h2>
 <p>To deploy our model as a real-time endpoint using SageMaker, we can use the ModelPackage class to create a model from our registered model package and then deploy it to an endpoint. This setup allows you to serve predictions in real time with minimal latency, which is ideal for applications requiring immediate responses.</p>
-<pre tabindex="0"><code>
-# Create a SageMaker session and create model group
-sagemaker_session = sagemaker.Session()
-model_package_arn=&#34;arn:aws:sagemaker:xxxx&#34;
-
-model = ModelPackage(role=role, 
-                     model_package_arn=model_package_arn, 
-                     sagemaker_session=sagemaker_session)
-
-async_config = AsyncInferenceConfig(
-    output_path=&#39;s3://your-bucket/async_output/&#39;,
-    max_concurrent_invocations_per_instance=1
-)
-
-# Deploy the model to an endpoint
-predictor = model.deploy(
-    initial_instance_count=1,
-    instance_type=&#34;ml.p3.2xlarge&#34;,
-    endpoint_name=&#34;your-endpoint-name&#34;
-)
-
-# Perform real-time inference
-test_image = open(&#34;test_image.jpg&#34;, &#34;rb&#34;).read()
-response = predictor.predict(test_image)
-</code></pre><h2 id="aync-inference">
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Create a SageMaker session and create model group</span>
+</span></span><span style="display:flex;"><span>sagemaker_session <span style="color:#ff7b72;font-weight:bold">=</span> sagemaker<span style="color:#ff7b72;font-weight:bold">.</span>Session()
+</span></span><span style="display:flex;"><span>model_package_arn<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;arn:aws:sagemaker:xxxx&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#ff7b72;font-weight:bold">=</span> ModelPackage(role<span style="color:#ff7b72;font-weight:bold">=</span>role, 
+</span></span><span style="display:flex;"><span>                     model_package_arn<span style="color:#ff7b72;font-weight:bold">=</span>model_package_arn, 
+</span></span><span style="display:flex;"><span>                     sagemaker_session<span style="color:#ff7b72;font-weight:bold">=</span>sagemaker_session)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>async_config <span style="color:#ff7b72;font-weight:bold">=</span> AsyncInferenceConfig(
+</span></span><span style="display:flex;"><span>    output_path<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;s3://your-bucket/async_output/&#39;</span>,
+</span></span><span style="display:flex;"><span>    max_concurrent_invocations_per_instance<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Deploy the model to an endpoint</span>
+</span></span><span style="display:flex;"><span>predictor <span style="color:#ff7b72;font-weight:bold">=</span> model<span style="color:#ff7b72;font-weight:bold">.</span>deploy(
+</span></span><span style="display:flex;"><span>    initial_instance_count<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>,
+</span></span><span style="display:flex;"><span>    instance_type<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;ml.p3.2xlarge&#34;</span>,
+</span></span><span style="display:flex;"><span>    endpoint_name<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;your-endpoint-name&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Perform real-time inference</span>
+</span></span><span style="display:flex;"><span>test_image <span style="color:#ff7b72;font-weight:bold">=</span> open(<span style="color:#a5d6ff">&#34;test_image.jpg&#34;</span>, <span style="color:#a5d6ff">&#34;rb&#34;</span>)<span style="color:#ff7b72;font-weight:bold">.</span>read()
+</span></span><span style="display:flex;"><span>response <span style="color:#ff7b72;font-weight:bold">=</span> predictor<span style="color:#ff7b72;font-weight:bold">.</span>predict(test_image)
+</span></span></code></pre></div><h2 id="aync-inference">
   Aync Inference
   <a class="heading-link" href="#aync-inference">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
@@ -477,33 +477,33 @@ response = predictor.predict(test_image)
   </a>
 </h2>
 <p>For scenarios where immediate responses are not critical and you need to handle large payloads or longer processing times, you can deploy your model using SageMaker&rsquo;s Asynchronous Inference. This method allows your endpoint to process requests asynchronously, making it suitable for batch processing or complex computations.</p>
-<pre tabindex="0"><code>
-# Create a SageMaker session and specify your role
-sagemaker_session = sagemaker.Session()
-model_package_arn=&#34;arn:aws:sagemaker:xxxx&#34;
-
-model = ModelPackage(role=role, 
-                     model_package_arn=model_package_arn, 
-                     sagemaker_session=sagemaker_session)
-
-async_config = AsyncInferenceConfig(
-    output_path=&#39;s3://your-bucket/async_output/&#39;,
-    max_concurrent_invocations_per_instance=1
-)
-
-# Deploy model as endpoint
-predictor = model.deploy(
-    initial_instance_count=1,
-    instance_type=&#39;ml.p3.2xlarge&#39;,
-    endpoint_name=endpoint_name,
-    async_inference_config=async_config
-)
-
-waiter = sm_client.get_waiter(&#34;endpoint_in_service&#34;)
-print(&#34;Waiting for endpoint to create...&#34;)
-waiter.wait(EndpointName=endpoint_name)
-resp = sm_client.describe_endpoint(EndpointName=endpoint_name)
-</code></pre><h3 id="attaching-autoscaling-to-endpoint">
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Create a SageMaker session and specify your role</span>
+</span></span><span style="display:flex;"><span>sagemaker_session <span style="color:#ff7b72;font-weight:bold">=</span> sagemaker<span style="color:#ff7b72;font-weight:bold">.</span>Session()
+</span></span><span style="display:flex;"><span>model_package_arn<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;arn:aws:sagemaker:xxxx&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#ff7b72;font-weight:bold">=</span> ModelPackage(role<span style="color:#ff7b72;font-weight:bold">=</span>role, 
+</span></span><span style="display:flex;"><span>                     model_package_arn<span style="color:#ff7b72;font-weight:bold">=</span>model_package_arn, 
+</span></span><span style="display:flex;"><span>                     sagemaker_session<span style="color:#ff7b72;font-weight:bold">=</span>sagemaker_session)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>async_config <span style="color:#ff7b72;font-weight:bold">=</span> AsyncInferenceConfig(
+</span></span><span style="display:flex;"><span>    output_path<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;s3://your-bucket/async_output/&#39;</span>,
+</span></span><span style="display:flex;"><span>    max_concurrent_invocations_per_instance<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Deploy model as endpoint</span>
+</span></span><span style="display:flex;"><span>predictor <span style="color:#ff7b72;font-weight:bold">=</span> model<span style="color:#ff7b72;font-weight:bold">.</span>deploy(
+</span></span><span style="display:flex;"><span>    initial_instance_count<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>,
+</span></span><span style="display:flex;"><span>    instance_type<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;ml.p3.2xlarge&#39;</span>,
+</span></span><span style="display:flex;"><span>    endpoint_name<span style="color:#ff7b72;font-weight:bold">=</span>endpoint_name,
+</span></span><span style="display:flex;"><span>    async_inference_config<span style="color:#ff7b72;font-weight:bold">=</span>async_config
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>waiter <span style="color:#ff7b72;font-weight:bold">=</span> sm_client<span style="color:#ff7b72;font-weight:bold">.</span>get_waiter(<span style="color:#a5d6ff">&#34;endpoint_in_service&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#a5d6ff">&#34;Waiting for endpoint to create...&#34;</span>)
+</span></span><span style="display:flex;"><span>waiter<span style="color:#ff7b72;font-weight:bold">.</span>wait(EndpointName<span style="color:#ff7b72;font-weight:bold">=</span>endpoint_name)
+</span></span><span style="display:flex;"><span>resp <span style="color:#ff7b72;font-weight:bold">=</span> sm_client<span style="color:#ff7b72;font-weight:bold">.</span>describe_endpoint(EndpointName<span style="color:#ff7b72;font-weight:bold">=</span>endpoint_name)
+</span></span></code></pre></div><h3 id="attaching-autoscaling-to-endpoint">
   Attaching Autoscaling to endpoint
   <a class="heading-link" href="#attaching-autoscaling-to-endpoint">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
@@ -511,43 +511,43 @@ resp = sm_client.describe_endpoint(EndpointName=endpoint_name)
   </a>
 </h3>
 <p>If we expect irregular requests, to save cost and be responsive, it is best to attach autoscaling to the endpoints so it can scale out if we get a lot of traffic requests and scale in if there are not many requests. We can have different metrics to monitor to scale out and in; here we are using SageMakerVariantInvocationsPerInstance.</p>
-<pre tabindex="0"><code>
-client = boto3.client(&#34;application-autoscaling&#34;) 
-
-## Using autoscaling for all trafic and the current endpoint
-resource_id = (&#34;endpoint/&#34; + endpoint_name + &#34;/variant/&#34; + &#34;AllTraffic&#34;)  
-
-# Configure Autoscaling on asynchronous endpoint down to zero instances
-response = client.register_scalable_target(
-    ServiceNamespace=&#34;sagemaker&#34;,
-    ResourceId=resource_id,
-    ScalableDimension=&#34;sagemaker:variant:DesiredInstanceCount&#34;,
-    MinCapacity=0,
-    MaxCapacity=1,
-)
-
-response = client.put_scaling_policy(
-    PolicyName=&#34;Invocations-ScalingPolicy&#34;,
-    ServiceNamespace=&#34;sagemaker&#34;,  # The namespace of the AWS service that provides the resource.
-    ResourceId=resource_id,  # Endpoint name
-    ScalableDimension=&#34;sagemaker:variant:DesiredInstanceCount&#34;,  # SageMaker supports only Instance Count
-    PolicyType=&#34;TargetTrackingScaling&#34;,  # &#39;StepScaling&#39;|&#39;TargetTrackingScaling&#39;
-    TargetTrackingScalingPolicyConfiguration={
-        &#34;TargetValue&#34;: 1.0,  # The target value for the metric. - here the metric is - SageMakerVariantInvocationsPerInstance
-        &#34;PredefinedMetricSpecification&#34;: {
-            &#34;PredefinedMetricType&#34;: &#34;SageMakerVariantInvocationsPerInstance&#34;
-        },
-        &#34;ScaleInCooldown&#34;: 2,  # The cooldown period helps you prevent your Auto Scaling group from launching or terminating
-        # additional instances before the effects of previous activities are visible.
-        # You can configure the length of time based on your instance startup time or other application needs.
-        # ScaleInCooldown - The amount of time, in seconds, after a scale in activity completes before another scale in activity can start.
-        &#34;ScaleOutCooldown&#34;: 2,  # ScaleOutCooldown - The amount of time, in seconds, after a scale out activity completes before another scale out activity can start.
-        # &#39;DisableScaleIn&#39;: True|False - ndicates whether scale in by the target tracking policy is disabled.
-        # If the value is true , scale in is disabled and the target tracking policy won&#39;t remove capacity from the scalable resource.
-        &#34;DisableScaleIn&#34;: False 
-    },
-)
-</code></pre><h3 id="aws-sagemaker-batch-transform">
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#ff7b72;font-weight:bold">=</span> boto3<span style="color:#ff7b72;font-weight:bold">.</span>client(<span style="color:#a5d6ff">&#34;application-autoscaling&#34;</span>) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## Using autoscaling for all trafic and the current endpoint</span>
+</span></span><span style="display:flex;"><span>resource_id <span style="color:#ff7b72;font-weight:bold">=</span> (<span style="color:#a5d6ff">&#34;endpoint/&#34;</span> <span style="color:#ff7b72;font-weight:bold">+</span> endpoint_name <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#a5d6ff">&#34;/variant/&#34;</span> <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#a5d6ff">&#34;AllTraffic&#34;</span>)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Configure Autoscaling on asynchronous endpoint down to zero instances</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#ff7b72;font-weight:bold">=</span> client<span style="color:#ff7b72;font-weight:bold">.</span>register_scalable_target(
+</span></span><span style="display:flex;"><span>    ServiceNamespace<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;sagemaker&#34;</span>,
+</span></span><span style="display:flex;"><span>    ResourceId<span style="color:#ff7b72;font-weight:bold">=</span>resource_id,
+</span></span><span style="display:flex;"><span>    ScalableDimension<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;sagemaker:variant:DesiredInstanceCount&#34;</span>,
+</span></span><span style="display:flex;"><span>    MinCapacity<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">0</span>,
+</span></span><span style="display:flex;"><span>    MaxCapacity<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>response <span style="color:#ff7b72;font-weight:bold">=</span> client<span style="color:#ff7b72;font-weight:bold">.</span>put_scaling_policy(
+</span></span><span style="display:flex;"><span>    PolicyName<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;Invocations-ScalingPolicy&#34;</span>,
+</span></span><span style="display:flex;"><span>    ServiceNamespace<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;sagemaker&#34;</span>,  <span style="color:#8b949e;font-style:italic"># The namespace of the AWS service that provides the resource.</span>
+</span></span><span style="display:flex;"><span>    ResourceId<span style="color:#ff7b72;font-weight:bold">=</span>resource_id,  <span style="color:#8b949e;font-style:italic"># Endpoint name</span>
+</span></span><span style="display:flex;"><span>    ScalableDimension<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;sagemaker:variant:DesiredInstanceCount&#34;</span>,  <span style="color:#8b949e;font-style:italic"># SageMaker supports only Instance Count</span>
+</span></span><span style="display:flex;"><span>    PolicyType<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;TargetTrackingScaling&#34;</span>,  <span style="color:#8b949e;font-style:italic"># &#39;StepScaling&#39;|&#39;TargetTrackingScaling&#39;</span>
+</span></span><span style="display:flex;"><span>    TargetTrackingScalingPolicyConfiguration<span style="color:#ff7b72;font-weight:bold">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#34;TargetValue&#34;</span>: <span style="color:#a5d6ff">1.0</span>,  <span style="color:#8b949e;font-style:italic"># The target value for the metric. - here the metric is - SageMakerVariantInvocationsPerInstance</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#34;PredefinedMetricSpecification&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#a5d6ff">&#34;PredefinedMetricType&#34;</span>: <span style="color:#a5d6ff">&#34;SageMakerVariantInvocationsPerInstance&#34;</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#34;ScaleInCooldown&#34;</span>: <span style="color:#a5d6ff">2</span>,  <span style="color:#8b949e;font-style:italic"># The cooldown period helps you prevent your Auto Scaling group from launching or terminating</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># additional instances before the effects of previous activities are visible.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># You can configure the length of time based on your instance startup time or other application needs.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># ScaleInCooldown - The amount of time, in seconds, after a scale in activity completes before another scale in activity can start.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#34;ScaleOutCooldown&#34;</span>: <span style="color:#a5d6ff">2</span>,  <span style="color:#8b949e;font-style:italic"># ScaleOutCooldown - The amount of time, in seconds, after a scale out activity completes before another scale out activity can start.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># &#39;DisableScaleIn&#39;: True|False - ndicates whether scale in by the target tracking policy is disabled.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># If the value is true , scale in is disabled and the target tracking policy won&#39;t remove capacity from the scalable resource.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#34;DisableScaleIn&#34;</span>: <span style="color:#79c0ff">False</span> 
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="aws-sagemaker-batch-transform">
   AWS Sagemaker Batch Transform
   <a class="heading-link" href="#aws-sagemaker-batch-transform">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
@@ -565,20 +565,20 @@ response = client.put_scaling_policy(
 <p>Create SageMaker Batch Transform job:</p>
 </li>
 </ol>
-<pre tabindex="0"><code>
-sm_cli = sagemaker_session.sagemaker_client
-
-transformer=model.transformer(instance_count=1, instance_type=&#34;ml.p3.2xlarge&#34;, output_path=model_outputs_path,max_payload=100)
-
-transformer.transform(
-    data=&#39;s3://path_to_your_images/input/&#39;, 
-    data_type=&#34;S3Prefix&#34;,
-    content_type=&#34;application/x-image&#34;,
-    wait=True
-)
-
-job_info = sm_cli.describe_transform_job(TransformJobName=transformer.latest_transform_job.name)
-</code></pre><h2 id="additional-comments-and-conclusion">
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sm_cli <span style="color:#ff7b72;font-weight:bold">=</span> sagemaker_session<span style="color:#ff7b72;font-weight:bold">.</span>sagemaker_client
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>transformer<span style="color:#ff7b72;font-weight:bold">=</span>model<span style="color:#ff7b72;font-weight:bold">.</span>transformer(instance_count<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>, instance_type<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;ml.p3.2xlarge&#34;</span>, output_path<span style="color:#ff7b72;font-weight:bold">=</span>model_outputs_path,max_payload<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">100</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>transformer<span style="color:#ff7b72;font-weight:bold">.</span>transform(
+</span></span><span style="display:flex;"><span>    data<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;s3://path_to_your_images/input/&#39;</span>, 
+</span></span><span style="display:flex;"><span>    data_type<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;S3Prefix&#34;</span>,
+</span></span><span style="display:flex;"><span>    content_type<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;application/x-image&#34;</span>,
+</span></span><span style="display:flex;"><span>    wait<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>job_info <span style="color:#ff7b72;font-weight:bold">=</span> sm_cli<span style="color:#ff7b72;font-weight:bold">.</span>describe_transform_job(TransformJobName<span style="color:#ff7b72;font-weight:bold">=</span>transformer<span style="color:#ff7b72;font-weight:bold">.</span>latest_transform_job<span style="color:#ff7b72;font-weight:bold">.</span>name)
+</span></span></code></pre></div><h2 id="additional-comments-and-conclusion">
   Additional Comments and Conclusion
   <a class="heading-link" href="#additional-comments-and-conclusion">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
@@ -670,7 +670,7 @@ By understanding these deployment strategies and their strengths and limitations
 
   
   
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  <script src="/js/coder.js"></script>
   
 
   
