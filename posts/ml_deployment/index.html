@@ -157,7 +157,7 @@
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              10-minute read
+              11-minute read
             </span>
           </div>
           
@@ -332,10 +332,10 @@
 <li><strong>Cold start:</strong> We have to tolerate cold start for intial requests.</li>
 </ul>
 <p>More details here <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints.html"  class="external-link" target="_blank" rel="noopener">https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints.html</a></p>
-<p>I will now go over throw show the code for Sagemaker Batch Transform, Real Time endpoints and Async Endpoints with the example of Instance segmentation using Detectron2 MaskRCNN implementation. Why instance segemntation example? I believe it is not covered as much as object detection and classification when it has the most utility in industry for computer vision tasks as it combine object detection with segmentation giving the class information along with precise object boundary for measurements. I will train the model using detectron2 example. Train it on sample dataset provided in detectron2 repo, the focus is not on the training but deployment but for the sake of completeness I will go over through complete example.</p>
-<h2 id="instance-segmenation-training-and-inference-locally">
-  Instance Segmenation Training and inference Locally
-  <a class="heading-link" href="#instance-segmenation-training-and-inference-locally">
+<p>I will now go through and show the code for SageMaker Batch Transform, Real-Time Endpoints, and Async Endpoints with the example of instance segmentation using Detectron2&rsquo;s Mask R-CNN implementation. Why an instance segmentation example? I believe it is not covered as much as object detection and classification, even though it has the most utility in the industry for computer vision tasks, as it combines object detection with segmentation, giving the class information along with precise object boundaries for measurements. I will train the model using a Detectron2 example, and train it on a sample dataset provided in the Detectron2 repo. The focus is not on the training but deployment, but for the sake of completeness, I will go through the complete example.</p>
+<h2 id="instance-segmentation-training-and-inference-locally">
+  Instance Segmentation Training and inference Locally
+  <a class="heading-link" href="#instance-segmentation-training-and-inference-locally">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
@@ -360,16 +360,16 @@
 </span></span><span style="display:flex;"><span>predictor <span style="color:#ff7b72;font-weight:bold">=</span> DefaultPredictor(cfg)
 </span></span><span style="display:flex;"><span>im <span style="color:#ff7b72;font-weight:bold">=</span> cv2<span style="color:#ff7b72;font-weight:bold">.</span>imread(d[<span style="color:#a5d6ff">&#34;file_name&#34;</span>])
 </span></span><span style="display:flex;"><span>outputs <span style="color:#ff7b72;font-weight:bold">=</span> predictor(im)
-</span></span></code></pre></div><p>see full example here <a href="https://colab.research.google.com/drive/16jcaJoc6bCFAQ96jDe2HwtXj7BMD_-m5#scrollTo=U5LhISJqWXgM"  class="external-link" target="_blank" rel="noopener">https://colab.research.google.com/drive/16jcaJoc6bCFAQ96jDe2HwtXj7BMD_-m5#scrollTo=U5LhISJqWXgM</a></p>
-<p>Once we have trained, evaluated and tested the model we want to deploy the model. We will show the most general case of deployment to build our own custom container so it is aplicable to pretty much all ML models not tied down to specific container proided by sagemaker. Complete code you can find <a href="https://github.com/Asad-Ismail/ml-model-deployment"  class="external-link" target="_blank" rel="noopener">Github Repo</a></p>
-<h2 id="build-custom-cotainer">
-  Build Custom Cotainer
-  <a class="heading-link" href="#build-custom-cotainer">
+</span></span></code></pre></div><p>see full example here <a href="https://colab.research.google.com/drive/16jcaJoc6bCFAQ96jDe2HwtXj7BMD_-m5#scrollTo=U5LhISJqWXgM"  class="external-link" target="_blank" rel="noopener">Detectron2 Example</a></p>
+<p>Once we have trained, evaluated, and tested the model, we want to deploy it. We will show the most general case of deployment by building our own custom container so it is applicable to pretty much all ML models, not tied down to specific containers provided by SageMaker. The complete code can be found in the <a href="https://github.com/Asad-Ismail/ml-model-deployment"  class="external-link" target="_blank" rel="noopener">Repo</a></p>
+<h2 id="build-custom-container">
+  Build Custom Container
+  <a class="heading-link" href="#build-custom-container">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>Before deploying our models to any of the deployment strategy we need to first dockerize our model. Below is the docker file for async and real time endpoints</p>
+<p>Before deploying our models to any of the deployment strategies, we need to first dockerize our model. Below is the Dockerfile for Async and Real-Time Endpoints:</p>
 <pre tabindex="0"><code>FROM nvcr.io/nvidia/pytorch:23.12-py3 as build
 
 RUN apt update &amp;&amp; DEBIAN_FRONTEND=&#34;noninteractive&#34; apt -y install tzdata &amp;&amp; \
@@ -399,15 +399,15 @@ RUN chmod +x /opt/program/serve
 <pre tabindex="0"><code>docker build -t $image_tag -f $dockerfile .
 docker tag $image_tag $account.dkr.ecr.$region.amazonaws.com/$repo_name:latest
 docker push $account.dkr.ecr.$region.amazonaws.com/$repo_name:latest
-</code></pre><p>It essentialy gets base nvidia image from nvcr and install dependecies for running detectron2.</p>
-<h2 id="regestring-model">
-  Regestring Model
-  <a class="heading-link" href="#regestring-model">
+</code></pre><p>It essentially gets the base NVIDIA image from NGC and installs dependencies for running Detectron2.</p>
+<h2 id="registering-the-model">
+  Registering the Model
+  <a class="heading-link" href="#registering-the-model">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>To properly arrage and register the models and have proper meta data assigned to them it is better to arrage models in Model groups. We can also skip this step and go dorectly to next step but I highly recommend it. Model at this point is defined by two things a model container which was pushed to ECR in the last step and model gzipped file which contains model config file and model weights, using both we can deploy the model in sagemaker.</p>
+<p>To properly arrange and register the models and have proper metadata assigned to them, it is better to arrange models in Model Groups. We can also skip this step and go directly to the next step, but I highly recommend it. The model at this point is defined by two things: a model container, which was pushed to ECR in the last step, and a gzipped model file, which contains the model config file and model weights. Using both, we can deploy the model in SageMaker.</p>
 <pre tabindex="0"><code>
 model_package_group_name = &#34;name-of-model-group&#34;
 model_package_group_input_dict = {
@@ -444,6 +444,7 @@ model_package_arn = create_model_package_response[&#34;ModelPackageArn&#34;]
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
+<p>To deploy our model as a real-time endpoint using SageMaker, we can use the ModelPackage class to create a model from our registered model package and then deploy it to an endpoint. This setup allows you to serve predictions in real time with minimal latency, which is ideal for applications requiring immediate responses.</p>
 <pre tabindex="0"><code>
 # Create a SageMaker session and create model group
 sagemaker_session = sagemaker.Session()
@@ -475,6 +476,7 @@ response = predictor.predict(test_image)
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
+<p>For scenarios where immediate responses are not critical and you need to handle large payloads or longer processing times, you can deploy your model using SageMaker&rsquo;s Asynchronous Inference. This method allows your endpoint to process requests asynchronously, making it suitable for batch processing or complex computations.</p>
 <pre tabindex="0"><code>
 # Create a SageMaker session and specify your role
 sagemaker_session = sagemaker.Session()
@@ -508,7 +510,7 @@ resp = sm_client.describe_endpoint(EndpointName=endpoint_name)
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>If we expect irregular requests to save cost and be responsive, it is best to attach autoscaling to the endpoints so it can scale out if we get lot of traffic requests and scale in if there is not much requests. We can have different metrics to montior to scale out and in here we are using SageMakerVariantInvocationsPerInstance.</p>
+<p>If we expect irregular requests, to save cost and be responsive, it is best to attach autoscaling to the endpoints so it can scale out if we get a lot of traffic requests and scale in if there are not many requests. We can have different metrics to monitor to scale out and in; here we are using SageMakerVariantInvocationsPerInstance.</p>
 <pre tabindex="0"><code>
 client = boto3.client(&#34;application-autoscaling&#34;) 
 
@@ -554,13 +556,13 @@ response = client.put_scaling_policy(
 </h3>
 <ol>
 <li>
-<p>For sagemaker batch transform the docker file is very slightly different see detail here <a href="https://github.com/Asad-Ismail/ml-model-deployment/blob/main/sm_batch_transform/Dockerfile"  class="external-link" target="_blank" rel="noopener">Doclerfile_BT</a></p>
+<p>For SageMaker Batch Transform, the Dockerfile is slightly different; see details here: <a href="https://github.com/Asad-Ismail/ml-model-deployment/blob/main/sm_batch_transform/Dockerfile"  class="external-link" target="_blank" rel="noopener">Doclerfile_BT</a></p>
 </li>
 <li>
-<p>Building and registering the model steps stays the same also given her <a href="https://github.com/Asad-Ismail/ml-model-deployment/blob/main/sm_batch_transform/Dockerfile"  class="external-link" target="_blank" rel="noopener">Build&amp;Register</a></p>
+<p>Building and registering the model steps stay the same; also given here: <a href="https://github.com/Asad-Ismail/ml-model-deployment/blob/main/sm_batch_transform/Dockerfile"  class="external-link" target="_blank" rel="noopener">Build&amp;Register</a></p>
 </li>
 <li>
-<p>Create sagemaker batch transform job</p>
+<p>Create SageMaker Batch Transform job:</p>
 </li>
 </ol>
 <pre tabindex="0"><code>
@@ -576,7 +578,62 @@ transformer.transform(
 )
 
 job_info = sm_cli.describe_transform_job(TransformJobName=transformer.latest_transform_job.name)
-</code></pre>
+</code></pre><h2 id="additional-comments-and-conclusion">
+  Additional Comments and Conclusion
+  <a class="heading-link" href="#additional-comments-and-conclusion">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>We have explored various strategies for deploying machine learning models, focusing on AWS services like SageMaker for real-time endpoints, asynchronous inference, and batch transform jobs. By using a practical example of instance segmentation with Detectron2&rsquo;s Mask R-CNN, We have demostrated following poiints:</p>
+<ul>
+<li>Flexibility: Custom containers allow you to deploy a wide range of models, not limited to specific frameworks.</li>
+<li>Scalability: AWS services like SageMaker provide robust scaling options to handle varying workloads.</li>
+<li>Performance: Options like real-time endpoints ensure low-latency responses for time-sensitive applications.
+Limitations and Considerations:</li>
+</ul>
+<p>We did not consider and some topics for future are:</p>
+<ul>
+<li>
+<p>Deployment Strategies: In real-world scenarios, you&rsquo;d often want to gradually shift traffic to new endpoints to minimize risks. Techniques like canary deployments and A/B testing allow you to test new models on a small percentage of traffic before full rollout.</p>
+</li>
+<li>
+<p>Continuous Integration/Continuous Deployment (CI/CD): Automate your deployment pipeline for efficient updates and scaling.
+Advanced Deployment Strategies: Explore canary deployments, blue/green deployments, and A/B testing to improve deployment safety and effectiveness.
+By understanding these deployment strategies and their strengths and limitations, you can make informed decisions on how best to serve your machine learning models to meet your application&rsquo;s needs.</p>
+</li>
+</ul>
+<p>Feel free to reach out or consult the <a href="https://github.com/Asad-Ismail/ml-model-deployment/blob/main/sm_batch_transform/batch_transform.ipynb"  class="external-link" target="_blank" rel="noopener">Repo</a> for the complete code.</p>
+<h3 id="references">
+  References
+  <a class="heading-link" href="#references">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><strong>AWS SageMaker Documentation:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints.html"  class="external-link" target="_blank" rel="noopener">Real-Time Inference</a></li>
+<li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/async-inference.html"  class="external-link" target="_blank" rel="noopener">Asynchronous Inference</a></li>
+<li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html"  class="external-link" target="_blank" rel="noopener">Batch Transform</a></li>
+<li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints.html"  class="external-link" target="_blank" rel="noopener">Serverless Inference</a></li>
+</ul>
+<p><strong>Detectron2 Resources:</strong></p>
+<ul>
+<li><a href="https://github.com/facebookresearch/detectron2"  class="external-link" target="_blank" rel="noopener">Detectron2 GitHub Repository</a></li>
+<li><a href="https://detectron2.readthedocs.io/"  class="external-link" target="_blank" rel="noopener">Detectron2 Documentation</a></li>
+</ul>
+<p><strong>AWS Autoscaling:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/autoscaling/application/userguide/what-is-application-auto-scaling.html"  class="external-link" target="_blank" rel="noopener">Application Auto Scaling Documentation</a></li>
+<li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/inference-endpoints-auto-scaling.html"  class="external-link" target="_blank" rel="noopener">Scaling SageMaker Endpoints</a></li>
+</ul>
+<p><strong>Advanced Deployment Strategies:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/deployment-guardrails-blue-green-canary.html"  class="external-link" target="_blank" rel="noopener">Canary Deployments with AWS SageMaker</a></li>
+<li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/deployment-guardrails-blue-green.html"  class="external-link" target="_blank" rel="noopener">Blue/Green Deployments</a></li>
+</ul>
+
       </div>
 
 
