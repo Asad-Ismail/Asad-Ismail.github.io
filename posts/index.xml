@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Asad Ismail</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 16 Aug 2024 00:36:50 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 14 Sep 2024 00:00:00 +0200</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Efficient Deep Learning Part 1</title>
+      <link>http://localhost:1313/posts/efficient_deep_learning/part1/</link>
+      <pubDate>Sat, 14 Sep 2024 00:00:00 +0200</pubDate>
+      <guid>http://localhost:1313/posts/efficient_deep_learning/part1/</guid>
+      <description>Efficient Deep Learning Part 1 Link to heading Deep learning models have revolutionized many fields, from computer vision to natural language processing. However, they often come with a significant drawback: computational inefficiency. Large models require substantial computational resources, which can lead to high costs and slow inference times. In this series, we&amp;rsquo;ll explore various techniques to make deep learning models more efficient without significantly compromising performance.&#xA;Why Efficiency Matters Link to heading Resource Constraints: Not all environments have access to high-performance computing resources.</description>
+    </item>
     <item>
       <title>Machine Learning Model deployment</title>
       <link>http://localhost:1313/posts/ml_deployment/</link>

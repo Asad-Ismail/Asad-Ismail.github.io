@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Efficiency on Asad Ismail</title>
+    <link>http://localhost:1313/tags/efficiency/</link>
+    <description>Recent content in Efficiency on Asad Ismail</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 14 Sep 2024 00:00:00 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/efficiency/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Efficient Deep Learning Part 1</title>
+      <link>http://localhost:1313/posts/efficient_deep_learning/part1/</link>
+      <pubDate>Sat, 14 Sep 2024 00:00:00 +0200</pubDate>
+      <guid>http://localhost:1313/posts/efficient_deep_learning/part1/</guid>
+      <description>Efficient Deep Learning Part 1 Link to heading Deep learning models have revolutionized many fields, from computer vision to natural language processing. However, they often come with a significant drawback: computational inefficiency. Large models require substantial computational resources, which can lead to high costs and slow inference times. In this series, we&amp;rsquo;ll explore various techniques to make deep learning models more efficient without significantly compromising performance.&#xA;Why Efficiency Matters Link to heading Resource Constraints: Not all environments have access to high-performance computing resources.</description>
+    </item>
+  </channel>
+</rss>
