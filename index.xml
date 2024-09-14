@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Asad Ismail</title>
-    <link>http://localhost:1313/</link>
+    <link>https://Asad-Ismail.github.io/</link>
     <description>Recent content on Asad Ismail</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 16 Aug 2024 00:36:50 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://Asad-Ismail.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Machine Learning Model deployment</title>
-      <link>http://localhost:1313/posts/ml_deployment/</link>
+      <link>https://Asad-Ismail.github.io/posts/ml_deployment/</link>
       <pubDate>Fri, 16 Aug 2024 00:36:50 +0200</pubDate>
-      <guid>http://localhost:1313/posts/ml_deployment/</guid>
+      <guid>https://Asad-Ismail.github.io/posts/ml_deployment/</guid>
       <description>Machine Learning Model Deployment Link to heading After successfully building your ML/DL model in a notebook, the next critical step is deployment—getting your model out into the world to serve customers. There are two primary avenues for deploying machine learning models:&#xA;Edge Deployment Cloud Deployment Edge Deployment Link to heading Edge deployment involves placing the model directly on the device where it will be used. This approach is particularly valuable in situations where:</description>
     </item>
     <item>
       <title>t 2 video blog</title>
-      <link>http://localhost:1313/posts/text2video/</link>
+      <link>https://Asad-Ismail.github.io/posts/text2video/</link>
       <pubDate>Wed, 14 Aug 2024 00:37:07 +0200</pubDate>
-      <guid>http://localhost:1313/posts/text2video/</guid>
+      <guid>https://Asad-Ismail.github.io/posts/text2video/</guid>
       <description> Curerntly being developed Link to heading </description>
     </item>
   </channel>

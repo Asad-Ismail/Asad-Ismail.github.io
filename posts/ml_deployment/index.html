@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <title>
   Machine Learning Model deployment · Asad Ismail
 </title>
@@ -22,7 +22,7 @@
   <meta name="twitter:title" content="Machine Learning Model deployment">
   <meta name="twitter:description" content="Machine learning deployment">
 
-<meta property="og:url" content="http://localhost:1313/posts/ml_deployment/">
+<meta property="og:url" content="https://Asad-Ismail.github.io/posts/ml_deployment/">
   <meta property="og:site_name" content="Asad Ismail">
   <meta property="og:title" content="Machine Learning Model deployment">
   <meta property="og:description" content="Machine learning deployment">
@@ -35,7 +35,7 @@
 
 
 
-<link rel="canonical" href="http://localhost:1313/posts/ml_deployment/">
+<link rel="canonical" href="https://Asad-Ismail.github.io/posts/ml_deployment/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -45,7 +45,7 @@
 
   
   
-  <link rel="stylesheet" href="/css/coder.css" media="screen">
+  <link rel="stylesheet" href="/css/coder.min.e927f7340e309d76dcb8fda85f1531ae7341aa9cd0b7f3ab77885dae77b1a0a2.css" integrity="sha256-6Sf3NA4wnXbcuP2oXxUxrnNBqpzQt/Ord4hdrnexoKI=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -55,7 +55,7 @@
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
   
 
 
@@ -103,7 +103,7 @@
     <nav class="navigation">
   <section class="container">
     
-    <a class="navigation-title" href="http://localhost:1313/">
+    <a class="navigation-title" href="https://Asad-Ismail.github.io/">
       Asad Ismail
     </a>
     
@@ -142,7 +142,7 @@
       <header>
         <div class="post-title">
           <h1 class="title">
-            <a class="title-link" href="http://localhost:1313/posts/ml_deployment/">
+            <a class="title-link" href="https://Asad-Ismail.github.io/posts/ml_deployment/">
               Machine Learning Model deployment
             </a>
           </h1>
@@ -157,7 +157,7 @@
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              6-minute read
+              10-minute read
             </span>
           </div>
           
@@ -226,7 +226,6 @@
     <p style="text-align: center; font-style: italic; color: #666;">Cloud Market share @2022</p>
     
 </div>
-
 
 <h3 id="focus-on-aws-for-ml-deployment">
   Focus on AWS for ML Deployment
@@ -362,15 +361,222 @@
 </span></span><span style="display:flex;"><span>im <span style="color:#ff7b72;font-weight:bold">=</span> cv2<span style="color:#ff7b72;font-weight:bold">.</span>imread(d[<span style="color:#a5d6ff">&#34;file_name&#34;</span>])
 </span></span><span style="display:flex;"><span>outputs <span style="color:#ff7b72;font-weight:bold">=</span> predictor(im)
 </span></span></code></pre></div><p>see full example here <a href="https://colab.research.google.com/drive/16jcaJoc6bCFAQ96jDe2HwtXj7BMD_-m5#scrollTo=U5LhISJqWXgM"  class="external-link" target="_blank" rel="noopener">https://colab.research.google.com/drive/16jcaJoc6bCFAQ96jDe2HwtXj7BMD_-m5#scrollTo=U5LhISJqWXgM</a></p>
-<p>Once we have trained, evaluated and tested the model we want to deploy the model. We will show the most general case of deployment to build our own custom container so it is aplicable to pretty much all ML models not tied down to specific container proided by sagemaker.</p>
-<h2 id="aws-batch-transform">
-  AWS Batch Transform
-  <a class="heading-link" href="#aws-batch-transform">
+<p>Once we have trained, evaluated and tested the model we want to deploy the model. We will show the most general case of deployment to build our own custom container so it is aplicable to pretty much all ML models not tied down to specific container proided by sagemaker. Complete code you can find <a href="https://github.com/Asad-Ismail/ml-model-deployment"  class="external-link" target="_blank" rel="noopener">Github Repo</a></p>
+<h2 id="build-custom-cotainer">
+  Build Custom Cotainer
+  <a class="heading-link" href="#build-custom-cotainer">
     <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
+<p>Before deploying our models to any of the deployment strategy we need to first dockerize our model. Below is the docker file for async and real time endpoints</p>
+<pre tabindex="0"><code>FROM nvcr.io/nvidia/pytorch:23.12-py3 as build
 
+RUN apt update &amp;&amp; DEBIAN_FRONTEND=&#34;noninteractive&#34; apt -y install tzdata &amp;&amp; \
+    apt install -y zip libgl1-mesa-glx netbase libopencv-dev libopenblas-dev nginx &amp;&amp; \
+    apt clean &amp;&amp; rm -rf /var/lib/apt/lists/*
+
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py &amp;&amp; \
+    python get-pip.py &amp;&amp; \
+    python -m pip install pip==24.2 --no-cache-dir
+
+COPY ./scripts /opt/program
+
+# Set work directory and install Python dependencies
+WORKDIR /opt/program
+## specific torch and torchvision version
+RUN pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 --extra-index-url https://download.pytorch.org/whl/cu113 --no-cache-dir
+
+RUN pip install -r requirements.txt --no-cache-dir
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=TRUE \
+    PYTHONDONTWRITEBYTECODE=TRUE \
+    PATH=&#34;/opt/program:${PATH}&#34;
+
+RUN chmod +x /opt/program/serve
+</code></pre><p>To build docker and push to ECR</p>
+<pre tabindex="0"><code>docker build -t $image_tag -f $dockerfile .
+docker tag $image_tag $account.dkr.ecr.$region.amazonaws.com/$repo_name:latest
+docker push $account.dkr.ecr.$region.amazonaws.com/$repo_name:latest
+</code></pre><p>It essentialy gets base nvidia image from nvcr and install dependecies for running detectron2.</p>
+<h2 id="regestring-model">
+  Regestring Model
+  <a class="heading-link" href="#regestring-model">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>To properly arrage and register the models and have proper meta data assigned to them it is better to arrage models in Model groups. We can also skip this step and go dorectly to next step but I highly recommend it. Model at this point is defined by two things a model container which was pushed to ECR in the last step and model gzipped file which contains model config file and model weights, using both we can deploy the model in sagemaker.</p>
+<pre tabindex="0"><code>
+model_package_group_name = &#34;name-of-model-group&#34;
+model_package_group_input_dict = {
+ &#34;ModelPackageGroupName&#34; : model_package_group_name,
+ &#34;ModelPackageGroupDescription&#34; : &#34;Test Sample model package group&#34;
+}
+create_model_package_group_response = sm_client.create_model_package_group(**model_package_group_input_dict)
+
+modelpackage_inference_specification =  {
+    &#34;InferenceSpecification&#34;: {
+      &#34;Containers&#34;: [
+         {
+            &#34;Image&#34;: image_uri,
+            &#34;ModelDataUrl&#34;: model_url
+         }
+      ],
+      &#34;SupportedContentTypes&#34;: [ &#34;json&#34; ],
+      &#34;SupportedResponseMIMETypes&#34;: [ &#34;json/csv&#34; ],
+   }
+ }
+
+ create_model_package_input_dict = {
+    &#34;ModelPackageGroupName&#34; : model_package_group_name,
+    &#34;ModelPackageDescription&#34; : &#34;Model to do something x&#34;,
+    &#34;ModelApprovalStatus&#34; : &#34;PendingManualApproval&#34;
+}
+create_model_package_input_dict.update(modelpackage_inference_specification)
+create_model_package_response = sm_client.create_model_package(**create_model_package_input_dict)
+model_package_arn = create_model_package_response[&#34;ModelPackageArn&#34;]
+</code></pre><h2 id="real-time-endpoints-1">
+  Real Time endpoints
+  <a class="heading-link" href="#real-time-endpoints-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<pre tabindex="0"><code>
+# Create a SageMaker session and create model group
+sagemaker_session = sagemaker.Session()
+model_package_arn=&#34;arn:aws:sagemaker:xxxx&#34;
+
+model = ModelPackage(role=role, 
+                     model_package_arn=model_package_arn, 
+                     sagemaker_session=sagemaker_session)
+
+async_config = AsyncInferenceConfig(
+    output_path=&#39;s3://your-bucket/async_output/&#39;,
+    max_concurrent_invocations_per_instance=1
+)
+
+# Deploy the model to an endpoint
+predictor = model.deploy(
+    initial_instance_count=1,
+    instance_type=&#34;ml.p3.2xlarge&#34;,
+    endpoint_name=&#34;your-endpoint-name&#34;
+)
+
+# Perform real-time inference
+test_image = open(&#34;test_image.jpg&#34;, &#34;rb&#34;).read()
+response = predictor.predict(test_image)
+</code></pre><h2 id="aync-inference">
+  Aync Inference
+  <a class="heading-link" href="#aync-inference">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<pre tabindex="0"><code>
+# Create a SageMaker session and specify your role
+sagemaker_session = sagemaker.Session()
+model_package_arn=&#34;arn:aws:sagemaker:xxxx&#34;
+
+model = ModelPackage(role=role, 
+                     model_package_arn=model_package_arn, 
+                     sagemaker_session=sagemaker_session)
+
+async_config = AsyncInferenceConfig(
+    output_path=&#39;s3://your-bucket/async_output/&#39;,
+    max_concurrent_invocations_per_instance=1
+)
+
+# Deploy model as endpoint
+predictor = model.deploy(
+    initial_instance_count=1,
+    instance_type=&#39;ml.p3.2xlarge&#39;,
+    endpoint_name=endpoint_name,
+    async_inference_config=async_config
+)
+
+waiter = sm_client.get_waiter(&#34;endpoint_in_service&#34;)
+print(&#34;Waiting for endpoint to create...&#34;)
+waiter.wait(EndpointName=endpoint_name)
+resp = sm_client.describe_endpoint(EndpointName=endpoint_name)
+</code></pre><h3 id="attaching-autoscaling-to-endpoint">
+  Attaching Autoscaling to endpoint
+  <a class="heading-link" href="#attaching-autoscaling-to-endpoint">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>If we expect irregular requests to save cost and be responsive, it is best to attach autoscaling to the endpoints so it can scale out if we get lot of traffic requests and scale in if there is not much requests. We can have different metrics to montior to scale out and in here we are using SageMakerVariantInvocationsPerInstance.</p>
+<pre tabindex="0"><code>
+client = boto3.client(&#34;application-autoscaling&#34;) 
+
+## Using autoscaling for all trafic and the current endpoint
+resource_id = (&#34;endpoint/&#34; + endpoint_name + &#34;/variant/&#34; + &#34;AllTraffic&#34;)  
+
+# Configure Autoscaling on asynchronous endpoint down to zero instances
+response = client.register_scalable_target(
+    ServiceNamespace=&#34;sagemaker&#34;,
+    ResourceId=resource_id,
+    ScalableDimension=&#34;sagemaker:variant:DesiredInstanceCount&#34;,
+    MinCapacity=0,
+    MaxCapacity=1,
+)
+
+response = client.put_scaling_policy(
+    PolicyName=&#34;Invocations-ScalingPolicy&#34;,
+    ServiceNamespace=&#34;sagemaker&#34;,  # The namespace of the AWS service that provides the resource.
+    ResourceId=resource_id,  # Endpoint name
+    ScalableDimension=&#34;sagemaker:variant:DesiredInstanceCount&#34;,  # SageMaker supports only Instance Count
+    PolicyType=&#34;TargetTrackingScaling&#34;,  # &#39;StepScaling&#39;|&#39;TargetTrackingScaling&#39;
+    TargetTrackingScalingPolicyConfiguration={
+        &#34;TargetValue&#34;: 1.0,  # The target value for the metric. - here the metric is - SageMakerVariantInvocationsPerInstance
+        &#34;PredefinedMetricSpecification&#34;: {
+            &#34;PredefinedMetricType&#34;: &#34;SageMakerVariantInvocationsPerInstance&#34;
+        },
+        &#34;ScaleInCooldown&#34;: 2,  # The cooldown period helps you prevent your Auto Scaling group from launching or terminating
+        # additional instances before the effects of previous activities are visible.
+        # You can configure the length of time based on your instance startup time or other application needs.
+        # ScaleInCooldown - The amount of time, in seconds, after a scale in activity completes before another scale in activity can start.
+        &#34;ScaleOutCooldown&#34;: 2,  # ScaleOutCooldown - The amount of time, in seconds, after a scale out activity completes before another scale out activity can start.
+        # &#39;DisableScaleIn&#39;: True|False - ndicates whether scale in by the target tracking policy is disabled.
+        # If the value is true , scale in is disabled and the target tracking policy won&#39;t remove capacity from the scalable resource.
+        &#34;DisableScaleIn&#34;: False 
+    },
+)
+</code></pre><h3 id="aws-sagemaker-batch-transform">
+  AWS Sagemaker Batch Transform
+  <a class="heading-link" href="#aws-sagemaker-batch-transform">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<ol>
+<li>
+<p>For sagemaker batch transform the docker file is very slightly different see detail here <a href="https://github.com/Asad-Ismail/ml-model-deployment/blob/main/sm_batch_transform/Dockerfile"  class="external-link" target="_blank" rel="noopener">Doclerfile_BT</a></p>
+</li>
+<li>
+<p>Building and registering the model steps stays the same also given her <a href="https://github.com/Asad-Ismail/ml-model-deployment/blob/main/sm_batch_transform/Dockerfile"  class="external-link" target="_blank" rel="noopener">Build&amp;Register</a></p>
+</li>
+<li>
+<p>Create sagemaker batch transform job</p>
+</li>
+</ol>
+<pre tabindex="0"><code>
+sm_cli = sagemaker_session.sagemaker_client
+
+transformer=model.transformer(instance_count=1, instance_type=&#34;ml.p3.2xlarge&#34;, output_path=model_outputs_path,max_payload=100)
+
+transformer.transform(
+    data=&#39;s3://path_to_your_images/input/&#39;, 
+    data_type=&#34;S3Prefix&#34;,
+    content_type=&#34;application/x-image&#34;,
+    wait=True
+)
+
+job_info = sm_cli.describe_transform_job(TransformJobName=transformer.latest_transform_job.name)
+</code></pre>
       </div>
 
 
@@ -407,7 +613,7 @@
 
   
   
-  <script src="/js/coder.js"></script>
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
   
 
   

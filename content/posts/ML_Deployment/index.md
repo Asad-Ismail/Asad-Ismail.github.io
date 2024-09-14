@@ -156,11 +156,222 @@ outputs = predictor(im)
 see full example here https://colab.research.google.com/drive/16jcaJoc6bCFAQ96jDe2HwtXj7BMD_-m5#scrollTo=U5LhISJqWXgM
 
 
-Once we have trained, evaluated and tested the model we want to deploy the model. We will show the most general case of deployment to build our own custom container so it is aplicable to pretty much all ML models not tied down to specific container proided by sagemaker.
+Once we have trained, evaluated and tested the model we want to deploy the model. We will show the most general case of deployment to build our own custom container so it is aplicable to pretty much all ML models not tied down to specific container proided by sagemaker. Complete code you can find [Github Repo](https://github.com/Asad-Ismail/ml-model-deployment)
 
-## AWS Batch Transform
+## Build Custom Cotainer
+
+Before deploying our models to any of the deployment strategy we need to first dockerize our model. Below is the docker file for async and real time endpoints 
+
+```
+FROM nvcr.io/nvidia/pytorch:23.12-py3 as build
+
+RUN apt update && DEBIAN_FRONTEND="noninteractive" apt -y install tzdata && \
+    apt install -y zip libgl1-mesa-glx netbase libopencv-dev libopenblas-dev nginx && \
+    apt clean && rm -rf /var/lib/apt/lists/*
+
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
+    python get-pip.py && \
+    python -m pip install pip==24.2 --no-cache-dir
+
+COPY ./scripts /opt/program
+
+# Set work directory and install Python dependencies
+WORKDIR /opt/program
+## specific torch and torchvision version
+RUN pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 --extra-index-url https://download.pytorch.org/whl/cu113 --no-cache-dir
+
+RUN pip install -r requirements.txt --no-cache-dir
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=TRUE \
+    PYTHONDONTWRITEBYTECODE=TRUE \
+    PATH="/opt/program:${PATH}"
+
+RUN chmod +x /opt/program/serve
+
+```
+
+To build docker and push to ECR
+
+```
+docker build -t $image_tag -f $dockerfile .
+docker tag $image_tag $account.dkr.ecr.$region.amazonaws.com/$repo_name:latest
+docker push $account.dkr.ecr.$region.amazonaws.com/$repo_name:latest
+
+```
+
+It essentialy gets base nvidia image from nvcr and install dependecies for running detectron2.
+
+## Regestring Model
+
+To properly arrage and register the models and have proper meta data assigned to them it is better to arrage models in Model groups. We can also skip this step and go dorectly to next step but I highly recommend it. Model at this point is defined by two things a model container which was pushed to ECR in the last step and model gzipped file which contains model config file and model weights, using both we can deploy the model in sagemaker. 
+
+```
+
+model_package_group_name = "name-of-model-group"
+model_package_group_input_dict = {
+ "ModelPackageGroupName" : model_package_group_name,
+ "ModelPackageGroupDescription" : "Test Sample model package group"
+}
+create_model_package_group_response = sm_client.create_model_package_group(**model_package_group_input_dict)
+
+modelpackage_inference_specification =  {
+    "InferenceSpecification": {
+      "Containers": [
+         {
+            "Image": image_uri,
+            "ModelDataUrl": model_url
+         }
+      ],
+      "SupportedContentTypes": [ "json" ],
+      "SupportedResponseMIMETypes": [ "json/csv" ],
+   }
+ }
+
+ create_model_package_input_dict = {
+    "ModelPackageGroupName" : model_package_group_name,
+    "ModelPackageDescription" : "Model to do something x",
+    "ModelApprovalStatus" : "PendingManualApproval"
+}
+create_model_package_input_dict.update(modelpackage_inference_specification)
+create_model_package_response = sm_client.create_model_package(**create_model_package_input_dict)
+model_package_arn = create_model_package_response["ModelPackageArn"]
+
+```
 
 
+## Real Time endpoints
+
+```
+
+# Create a SageMaker session and create model group
+sagemaker_session = sagemaker.Session()
+model_package_arn="arn:aws:sagemaker:xxxx"
+
+model = ModelPackage(role=role, 
+                     model_package_arn=model_package_arn, 
+                     sagemaker_session=sagemaker_session)
+
+async_config = AsyncInferenceConfig(
+    output_path='s3://your-bucket/async_output/',
+    max_concurrent_invocations_per_instance=1
+)
+
+# Deploy the model to an endpoint
+predictor = model.deploy(
+    initial_instance_count=1,
+    instance_type="ml.p3.2xlarge",
+    endpoint_name="your-endpoint-name"
+)
+
+# Perform real-time inference
+test_image = open("test_image.jpg", "rb").read()
+response = predictor.predict(test_image)
+
+```
+
+
+## Aync Inference
+
+```
+
+# Create a SageMaker session and specify your role
+sagemaker_session = sagemaker.Session()
+model_package_arn="arn:aws:sagemaker:xxxx"
+
+model = ModelPackage(role=role, 
+                     model_package_arn=model_package_arn, 
+                     sagemaker_session=sagemaker_session)
+
+async_config = AsyncInferenceConfig(
+    output_path='s3://your-bucket/async_output/',
+    max_concurrent_invocations_per_instance=1
+)
+
+# Deploy model as endpoint
+predictor = model.deploy(
+    initial_instance_count=1,
+    instance_type='ml.p3.2xlarge',
+    endpoint_name=endpoint_name,
+    async_inference_config=async_config
+)
+
+waiter = sm_client.get_waiter("endpoint_in_service")
+print("Waiting for endpoint to create...")
+waiter.wait(EndpointName=endpoint_name)
+resp = sm_client.describe_endpoint(EndpointName=endpoint_name)
+
+```
+
+
+### Attaching Autoscaling to endpoint
+
+If we expect irregular requests to save cost and be responsive, it is best to attach autoscaling to the endpoints so it can scale out if we get lot of traffic requests and scale in if there is not much requests. We can have different metrics to montior to scale out and in here we are using SageMakerVariantInvocationsPerInstance.
+
+```
+
+client = boto3.client("application-autoscaling") 
+
+## Using autoscaling for all trafic and the current endpoint
+resource_id = ("endpoint/" + endpoint_name + "/variant/" + "AllTraffic")  
+
+# Configure Autoscaling on asynchronous endpoint down to zero instances
+response = client.register_scalable_target(
+    ServiceNamespace="sagemaker",
+    ResourceId=resource_id,
+    ScalableDimension="sagemaker:variant:DesiredInstanceCount",
+    MinCapacity=0,
+    MaxCapacity=1,
+)
+
+response = client.put_scaling_policy(
+    PolicyName="Invocations-ScalingPolicy",
+    ServiceNamespace="sagemaker",  # The namespace of the AWS service that provides the resource.
+    ResourceId=resource_id,  # Endpoint name
+    ScalableDimension="sagemaker:variant:DesiredInstanceCount",  # SageMaker supports only Instance Count
+    PolicyType="TargetTrackingScaling",  # 'StepScaling'|'TargetTrackingScaling'
+    TargetTrackingScalingPolicyConfiguration={
+        "TargetValue": 1.0,  # The target value for the metric. - here the metric is - SageMakerVariantInvocationsPerInstance
+        "PredefinedMetricSpecification": {
+            "PredefinedMetricType": "SageMakerVariantInvocationsPerInstance"
+        },
+        "ScaleInCooldown": 2,  # The cooldown period helps you prevent your Auto Scaling group from launching or terminating
+        # additional instances before the effects of previous activities are visible.
+        # You can configure the length of time based on your instance startup time or other application needs.
+        # ScaleInCooldown - The amount of time, in seconds, after a scale in activity completes before another scale in activity can start.
+        "ScaleOutCooldown": 2,  # ScaleOutCooldown - The amount of time, in seconds, after a scale out activity completes before another scale out activity can start.
+        # 'DisableScaleIn': True|False - ndicates whether scale in by the target tracking policy is disabled.
+        # If the value is true , scale in is disabled and the target tracking policy won't remove capacity from the scalable resource.
+        "DisableScaleIn": False 
+    },
+)
+
+```
+
+### AWS Sagemaker Batch Transform 
+
+1. For sagemaker batch transform the docker file is very slightly different see detail here [Doclerfile_BT](https://github.com/Asad-Ismail/ml-model-deployment/blob/main/sm_batch_transform/Dockerfile)
+
+2. Building and registering the model steps stays the same also given her [Build&Register](https://github.com/Asad-Ismail/ml-model-deployment/blob/main/sm_batch_transform/Dockerfile)
+
+3. Create sagemaker batch transform job
+
+```
+
+sm_cli = sagemaker_session.sagemaker_client
+
+transformer=model.transformer(instance_count=1, instance_type="ml.p3.2xlarge", output_path=model_outputs_path,max_payload=100)
+
+transformer.transform(
+    data='s3://path_to_your_images/input/', 
+    data_type="S3Prefix",
+    content_type="application/x-image",
+    wait=True
+)
+
+job_info = sm_cli.describe_transform_job(TransformJobName=transformer.latest_transform_job.name)
+
+```
 
 
 
