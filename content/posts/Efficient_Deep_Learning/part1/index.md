@@ -36,12 +36,13 @@ Bias: (co)
 
 ### Convolution Layer
 2D convlotion. Output is connected to input thorugh only receptive field (kernel size). 
+
 Inputs: (n,ci,hi,wi)
 Outputs: (n,co,ho,wo)
 Weights: (ci,co,kh,kw)
 bias: (co)
 Normally padding is applied to input to keep the original input size as the outout size is given by
 
-so=si+2p-Kh+1
+so=(si+2p-Kh/s)+1
 
 Each successive convolutions add k-1 to the receptive field size, with L layers the receptive field size **Lx(K-1)+1**
