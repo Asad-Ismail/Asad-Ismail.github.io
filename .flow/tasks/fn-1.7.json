@@ -1,16 +1,26 @@
 {
-  "assignee": null,
+  "assignee": "asadismaeel@gmail.com",
   "claim_note": "",
-  "claimed_at": null,
+  "claimed_at": "2026-01-11T18:41:49.320411Z",
   "created_at": "2026-01-11T18:39:21.917116Z",
   "depends_on": [
     "fn-1.6"
   ],
   "epic": "fn-1",
+  "evidence": {
+    "commits": [
+      "cacb6d0"
+    ],
+    "prs": [],
+    "tests": [
+      "Config file validation",
+      "Parameter verification"
+    ]
+  },
   "id": "fn-1.7",
   "priority": null,
   "spec_path": ".flow/tasks/fn-1.7.md",
-  "status": "todo",
+  "status": "done",
   "title": "Fix hugo.toml configuration",
-  "updated_at": "2026-01-11T18:39:21.917129Z"
+  "updated_at": "2026-01-11T18:43:16.536634Z"
 }
