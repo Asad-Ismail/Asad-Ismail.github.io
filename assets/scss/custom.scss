@@ -163,13 +163,207 @@ footer {
   max-width: 65ch;
 }
 
-// Spacing improvements
-p {
-  margin: var(--space-4) 0;
+// ========================================
+// SPACING & LAYOUT IMPROVEMENTS
+// ========================================
+
+// Content max-width and centering
+.container {
+  max-width: 90rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
 }
 
+.content {
+  max-width: 65ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Prevent edge-hugging with generous padding
+body {
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+
+// Improved paragraph spacing (1.5x increase from theme default)
+p {
+  margin: var(--space-6) 0;
+}
+
+// Section spacing
+section {
+  margin-bottom: var(--space-12);
+}
+
+// Header and footer spacing
 header {
   margin-bottom: var(--space-8);
+  padding-top: var(--space-4);
+}
+
+// List spacing improvements
+ul, ol {
+  margin: var(--space-4) 0;
+  padding-left: var(--space-6);
+}
+
+li {
+  margin-bottom: var(--space-2);
+}
+
+// Blockquote spacing
+blockquote {
+  margin: var(--space-6) 0;
+  padding-left: var(--space-4);
+  border-left: 3px solid var(--accent);
+}
+
+// Code block spacing
+pre {
+  margin: var(--space-6) 0;
+  padding: var(--space-4);
+  overflow-x: auto;
+}
+
+code {
+  padding: var(--space-1) var(--space-2);
+}
+
+// Table spacing
+table {
+  margin: var(--space-6) 0;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+}
+
+// Figure and image spacing
+figure {
+  margin: var(--space-8) 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: var(--space-4) auto;
+}
+
+// Form spacing improvements
+form {
+  margin: var(--space-6) 0;
+}
+
+.form-group {
+  margin-bottom: var(--space-4);
+}
+
+label {
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+  padding: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+// Button spacing
+.btn,
+button,
+input[type="submit"] {
+  padding: var(--space-3) var(--space-6);
+  margin-right: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+// Divider spacing
+hr {
+  margin: var(--space-12) 0;
+  border: none;
+  border-top: 1px solid var(--bg-secondary);
+}
+
+// Card and list item spacing improvements
+.list ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.list ul li {
+  margin-bottom: var(--space-6);
+  padding: var(--space-6);
+}
+
+// Pagination spacing
+.pagination {
+  margin: var(--space-12) 0;
+  display: flex;
+  gap: var(--space-2);
+  justify-content: center;
+}
+
+.pagination li a,
+.pagination li span {
+  padding: var(--space-2) var(--space-4);
+  border-radius: 8px;
+}
+
+// About and contact page spacing
+.about,
+.contact {
+  max-width: 65ch;
+  margin: var(--space-12) auto;
+}
+
+// Projects grid spacing
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-6);
+  margin: var(--space-8) 0;
+}
+
+.project-card {
+  padding: var(--space-6);
+  border-radius: 8px;
+  background-color: var(--bg-secondary);
+  transition: transform 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+}
+
+// Center alignment utilities
+.text-center {
+  text-align: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 // Link styles
