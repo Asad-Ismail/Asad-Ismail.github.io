@@ -20,19 +20,19 @@ style = "github-dark"
   [[menu.main]]
     name = "Projects"
     url = "/projects/"
-    weight = 2
+    weight = 3
   [[menu.main]]
     name = "About"
     url = "/about/"
-    weight = 2
+    weight = 4
 
 
 [params]
   enableFontAwesome = true
   author = "Asad Ismail"
-  info = "Machine learning developer"
-  description = "John Doe's personal website"
-  keywords = "blog,developer,personal"
+  info = "Machine Learning Engineer | AI Researcher | Building intelligent systems with deep learning and PyTorch"
+  description = "Asad Ismail's personal website - Machine Learning Engineer and AI researcher specializing in deep learning, computer vision, and natural language processing"
+  keywords = "machine learning, ML engineer, AI, deep learning, PyTorch, TensorFlow, computer vision, NLP, neural networks"
   avatarurl = "images/my_pic.jpg"
   #gravatar = "asadismaeel@gmail.com"
 
@@ -58,9 +58,29 @@ style = "github-dark"
   name = "Github"
   icon = "fa-brands fa-github fa-2x"
   weight = 1
-  url = "https://github.com/johndoe/"
+  url = "https://github.com/Asad-Ismail/"
 [[params.social]]
-name = "LinkedIn"
-icon = "fa-brands fa-linkedin fa-2x"
-weight = 4
-url = "https://www.linkedin.com/in/johndoe/"
+  name = "LinkedIn"
+  icon = "fa-brands fa-linkedin fa-2x"
+  weight = 2
+  url = "https://www.linkedin.com/in/asad-ismail/"
+[[params.social]]
+  name = "Twitter"
+  icon = "fa-brands fa-x-twitter fa-2x"
+  weight = 3
+  url = "https://twitter.com/AsadIsmailML"
+[[params.social]]
+  name = "Email"
+  icon = "fa-solid fa-envelope fa-2x"
+  weight = 4
+  url = "mailto:asadismaeel@gmail.com"
+[[params.social]]
+  name = "Substack"
+  icon = "fa-brands fa-substack fa-2x"
+  weight = 5
+  url = "https://asadismail.substack.com"
+[[params.social]]
+  name = "YouTube"
+  icon = "fa-brands fa-youtube fa-2x"
+  weight = 6
+  url = "https://www.youtube.com/@AsadIsmailML"
