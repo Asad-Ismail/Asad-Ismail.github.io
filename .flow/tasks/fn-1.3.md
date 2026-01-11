@@ -41,9 +41,14 @@ Create and publish at least 3 technical blog posts to demonstrate ML expertise.
 - [ ] No draft posts remain (unless intentionally unpublished)
 - [ ] Blog section shows multiple posts when visiting site
 ## Done summary
-TBD
+Created 3 technical ML blog posts:
 
+1. ML Model Deployment: Strategies and Best Practices (667 words)
+2. PyTorch vs TensorFlow: Choosing the Right Framework for Production (861 words)
+3. Building an End-to-End ML Pipeline with Modern Tools (1066 words)
+
+All posts use proper TOML front matter with draft=false, include title, date, tags, categories, and contain 500+ words of technical content with code examples demonstrating ML/MLOps expertise.
 ## Evidence
-- Commits:
+- Commits: 49b9fc1
 - Tests:
 - PRs:

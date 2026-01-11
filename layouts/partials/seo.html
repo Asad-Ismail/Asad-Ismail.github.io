@@ -1,0 +1,37 @@
+<!-- Structured Data for SEO -->
+{{ if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Asad Ismail",
+  "url": "https://Asad-Ismail.github.io/",
+  "jobTitle": "Machine Learning Engineer",
+  "email": "asadismaeel@gmail.com",
+  "sameAs": [
+    "https://github.com/Asad-Ismail",
+    "https://linkedin.com/in/asad-ismail",
+    "https://asadismail.substack.com",
+    "https://www.youtube.com/@AsadIsmailML",
+    "https://twitter.com/AsadIsmailML"
+  ],
+  "knowsAbout": ["Machine Learning", "Deep Learning", "Computer Vision", "Natural Language Processing", "PyTorch", "TensorFlow", "Neural Networks"]
+}
+</script>
+{{ end }}
+
+{{ if eq .Kind "page" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ .Title }}",
+  "author": {
+    "@type": "Person",
+    "name": "Asad Ismail"
+  },
+  "datePublished": "{{ .Date.Format "2006-01-02" }}",
+  "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}"
+}
+</script>
+{{ end }}

@@ -25,6 +25,14 @@ style = "github-dark"
     name = "About"
     url = "/about/"
     weight = 4
+  [[menu.main]]
+    name = "Content"
+    url = "/content/"
+    weight = 5
+  [[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 6
 
 
 [params]
@@ -51,6 +59,14 @@ style = "github-dark"
   series = "series"
   tag = "tags"
   author = "authors"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
+  page = ["HTML"]
+[outputFormats.RSS]
+  mediatype = "application/rss+xml"
+  baseName = "feed"
 
 
 # Social links

@@ -7,10 +7,15 @@
     "fn-1.1"
   ],
   "epic": "fn-1",
+  "evidence": {
+    "commits": [
+      "49b9fc1"
+    ]
+  },
   "id": "fn-1.3",
   "priority": null,
   "spec_path": ".flow/tasks/fn-1.3.md",
-  "status": "in_progress",
+  "status": "done",
   "title": "Create and publish technical blog posts",
-  "updated_at": "2026-01-11T18:29:54.599530Z"
+  "updated_at": "2026-01-11T18:32:17.997205Z"
 }

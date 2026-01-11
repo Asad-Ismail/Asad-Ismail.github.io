@@ -41,8 +41,48 @@ Integrate embedded YouTube videos and Substack content into the website.
 - [ ] Page layout looks professional
 - [ ] Links to external platforms (Substack, YouTube channel) work correctly
 ## Done summary
-TBD
+# Implementation Summary: fn-1.4
 
+## What was done
+
+Created a comprehensive Content & Media page for the website that integrates YouTube videos and Substack content.
+
+## Files created
+- `content/content.md` - New Content page with embedded videos and Substack integration
+
+## Files modified
+- `hugo.toml` - Added Content page to navigation menu (weight: 5)
+
+## Features implemented
+
+1. **YouTube Integration**: Embedded 3 educational YouTube videos using Hugo's built-in shortcode:
+   - Introduction to Transformer Architecture
+   - PyTorch Tutorial: Building Neural Networks
+   - Computer Vision with CNNs
+
+2. **Substack Integration**: Added newsletter signup iframe embed for asadismail.substack.com
+
+3. **Navigation**: Added "Content" link to main navigation menu
+
+4. **External Links**: Included links to all social platforms (YouTube, Substack, GitHub, LinkedIn, Twitter)
+
+## Acceptance criteria met
+- ✅ At least 2 YouTube videos embedded on site (3 videos added)
+- ✅ YouTube videos use Hugo shortcode format
+- ✅ Substack content integrated (newsletter signup form)
+- ✅ New "Content" page created
+- ✅ Page added to navigation menu with proper weight
+- ✅ All embeds use responsive iframes
+- ✅ Professional page layout with proper headings
+- ✅ Links to external platforms work correctly
+
+## Build command
+```bash
+hugo --minify
+```
+
+## Notes
+The page is ready for deployment. Videos will load from YouTube's servers and the Substack iframe will display the signup form dynamically.
 ## Evidence
 - Commits:
 - Tests:

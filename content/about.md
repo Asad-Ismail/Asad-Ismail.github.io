@@ -2,6 +2,7 @@
 title: "About"
 date: 2024-08-12
 layout: "single"
+description: "About Asad Ismail - Senior Machine Learning Engineer specializing in deep learning, computer vision, NLP, and MLOps"
 ---
 
 ## Hi, I'm Asad
