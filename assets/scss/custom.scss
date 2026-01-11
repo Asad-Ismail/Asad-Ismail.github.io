@@ -1,0 +1,183 @@
+// ========================================
+// DESIGN TOKENS
+// ========================================
+:root {
+  // Spacing scale (8px grid)
+  --space-1: 0.25rem;   // 4px
+  --space-2: 0.5rem;    // 8px
+  --space-3: 0.75rem;   // 12px
+  --space-4: 1rem;      // 16px
+  --space-6: 1.5rem;    // 24px
+  --space-8: 2rem;      // 32px
+  --space-12: 3rem;     // 48px
+
+  // Typography
+  --font-display: "Inter", sans-serif;
+  --text-xs: 0.875rem;
+  --text-sm: 1rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2.5rem;
+
+  // Light mode
+  --bg-primary: #fafafa;
+  --bg-secondary: #f4f4f4;
+  --fg-primary: #171717;
+  --fg-secondary: #525252;
+  --accent: #22d3ee;
+
+  // Dark mode
+  [data-theme="dark"] {
+    --bg-primary: #121212;    // Soft black
+    --bg-secondary: #1a1a1a;
+    --fg-primary: #f4f4f4;    // Off-white
+    --fg-secondary: #a3a3a3;
+  }
+}
+
+// ========================================
+// FONT IMPORT
+// ========================================
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+// ========================================
+// OVERRIDES
+// ========================================
+
+// Override theme font variable
+$font-family: var(--font-display);
+
+// Body styles
+body {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--fg-primary);
+  background-color: var(--bg-primary);
+}
+
+// Typography hierarchy
+h1, .h1 {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: var(--space-4);
+}
+
+h2, .h2 {
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: var(--space-4);
+}
+
+h3, .h3 {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: var(--space-3);
+}
+
+// Navigation
+.navigation {
+  padding: var(--space-4) 0;
+}
+
+.navigation-item a {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  padding: var(--space-2) var(--space-3);
+  border-radius: 8px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.navigation-item a:hover,
+.navigation-item a:focus {
+  color: var(--accent);
+  background-color: var(--bg-secondary);
+}
+
+.navigation-item a:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+// Homepage spacing
+.home .avatar {
+  margin-bottom: var(--space-6);
+}
+
+.home .author {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+}
+
+.home .info {
+  font-size: var(--text-2xl);
+  font-weight: 400;
+  margin-bottom: var(--space-8);
+}
+
+.home .social {
+  margin-bottom: var(--space-12);
+}
+
+// Blog post cards (minimal)
+.list ul li {
+  padding: var(--space-6);
+  border-radius: 8px;
+  background-color: var(--bg-secondary);
+  margin-bottom: var(--space-4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.list ul li:hover {
+  transform: translateY(-2px);
+}
+
+.list ul li .title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+
+.list ul li .date {
+  font-size: var(--text-sm);
+  color: var(--fg-secondary);
+}
+
+// Footer removal
+footer {
+  display: none !important;
+}
+
+// Container max-width
+.container {
+  max-width: 90rem;
+}
+
+.content {
+  max-width: 65ch;
+}
+
+// Spacing improvements
+p {
+  margin: var(--space-4) 0;
+}
+
+header {
+  margin-bottom: var(--space-8);
+}
+
+// Link styles
+a {
+  color: var(--accent);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent);
+  opacity: 0.8;
+}

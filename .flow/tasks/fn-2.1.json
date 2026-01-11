@@ -1,0 +1,14 @@
+{
+  "assignee": null,
+  "claim_note": "",
+  "claimed_at": null,
+  "created_at": "2026-01-11T19:18:22.083626Z",
+  "depends_on": [],
+  "epic": "fn-2",
+  "id": "fn-2.1",
+  "priority": null,
+  "spec_path": ".flow/tasks/fn-2.1.md",
+  "status": "todo",
+  "title": "Create custom SCSS file and load Inter font",
+  "updated_at": "2026-01-11T19:18:22.083642Z"
+}

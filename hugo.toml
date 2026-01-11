@@ -53,6 +53,8 @@ style = "github-dark"
   colorScheme = "auto"
   hidecolorschemetoggle = false
 
+  customSCSS = ["scss/custom.scss"]
+
 
 [taxonomies]
   category = "categories"

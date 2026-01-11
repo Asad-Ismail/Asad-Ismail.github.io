@@ -1,0 +1,16 @@
+{
+  "assignee": null,
+  "claim_note": "",
+  "claimed_at": null,
+  "created_at": "2026-01-11T19:18:22.207907Z",
+  "depends_on": [
+    "fn-2.1"
+  ],
+  "epic": "fn-2",
+  "id": "fn-2.3",
+  "priority": null,
+  "spec_path": ".flow/tasks/fn-2.3.md",
+  "status": "todo",
+  "title": "Update color scheme with soft dark mode and accents",
+  "updated_at": "2026-01-11T19:18:29.321120Z"
+}
