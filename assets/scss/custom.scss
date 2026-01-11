@@ -182,3 +182,108 @@ a:hover {
   color: var(--accent);
   opacity: 0.8;
 }
+
+// ========================================
+// COLOR OVERRIDES
+// ========================================
+
+// Ensure dark mode colors override theme defaults
+body[data-theme="dark"],
+body {
+  // Force background colors
+  background-color: var(--bg-primary) !important;
+
+  // Ensure text colors
+  color: var(--fg-primary) !important;
+}
+
+// Override all possible background selectors
+.container,
+.wrapper,
+.content,
+.footer,
+.header,
+main,
+section {
+  background-color: transparent !important;
+}
+
+// Ensure headings use proper colors
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  color: var(--fg-primary) !important;
+}
+
+// Paragraph and text elements
+p, li, td, th, span, div {
+  color: var(--fg-primary);
+}
+
+// Secondary text colors
+small, .text-muted, figcaption, .date {
+  color: var(--fg-secondary) !important;
+}
+
+// Accent color for buttons and interactive elements
+.btn,
+.button,
+input[type="submit"],
+button {
+  background-color: var(--accent) !important;
+  color: #121212 !important;
+  border-radius: 8px;
+  transition: opacity 0.2s ease;
+}
+
+.btn:hover,
+.button:hover,
+input[type="submit"]:hover,
+button:hover {
+  opacity: 0.8;
+}
+
+// Code block colors
+pre, code {
+  background-color: var(--bg-secondary) !important;
+  color: var(--fg-primary) !important;
+  border-radius: 8px;
+}
+
+// Table colors
+table {
+  color: var(--fg-primary);
+}
+
+th {
+  background-color: var(--bg-secondary) !important;
+  color: var(--fg-primary) !important;
+}
+
+td {
+  border-color: var(--bg-secondary) !important;
+}
+
+// Form elements
+input, textarea, select {
+  background-color: var(--bg-secondary) !important;
+  color: var(--fg-primary) !important;
+  border: 1px solid var(--bg-secondary);
+  border-radius: 8px;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+// Divider colors
+hr {
+  border-color: var(--bg-secondary) !important;
+}
+
+// Badge/tag colors
+.badge, .tag {
+  background-color: var(--bg-secondary) !important;
+  color: var(--fg-primary) !important;
+  border-radius: 8px;
+}
