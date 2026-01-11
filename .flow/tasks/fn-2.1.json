@@ -1,14 +1,25 @@
 {
-  "assignee": null,
+  "assignee": "asadismaeel@gmail.com",
   "claim_note": "",
-  "claimed_at": null,
+  "claimed_at": "2026-01-11T19:29:43.138711Z",
   "created_at": "2026-01-11T19:18:22.083626Z",
   "depends_on": [],
   "epic": "fn-2",
+  "evidence": {
+    "commits": [
+      "b03da9236711ff1023c542f31dfa440a8284a651"
+    ],
+    "test_commands": [
+      "ls -lh /home/asad/dev/asad-ismail.github.io/assets/scss/custom.scss",
+      "grep -A2 'customSCSS' /home/asad/dev/asad-ismail.github.io/hugo.toml",
+      "head -30 /home/asad/dev/asad-ismail.github.io/assets/scss/custom.scss | grep -E '(Inter|import|font-family)'"
+    ],
+    "verification": "SCSS file created with Inter font import and hugo.toml configured"
+  },
   "id": "fn-2.1",
   "priority": null,
   "spec_path": ".flow/tasks/fn-2.1.md",
-  "status": "todo",
+  "status": "done",
   "title": "Create custom SCSS file and load Inter font",
-  "updated_at": "2026-01-11T19:18:22.083642Z"
+  "updated_at": "2026-01-11T19:29:43.197789Z"
 }

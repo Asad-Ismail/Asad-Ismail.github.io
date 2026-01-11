@@ -1,16 +1,23 @@
 {
-  "assignee": null,
+  "assignee": "asadismaeel@gmail.com",
   "claim_note": "",
-  "claimed_at": null,
+  "claimed_at": "2026-01-11T19:30:38.983496Z",
   "created_at": "2026-01-11T19:18:22.146603Z",
   "depends_on": [
     "fn-2.1"
   ],
   "epic": "fn-2",
+  "evidence": {
+    "commits": [
+      "e7c5a0b5ee4a2e81a6dc4087314bcc45cdd29d0e"
+    ],
+    "prs": [],
+    "tests": []
+  },
   "id": "fn-2.2",
   "priority": null,
   "spec_path": ".flow/tasks/fn-2.2.md",
-  "status": "todo",
+  "status": "done",
   "title": "Implement improved typography hierarchy",
-  "updated_at": "2026-01-11T19:18:29.258441Z"
+  "updated_at": "2026-01-11T19:31:57.143858Z"
 }
