@@ -37,9 +37,8 @@ Update hugo.toml configuration file to replace all placeholder content with real
 - [ ] No "John Doe" or "johndoe" text remains in config
 - [ ] baseURL remains `https://Asad-Ismail.github.io/`
 ## Done summary
-TBD
-
+Updated hugo.toml with real site metadata: fixed menu weights (1-4), updated description/keywords to ML-focused, replaced all placeholder links (johndoe) with Asad Ismail URLs, added Substack and YouTube social links
 ## Evidence
-- Commits:
+- Commits: 22c2ae7d568baa186188c978fde9e8427f70d85b
 - Tests:
 - PRs:
