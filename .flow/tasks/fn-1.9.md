@@ -36,9 +36,25 @@ Need all 6 videos embedded, not just 3.
 - [ ] No Twitter links present
 
 ## Done summary
-TBD
+# Fixed Content Page Videos and Substack
 
+## What Changed
+- Replaced all 3 incorrect YouTube videos with 6 correct video IDs from spec
+- Added descriptive titles and descriptions for each video
+- Updated Substack embed URL to correct publication
+- Fixed all social links in Connect section
+- Removed Twitter link
+- Updated meta description
+
+## Why
+Content page had wrong YouTube video IDs and incorrect social links. Only 3 videos were embedded instead of 6 required by spec. Substack URL pointed to wrong publication.
+
+## Verification
+- All 6 required YouTube videos embedded with correct IDs
+- Substack embed URL updated
+- All social links match spec exactly
+- Twitter link removed
 ## Evidence
-- Commits:
-- Tests:
+- Commits: 3754a67
+- Tests: YouTube video ID verification, Social link check
 - PRs:
