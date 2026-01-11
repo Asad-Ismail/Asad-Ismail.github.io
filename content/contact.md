@@ -1,7 +1,7 @@
 ---
 title: "Contact"
 date: 2026-01-11
-description: "Get in touch with Asad Ismail - Machine Learning Engineer"
+description: "Get in touch with Asad Ismail - Senior ML Engineer specializing in MLOps, Computer Vision, and LLMs"
 ---
 
 # Get in Touch
@@ -19,19 +19,18 @@ Feel free to reach out via email:
 Connect with me on these platforms:
 
 - **GitHub**: [https://github.com/Asad-Ismail](https://github.com/Asad-Ismail)
-- **LinkedIn**: [https://linkedin.com/in/asad-ismail](https://linkedin.com/in/asad-ismail)
-- **Substack**: [https://asadismail.substack.com](https://asadismail.substack.com)
-- **YouTube**: [https://www.youtube.com/@AsadIsmailML](https://www.youtube.com/@AsadIsmailML)
-- **Twitter**: [https://twitter.com/AsadIsmailML](https://twitter.com/AsadIsmailML)
+- **LinkedIn**: [https://www.linkedin.com/in/asadismaeel/](https://www.linkedin.com/in/asadismaeel/)
+- **Substack**: [https://substack.com/@asadismail2](https://substack.com/@asadismail2)
+- **YouTube**: [https://www.youtube.com/@AIMLArchives](https://www.youtube.com/@AIMLArchives)
 
-## Collaboration Interests
+## Collaboration Availability
 
-I'm particularly interested in:
+I'm currently available for:
 
-- Machine learning research and development
-- Computer vision and natural language processing projects
-- Open source contributions in AI/ML
-- Technical writing and knowledge sharing
-- Mentoring and teaching opportunities
+- **Consulting projects**: Short-term and long-term ML engineering engagements
+- **Open source collaborations**: Contributions to ML infrastructure, CV, and LLM projects
+- **Speaking engagements**: Technical talks on MLOps, Computer Vision, and LLMs
+
+**Note**: I'm not currently available for full-time roles.
 
 Looking forward to hearing from you!
