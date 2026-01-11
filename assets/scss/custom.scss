@@ -81,28 +81,139 @@ h3, .h3 {
   margin-bottom: var(--space-3);
 }
 
-// Navigation
+// ========================================
+// NAVIGATION REDESIGN
+// ========================================
+
+// Navigation container
 .navigation {
   padding: var(--space-4) 0;
 }
 
-.navigation-item a {
-  font-size: var(--text-sm);
-  font-weight: 500;
+// Navigation title (site name)
+.navigation .navigation-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--fg-primary) !important;
+  transition: color 0.2s ease;
+
+  &:hover,
+  &:focus {
+    color: var(--accent) !important;
+  }
+}
+
+// Navigation list container
+.navigation .navigation-list {
+  // Reset default theme spacing
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+// Navigation item links - override theme defaults with !important
+.navigation .navigation-list .navigation-item a,
+.navigation .navigation-list .navigation-item span {
+  font-size: 1rem !important;  // Override theme's 1.7rem
+  font-weight: 500 !important;  // Override theme's 600
+  color: var(--fg-primary) !important;
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
   padding: var(--space-2) var(--space-3);
   border-radius: 8px;
-  transition: color 0.2s ease, background-color 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+  position: relative;
+
+  // Hover state - color change to accent cyan
+  &:hover {
+    color: var(--accent) !important;
+    background-color: var(--bg-secondary) !important;
+    transform: translateY(-1px);
+  }
+
+  // Focus state for accessibility
+  &:focus {
+    color: var(--accent) !important;
+    background-color: var(--bg-secondary) !important;
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
 }
 
-.navigation-item a:hover,
-.navigation-item a:focus {
-  color: var(--accent);
-  background-color: var(--bg-secondary);
+// Active page indicator
+.navigation .navigation-list .navigation-item a[aria-current="page"],
+.navigation .navigation-list .navigation-item a.active {
+  color: var(--accent) !important;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 2px;
+    background-color: var(--accent);
+    border-radius: 1px;
+  }
 }
 
-.navigation-item a:focus {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+// Navigation separator styling
+.navigation .navigation-list .menu-separator {
+  span {
+    color: var(--fg-secondary) !important;
+    opacity: 0.5;
+  }
+}
+
+// Dark mode toggle button
+.navigation #dark-mode-toggle {
+  color: var(--fg-primary) !important;
+  transition: color 0.2s ease, transform 0.2s ease;
+
+  &:hover,
+  &:focus {
+    color: var(--accent) !important;
+    transform: scale(1.1);
+  }
+}
+
+// Mobile menu button
+.navigation .menu-button i {
+  color: var(--fg-primary) !important;
+  transition: color 0.2s ease;
+
+  &:hover,
+  &:focus {
+    color: var(--accent) !important;
+  }
+}
+
+// Mobile navigation improvements
+@media only screen and (max-width: 768px) {
+  .navigation .navigation-list {
+    background-color: var(--bg-primary) !important;
+    border-top-color: var(--bg-secondary) !important;
+    border-bottom-color: var(--bg-secondary) !important;
+  }
+
+  .navigation .navigation-list .navigation-item {
+    text-align: center;
+
+    a,
+    span {
+      line-height: 4rem;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  .navigation .navigation-list .menu-separator {
+    border-top-color: var(--bg-secondary) !important;
+  }
 }
 
 // Homepage spacing
