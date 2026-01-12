@@ -617,3 +617,173 @@ hr {
   color: var(--fg-primary) !important;
   border-radius: 8px;
 }
+
+// ========================================
+// VISUAL POLISH & FINAL TOUCHES
+// ========================================
+
+// Social icon hover effects
+.social a {
+  transition: transform 0.2s ease, color 0.2s ease;
+  border-radius: 8px;
+  padding: var(--space-2);
+
+  &:hover {
+    color: var(--accent) !important;
+    transform: translateY(-2px);
+  }
+
+  &:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+// Avatar hover effect
+.avatar {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 50%;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+    [data-theme="dark"] & {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
+// Consistent hover effects for all interactive elements
+a, button, .btn, input[type="submit"], .navigation-item a, .social a {
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+// Focus states for accessibility
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+// Smooth scroll behavior
+html {
+  scroll-behavior: smooth;
+}
+
+// Selection color
+::selection {
+  background-color: var(--accent);
+  color: #121212;
+}
+
+::-moz-selection {
+  background-color: var(--accent);
+  color: #121212;
+}
+
+// Consistent border-radius across all elements
+*, *::before, *::after {
+  border-radius: 0 !important;
+}
+
+// Override with 8px border-radius for specific elements
+a,
+button,
+.btn,
+input,
+textarea,
+select,
+code,
+pre,
+.card,
+.project-card,
+.badge,
+.tag,
+.navigation-item a,
+.social a {
+  border-radius: 8px !important;
+}
+
+// Avatar stays circular
+.avatar,
+.avatar img {
+  border-radius: 50% !important;
+}
+
+// Improved hover states for all clickable elements
+a:hover,
+button:hover,
+.btn:hover,
+input[type="submit"]:hover {
+  transform: translateY(-1px);
+}
+
+// Remove focus outline on mouse, keep for keyboard
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+// Ensure consistent padding for interactive elements
+a, button, .btn {
+  padding: var(--space-2) var(--space-3);
+  display: inline-block;
+}
+
+// Fix for inline links
+p a, li a, td a {
+  padding: 0;
+  display: inline;
+}
+
+// Subtle animation for content fade-in
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container,
+.content {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+// Consistent box-shadow for depth
+.elevated {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  [data-theme="dark"] & {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+
+    [data-theme="dark"] & {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
+// Improved readability with max-width
+.content p,
+.content li {
+  max-width: 65ch;
+}
+
+// Center content properly
+.content {
+  margin-left: auto;
+  margin-right: auto;
+}
