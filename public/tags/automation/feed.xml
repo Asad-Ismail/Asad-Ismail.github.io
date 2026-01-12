@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Automation on Asad Ismail</title>
+    <link>http://localhost:1313/tags/automation/</link>
+    <description>Recent content in Automation on Asad Ismail</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 11 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/automation/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building an End-to-End ML Pipeline with Modern Tools</title>
+      <link>http://localhost:1313/posts/building-ml-pipeline/</link>
+      <pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/building-ml-pipeline/</guid>
+      <description>Building an End-to-End ML Pipeline with Modern Tools Link to heading Production machine learning requires more than just training models—it needs robust, automated pipelines that handle data ingestion, preprocessing, training, validation, and deployment. This post demonstrates building a complete ML pipeline using modern MLOps tools.&#xA;What is an ML Pipeline? Link to heading An ML pipeline orchestrates the entire machine learning lifecycle:&#xA;Raw Data → Ingestion → Preprocessing → Feature Engineering → Training → Validation → Deployment → Monitoring → Feedback Loop Key benefits:</description>
+    </item>
+  </channel>
+</rss>

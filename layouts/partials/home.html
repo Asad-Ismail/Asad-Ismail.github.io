@@ -1,0 +1,29 @@
+<section class="container home">
+  <!-- Hero Section - No Avatar -->
+  <div class="hero">
+    <h1>Asad Ismail</h1>
+    <p class="tagline">Senior ML Engineer | MLOps | Computer Vision | LLMs</p>
+    <p class="hero-text">Building intelligent systems that bridge the gap between research and production</p>
+    <div class="cta-buttons">
+      <a href="/posts/" class="btn">Read Blog</a>
+      <a href="/projects/" class="btn btn-outline">View Projects</a>
+      <a href="/contact/" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+
+  <!-- Recent Blog Posts Section -->
+  <div class="recent-posts">
+    <h2 class="section-title">┌─ Recent Posts</h2>
+    <div class="blog-grid">
+      {{ range first 6 (where .Site.RegularPages "Type" "posts") }}
+      <article class="glass-card post-card">
+        <span class="date">{{ .Date | time.Format "January 2, 2006" }}</span>
+        <a href="{{ .RelPermalink }}" class="title">{{ .Title }}</a>
+        {{ with .Summary }}
+        <p class="summary">{{ . }}</p>
+        {{ end }}
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>

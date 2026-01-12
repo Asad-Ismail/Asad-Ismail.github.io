@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Asad Ismail</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Asad Ismail</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 11 Jan 2026 19:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Content</title>
+      <link>http://localhost:1313/content/</link>
+      <pubDate>Sun, 11 Jan 2026 19:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/content/</guid>
+      <description>Content &amp;amp; Media Link to heading Welcome to my content hub! Here you&amp;rsquo;ll find my latest videos, tutorials, and ways to stay connected with my work on machine learning, computer vision, and MLOps.&#xA;Latest Videos Link to heading ML Model Deployment Strategies Link to heading A comprehensive guide to deploying machine learning models in production environments, covering best practices and common pitfalls.&#xA;Building ML Pipelines at Scale Link to heading Learn how to build scalable, production-ready ML pipelines that can handle real-world workloads efficiently.</description>
+    </item>
+    <item>
+      <title>Contact</title>
+      <link>http://localhost:1313/contact/</link>
+      <pubDate>Sun, 11 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/contact/</guid>
+      <description>Asad Ismail Senior ML Engineer&#xA;Contact Information asadismaeel@gmail.com &amp;lt;section&amp;gt; &amp;lt;h3&amp;gt;Social Media&amp;lt;/h3&amp;gt; &amp;lt;div class=&amp;quot;social-links&amp;quot;&amp;gt; &amp;lt;a href=&amp;quot;https://github.com/Asad-Ismail&amp;quot; target=&amp;quot;_blank&amp;quot; rel=&amp;quot;noopener&amp;quot; aria-label=&amp;quot;GitHub&amp;quot;&amp;gt; &amp;lt;i class=&amp;quot;fab fa-github&amp;quot;&amp;gt;&amp;lt;/i&amp;gt; &amp;lt;/a&amp;gt; &amp;lt;a href=&amp;quot;https://www.linkedin.com/in/asadismaeel/&amp;quot; target=&amp;quot;_blank&amp;quot; rel=&amp;quot;noopener&amp;quot; aria-label=&amp;quot;LinkedIn&amp;quot;&amp;gt; &amp;lt;i class=&amp;quot;fab fa-linkedin&amp;quot;&amp;gt;&amp;lt;/i&amp;gt; &amp;lt;/a&amp;gt; &amp;lt;a href=&amp;quot;https://substack.com/@asadismail2&amp;quot; target=&amp;quot;_blank&amp;quot; rel=&amp;quot;noopener&amp;quot; aria-label=&amp;quot;Substack&amp;quot;&amp;gt; &amp;lt;i class=&amp;quot;fas fa-rss&amp;quot;&amp;gt;&amp;lt;/i&amp;gt; &amp;lt;/a&amp;gt; &amp;lt;a href=&amp;quot;https://www.youtube.com/@AIMLArchives&amp;quot; target=&amp;quot;_blank&amp;quot; rel=&amp;quot;noopener&amp;quot; aria-label=&amp;quot;YouTube&amp;quot;&amp;gt; &amp;lt;i class=&amp;quot;fab fa-youtube&amp;quot;&amp;gt;&amp;lt;/i&amp;gt; &amp;lt;/a&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/section&amp;gt; &amp;lt;section&amp;gt; &amp;lt;h3&amp;gt;Collaboration Availability&amp;lt;/h3&amp;gt; &amp;lt;p&amp;gt;I&#39;m currently available for:&amp;lt;/p&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;Consulting projects: Short-term and long-term ML engineering engagements&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;Open source collaborations: Contributions to ML infrastructure, CV, and LLM projects&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;Speaking engagements: Technical talks on MLOps, Computer Vision, and LLMs&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Note:&amp;lt;/strong&amp;gt; I&#39;m not currently available for full-time roles.</description>
+    </item>
+    <item>
+      <title>Projects</title>
+      <link>http://localhost:1313/projects/</link>
+      <pubDate>Sun, 11 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/</guid>
+      <description>Projects Link to heading Welcome to my projects page! Here you&amp;rsquo;ll find a selection of my work in machine learning, computer vision, MLOps, and deep learning systems.&#xA;Featured Projects Link to heading Computer Vision for Edge Devices Link to heading Deploying and optimizing computer vision models to run efficiently on resource-constrained edge devices. This work focuses on model compression, quantization, and optimization techniques that enable real-time inference on embedded systems.</description>
+    </item>
+    <item>
+      <title>Building an End-to-End ML Pipeline with Modern Tools</title>
+      <link>http://localhost:1313/posts/building-ml-pipeline/</link>
+      <pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/building-ml-pipeline/</guid>
+      <description>Building an End-to-End ML Pipeline with Modern Tools Link to heading Production machine learning requires more than just training models—it needs robust, automated pipelines that handle data ingestion, preprocessing, training, validation, and deployment. This post demonstrates building a complete ML pipeline using modern MLOps tools.&#xA;What is an ML Pipeline? Link to heading An ML pipeline orchestrates the entire machine learning lifecycle:&#xA;Raw Data → Ingestion → Preprocessing → Feature Engineering → Training → Validation → Deployment → Monitoring → Feedback Loop Key benefits:</description>
+    </item>
+    <item>
+      <title>ML Model Deployment: Strategies and Best Practices</title>
+      <link>http://localhost:1313/posts/mlmodeldeployment/</link>
+      <pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/mlmodeldeployment/</guid>
+      <description>ML Model Deployment: Strategies and Best Practices Link to heading Deploying machine learning models to production is a critical step in the ML lifecycle that often receives less attention than model development. A well-trained model is useless if it cannot be reliably served to users or systems in production environments. In this post, we&amp;rsquo;ll explore key deployment strategies and best practices for production ML systems.&#xA;Common Deployment Strategies Link to heading 1.</description>
+    </item>
+    <item>
+      <title>PyTorch vs TensorFlow: Choosing the Right Framework for Production</title>
+      <link>http://localhost:1313/posts/pytorch-vs-tensorflow/</link>
+      <pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/pytorch-vs-tensorflow/</guid>
+      <description>PyTorch vs TensorFlow: Choosing the Right Framework for Production Link to heading When building production machine learning systems, choosing the right deep learning framework is a critical decision that impacts development velocity, model performance, and operational complexity. PyTorch and TensorFlow dominate the landscape, each with distinct strengths and trade-offs. This post compares both frameworks from a production perspective.&#xA;Architecture and Philosophy Link to heading PyTorch: Pythonic and Dynamic Link to heading PyTorch embraces Python&amp;rsquo;s design philosophy with dynamic computation graphs:</description>
+    </item>
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 12 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>Hi, I&amp;rsquo;m Asad Link to heading I&amp;rsquo;m a Senior Machine Learning Engineer specializing in building production-grade ML systems and scalable AI infrastructure. With expertise spanning computer vision, natural language processing, and recommendation systems, I transform complex data challenges into deployable machine learning solutions.&#xA;My focus is on the entire ML lifecycle—from research and prototyping to production deployment and monitoring. I&amp;rsquo;m passionate about MLOps, building robust pipelines, and creating systems that deliver real business value.</description>
+    </item>
+  </channel>
+</rss>

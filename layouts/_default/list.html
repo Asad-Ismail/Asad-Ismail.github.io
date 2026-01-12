@@ -1,0 +1,18 @@
+{{ define "main" }}
+<section class="container list-page">
+  <h1 class="list-page-title">{{ i18n (lower .Title) | default .Title | title }}</h1>
+  {{ .Content }}
+  <ul>
+    {{ range .Paginator.Pages }}
+    <li>
+      <span class="date">{{ .Date | time.Format (.Site.Params.dateFormat | default "January 2, 2006" ) }}</span>
+      <a class="title" href="{{ .Params.externalLink | default .RelPermalink }}">{{ .Title }}</a>
+      {{ with .Summary }}
+      <p class="summary">{{ . }}</p>
+      {{ end }}
+    </li>
+    {{ end }}
+  </ul>
+  {{ partial "pagination.html" . }}
+</section>
+{{ end }}
