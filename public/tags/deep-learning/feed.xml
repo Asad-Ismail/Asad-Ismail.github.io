@@ -1,19 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Deep Learning on Asad Ismail</title>
-    <link>http://localhost:1313/tags/deep-learning/</link>
-    <description>Recent content in Deep Learning on Asad Ismail</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 11 Jan 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/deep-learning/feed.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>PyTorch vs TensorFlow: Choosing the Right Framework for Production</title>
-      <link>http://localhost:1313/posts/pytorch-vs-tensorflow/</link>
-      <pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/pytorch-vs-tensorflow/</guid>
-      <description>PyTorch vs TensorFlow: Choosing the Right Framework for Production Link to heading When building production machine learning systems, choosing the right deep learning framework is a critical decision that impacts development velocity, model performance, and operational complexity. PyTorch and TensorFlow dominate the landscape, each with distinct strengths and trade-offs. This post compares both frameworks from a production perspective.&#xA;Architecture and Philosophy Link to heading PyTorch: Pythonic and Dynamic Link to heading PyTorch embraces Python&amp;rsquo;s design philosophy with dynamic computation graphs:</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Deep Learning on Asad Ismail</title><link>https://Asad-Ismail.github.io/tags/deep-learning/</link><description>Recent content in Deep Learning on Asad Ismail</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 11 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Asad-Ismail.github.io/tags/deep-learning/feed.xml" rel="self" type="application/rss+xml"/><item><title>PyTorch vs TensorFlow: Choosing the Right Framework for Production</title><link>https://Asad-Ismail.github.io/posts/pytorch-vs-tensorflow/</link><pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate><guid>https://Asad-Ismail.github.io/posts/pytorch-vs-tensorflow/</guid><description>&lt;h1 id="pytorch-vs-tensorflow-choosing-the-right-framework-for-production"&gt;
+ PyTorch vs TensorFlow: Choosing the Right Framework for Production
+ &lt;a class="heading-link" href="#pytorch-vs-tensorflow-choosing-the-right-framework-for-production"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;When building production machine learning systems, choosing the right deep learning framework is a critical decision that impacts development velocity, model performance, and operational complexity. PyTorch and TensorFlow dominate the landscape, each with distinct strengths and trade-offs. This post compares both frameworks from a production perspective.&lt;/p&gt;
+&lt;h2 id="architecture-and-philosophy"&gt;
+ Architecture and Philosophy
+ &lt;a class="heading-link" href="#architecture-and-philosophy"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="pytorch-pythonic-and-dynamic"&gt;
+ PyTorch: Pythonic and Dynamic
+ &lt;a class="heading-link" href="#pytorch-pythonic-and-dynamic"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;PyTorch embraces Python&amp;rsquo;s design philosophy with dynamic computation graphs:&lt;/p&gt;</description></item></channel></rss>

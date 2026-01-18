@@ -1,8 +1,8 @@
 ---
-title: "Content"
+title: "Media"
 date: 2026-01-11T19:00:00Z
 draft: false
-description: "Asad Ismail's content hub featuring ML tutorials, deep learning content, and MLOps videos from AIMLArchives YouTube channel"
+description: "Asad Ismail's media hub featuring ML tutorials, deep learning videos, and MLOps content from AIMLArchives YouTube channel and Substack newsletter"
 ---
 
 # Content & Media

@@ -3,7 +3,8 @@ languageCode = 'en-us'
 title = 'Asad Ismail'
 theme = "hugo-coder"
 
-paginate = 20
+[pagination]
+  pagerSize = 20
 
 [markup.highlight]
 style = "github-dark"
@@ -30,13 +31,9 @@ style = "github-dark"
     url = "/about/"
     weight = 4
   [[menu.main]]
-    name = "Contact"
-    url = "/contact/"
-    weight = 5
-  [[menu.main]]
-    name = "Content"
+    name = "Media"
     url = "/content/"
-    weight = 6
+    weight = 5
 
 
 [params]

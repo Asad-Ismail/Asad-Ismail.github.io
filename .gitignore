@@ -1,1 +1,34 @@
+# Hugo build output
+public/
+resources/_gen/
+
+# Screenshots and temporary images
+*.png
+*.jpg
+*.jpeg
+!static/img/*.png
+!static/img/*.jpg
+!static/img/*.jpeg
+
+# Flow task management
+.flow/
+
+# Temporary files
+@AGENT.md
+@fix_plan.md
+PROMPT.md
+*.log
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Ralph scripts (development tools)
+scripts/ralph/
