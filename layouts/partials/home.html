@@ -15,11 +15,8 @@
     <div class="blog-grid">
       {{ range first 6 (where .Site.RegularPages "Type" "posts") }}
       <article class="glass-card post-card">
-        <span class="date">{{ .Date | time.Format "January 2, 2006" }}</span>
         <a href="{{ .RelPermalink }}" class="title">{{ .Title }}</a>
-        {{ with .Summary }}
-        <p class="summary">{{ . }}</p>
-        {{ end }}
+        <span class="date">{{ .Date | time.Format "January 2, 2006" }}</span>
       </article>
       {{ end }}
     </div>

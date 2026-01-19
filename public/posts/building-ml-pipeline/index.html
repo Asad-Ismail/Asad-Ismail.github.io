@@ -1,28 +1,269 @@
-<!doctype html><html lang=en><head><title>Building an End-to-End ML Pipeline with Modern Tools · Asad Ismail</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Asad Ismail"><meta name=description content="A practical guide to building production ML pipelines using Prefect, MLflow, and cloud-native tools for reliable, scalable machine learning systems."><meta name=keywords content="machine learning,mlops,computer vision,deep learning,llm,pytorch,tensorflow"><meta name=fediverse:creator content><meta name=twitter:card content="summary"><meta name=twitter:title content="Building an End-to-End ML Pipeline with Modern Tools"><meta name=twitter:description content="A practical guide to building production ML pipelines using Prefect, MLflow, and cloud-native tools for reliable, scalable machine learning systems."><meta property="og:url" content="https://Asad-Ismail.github.io/posts/building-ml-pipeline/"><meta property="og:site_name" content="Asad Ismail"><meta property="og:title" content="Building an End-to-End ML Pipeline with Modern Tools"><meta property="og:description" content="A practical guide to building production ML pipelines using Prefect, MLflow, and cloud-native tools for reliable, scalable machine learning systems."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-01-11T00:00:00+00:00"><meta property="article:modified_time" content="2025-01-11T00:00:00+00:00"><meta property="article:tag" content="MLOps"><meta property="article:tag" content="ML Pipeline"><meta property="article:tag" content="Automation"><meta property="article:tag" content="Production"><link rel=canonical href=https://Asad-Ismail.github.io/posts/building-ml-pipeline/><link rel=preload href=/fonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin><link rel=stylesheet href=/css/coder.min.a38307e5862a7b0d7417d91e21e15185fb9466f7c137691d5c4d82198bd7cd06.css integrity="sha256-o4MH5YYqew10F9keIeFRhfuUZvfBN2kdXE2CGYvXzQY=" crossorigin=anonymous media=screen><link rel=stylesheet href=/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin=anonymous media=screen><link rel=stylesheet href=/scss/custom.min.d8e08817beebdfc94fe7fac1d6f566cd0c1d464937d2481c32bd0ec1119065e8.css integrity="sha256-2OCIF77r38lP5/rB1vVmzQwdRkk30kgcMr0OwRGQZeg=" crossorigin=anonymous media=screen><link rel=icon type=image/svg+xml href=/img/favicon.svg sizes=any><link rel=icon type=image/png href=/img/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/img/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","headline":"Building an End-to-End ML Pipeline with Modern Tools","author":{"@type":"Person","name":"Asad Ismail"},"datePublished":"2025-01-11","description":"A practical guide to building production ML pipelines using Prefect, MLflow, and cloud-native tools for reliable, scalable machine learning systems."}</script></head><body class="preload-transitions colorscheme-auto"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=https://Asad-Ismail.github.io/>Asad Ismail
-</a><input type=checkbox id=menu-toggle>
-<label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/>Home</a></li><li class=navigation-item><a class=navigation-link href=/posts/>Blog</a></li><li class=navigation-item><a class=navigation-link href=/projects/>Projects</a></li><li class=navigation-item><a class=navigation-link href=/about/>About</a></li><li class=navigation-item><a class=navigation-link href=/content/>Media</a></li></ul></section></nav><div class=content><section class="container post"><article><header><div class=post-title><h1 class=title><a class=title-link href=https://Asad-Ismail.github.io/posts/building-ml-pipeline/>Building an End-to-End ML Pipeline with Modern Tools</a></h1></div><div class=post-meta><div class=date><span class=posted-on><i class="fa-solid fa-calendar" aria-hidden=true></i>
-<time datetime=2025-01-11T00:00:00Z>January 11, 2025
-</time></span><span class=reading-time><i class="fa-solid fa-clock" aria-hidden=true></i>
-5-minute read</span></div><div class=authors><i class="fa-solid fa-user" aria-hidden=true></i>
-<a href=/authors/asad-ismail/>Asad Ismail</a></div><div class=categories><i class="fa-solid fa-folder" aria-hidden=true></i>
-<a href=/categories/machine-learning/>Machine Learning</a>
-<span class=separator>•</span>
-<a href=/categories/engineering/>Engineering</a></div><div class=tags><i class="fa-solid fa-tag" aria-hidden=true></i>
-<span class=tag><a href=/tags/mlops/>MLOps</a>
-</span><span class=separator>•</span>
-<span class=tag><a href=/tags/ml-pipeline/>ML Pipeline</a>
-</span><span class=separator>•</span>
-<span class=tag><a href=/tags/automation/>Automation</a>
-</span><span class=separator>•</span>
-<span class=tag><a href=/tags/production/>Production</a></span></div></div></header><div class=post-content><h1 id=building-an-end-to-end-ml-pipeline-with-modern-tools>Building an End-to-End ML Pipeline with Modern Tools
-<a class=heading-link href=#building-an-end-to-end-ml-pipeline-with-modern-tools><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h1><p>Production machine learning requires more than just training models—it needs robust, automated pipelines that handle data ingestion, preprocessing, training, validation, and deployment. This post demonstrates building a complete ML pipeline using modern MLOps tools.</p><h2 id=what-is-an-ml-pipeline>What is an ML Pipeline?
-<a class=heading-link href=#what-is-an-ml-pipeline><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>An ML pipeline orchestrates the entire machine learning lifecycle:</p><pre tabindex=0><code>Raw Data → Ingestion → Preprocessing → Feature Engineering → Training
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  Building an End-to-End ML Pipeline with Modern Tools · Asad Ismail
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Asad Ismail">
+<meta name="description" content="A practical guide to building production ML pipelines using Prefect, MLflow, and cloud-native tools for reliable, scalable machine learning systems.">
+<meta name="keywords" content="machine learning, mlops, computer vision, deep learning, llm, pytorch, tensorflow">
+<meta name="fediverse:creator" content="" />
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Building an End-to-End ML Pipeline with Modern Tools">
+  <meta name="twitter:description" content="A practical guide to building production ML pipelines using Prefect, MLflow, and cloud-native tools for reliable, scalable machine learning systems.">
+
+<meta property="og:url" content="http://localhost:1313/posts/building-ml-pipeline/">
+  <meta property="og:site_name" content="Asad Ismail">
+  <meta property="og:title" content="Building an End-to-End ML Pipeline with Modern Tools">
+  <meta property="og:description" content="A practical guide to building production ML pipelines using Prefect, MLflow, and cloud-native tools for reliable, scalable machine learning systems.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-01-11T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-01-11T00:00:00+00:00">
+    <meta property="article:tag" content="MLOps">
+    <meta property="article:tag" content="ML Pipeline">
+    <meta property="article:tag" content="Automation">
+    <meta property="article:tag" content="Production">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/posts/building-ml-pipeline/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+
+
+  
+  
+    
+    
+    <link rel="stylesheet" href="/scss/custom.css" media="screen">
+  
+
+
+
+<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Building an End-to-End ML Pipeline with Modern Tools",
+  "author": {
+    "@type": "Person",
+    "name": "Asad Ismail"
+  },
+  "datePublished": "2025-01-11",
+  "description": "A practical guide to building production ML pipelines using Prefect, MLflow, and cloud-native tools for reliable, scalable machine learning systems."
+}
+</script>
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      Asad Ismail
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/">Home</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">Blog</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/projects/">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/content/">Media</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="http://localhost:1313/posts/building-ml-pipeline/">
+              Building an End-to-End ML Pipeline with Modern Tools
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2025-01-11T00:00:00Z">
+                January 11, 2025
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              5-minute read
+            </span>
+          </div>
+          <div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <a href="/authors/asad-ismail/">Asad Ismail</a></div>
+
+          <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="/categories/machine-learning/">Machine Learning</a>
+      <span class="separator">•</span>
+    <a href="/categories/engineering/">Engineering</a></div>
+
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/mlops/">MLOps</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/ml-pipeline/">ML Pipeline</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/automation/">Automation</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/production/">Production</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <h1 id="building-an-end-to-end-ml-pipeline-with-modern-tools">
+  Building an End-to-End ML Pipeline with Modern Tools
+  <a class="heading-link" href="#building-an-end-to-end-ml-pipeline-with-modern-tools">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>Production machine learning requires more than just training models—it needs robust, automated pipelines that handle data ingestion, preprocessing, training, validation, and deployment. This post demonstrates building a complete ML pipeline using modern MLOps tools.</p>
+<h2 id="what-is-an-ml-pipeline">
+  What is an ML Pipeline?
+  <a class="heading-link" href="#what-is-an-ml-pipeline">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>An ML pipeline orchestrates the entire machine learning lifecycle:</p>
+<pre tabindex="0"><code>Raw Data → Ingestion → Preprocessing → Feature Engineering → Training
     → Validation → Deployment → Monitoring → Feedback Loop
-</code></pre><p><strong>Key benefits:</strong></p><ul><li><strong>Reproducibility</strong>: Same code + data = same results</li><li><strong>Automation</strong>: Reduced manual intervention</li><li><strong>Scalability</strong>: Handle larger datasets and models</li><li><strong>Monitoring</strong>: Track pipeline health and model performance</li></ul><h2 id=architecture-overview>Architecture Overview
-<a class=heading-link href=#architecture-overview><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><pre tabindex=0><code>                    ┌─────────────────┐
+</code></pre><p><strong>Key benefits:</strong></p>
+<ul>
+<li><strong>Reproducibility</strong>: Same code + data = same results</li>
+<li><strong>Automation</strong>: Reduced manual intervention</li>
+<li><strong>Scalability</strong>: Handle larger datasets and models</li>
+<li><strong>Monitoring</strong>: Track pipeline health and model performance</li>
+</ul>
+<h2 id="architecture-overview">
+  Architecture Overview
+  <a class="heading-link" href="#architecture-overview">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<pre tabindex="0"><code>                    ┌─────────────────┐
                     │  Data Source    │
                     │  (S3/Database)  │
                     └────────┬────────┘
@@ -51,297 +292,455 @@
                     │   Deployment    │
                     │  (Sagemaker/K8s)│
                     └─────────────────┘
-</code></pre><h2 id=step-1-workflow-orchestration-with-prefect>Step 1: Workflow Orchestration with Prefect
-<a class=heading-link href=#step-1-workflow-orchestration-with-prefect><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Prefect provides modern workflow orchestration with excellent observability:</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff7b72>from</span> <span style=color:#ff7b72>prefect</span> <span style=color:#ff7b72>import</span> task, flow
-</span></span><span style=display:flex><span><span style=color:#ff7b72>from</span> <span style=color:#ff7b72>prefect.context</span> <span style=color:#ff7b72>import</span> get_run_context
-</span></span><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>pandas</span> <span style=color:#ff7b72>as</span> <span style=color:#ff7b72>pd</span>
-</span></span><span style=display:flex><span><span style=color:#ff7b72>from</span> <span style=color:#ff7b72>datetime</span> <span style=color:#ff7b72>import</span> datetime
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>@task</span>(retries<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>3</span>, retry_delay_seconds<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>60</span>)
-</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>extract_data</span>(source: str) <span style=color:#ff7b72;font-weight:700>-&gt;</span> pd<span style=color:#ff7b72;font-weight:700>.</span>DataFrame:
-</span></span><span style=display:flex><span>    <span style=color:#a5d6ff>&#34;&#34;&#34;Extract data from source with retry logic&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    logger <span style=color:#ff7b72;font-weight:700>=</span> get_run_context()<span style=color:#ff7b72;font-weight:700>.</span>task_run_logger
-</span></span><span style=display:flex><span>    logger<span style=color:#ff7b72;font-weight:700>.</span>info(<span style=color:#79c0ff>f</span><span style=color:#a5d6ff>&#34;Extracting data from </span><span style=color:#a5d6ff>{</span>source<span style=color:#a5d6ff>}</span><span style=color:#a5d6ff>&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Implementation: S3, database, API, etc.</span>
-</span></span><span style=display:flex><span>    df <span style=color:#ff7b72;font-weight:700>=</span> pd<span style=color:#ff7b72;font-weight:700>.</span>read_csv(source)
-</span></span><span style=display:flex><span>    logger<span style=color:#ff7b72;font-weight:700>.</span>info(<span style=color:#79c0ff>f</span><span style=color:#a5d6ff>&#34;Extracted </span><span style=color:#a5d6ff>{</span>len(df)<span style=color:#a5d6ff>}</span><span style=color:#a5d6ff> rows&#34;</span>)
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>return</span> df
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>@task</span>
-</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>transform_data</span>(df: pd<span style=color:#ff7b72;font-weight:700>.</span>DataFrame) <span style=color:#ff7b72;font-weight:700>-&gt;</span> pd<span style=color:#ff7b72;font-weight:700>.</span>DataFrame:
-</span></span><span style=display:flex><span>    <span style=color:#a5d6ff>&#34;&#34;&#34;Transform and clean data&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Handle missing values</span>
-</span></span><span style=display:flex><span>    df <span style=color:#ff7b72;font-weight:700>=</span> df<span style=color:#ff7b72;font-weight:700>.</span>dropna(subset<span style=color:#ff7b72;font-weight:700>=</span>[<span style=color:#a5d6ff>&#39;target&#39;</span>])
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Remove duplicates</span>
-</span></span><span style=display:flex><span>    df <span style=color:#ff7b72;font-weight:700>=</span> df<span style=color:#ff7b72;font-weight:700>.</span>drop_duplicates()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Feature engineering</span>
-</span></span><span style=display:flex><span>    df[<span style=color:#a5d6ff>&#39;feature_ratio&#39;</span>] <span style=color:#ff7b72;font-weight:700>=</span> df[<span style=color:#a5d6ff>&#39;feature_a&#39;</span>] <span style=color:#ff7b72;font-weight:700>/</span> df[<span style=color:#a5d6ff>&#39;feature_b&#39;</span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>return</span> df
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>@task</span>
-</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>validate_data</span>(df: pd<span style=color:#ff7b72;font-weight:700>.</span>DataFrame) <span style=color:#ff7b72;font-weight:700>-&gt;</span> bool:
-</span></span><span style=display:flex><span>    <span style=color:#a5d6ff>&#34;&#34;&#34;Validate data quality&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>assert</span> len(df) <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>1000</span>, <span style=color:#a5d6ff>&#34;Insufficient data&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>assert</span> df[<span style=color:#a5d6ff>&#39;target&#39;</span>]<span style=color:#ff7b72;font-weight:700>.</span>notna()<span style=color:#ff7b72;font-weight:700>.</span>all(), <span style=color:#a5d6ff>&#34;Missing target values&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>return</span> <span style=color:#79c0ff>True</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>@flow</span>(name<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;ML Training Pipeline&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>training_pipeline</span>(data_source: str):
-</span></span><span style=display:flex><span>    <span style=color:#a5d6ff>&#34;&#34;&#34;Main training pipeline&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Extract, transform, validate</span>
-</span></span><span style=display:flex><span>    df <span style=color:#ff7b72;font-weight:700>=</span> extract_data(data_source)
-</span></span><span style=display:flex><span>    df_clean <span style=color:#ff7b72;font-weight:700>=</span> transform_data(df)
-</span></span><span style=display:flex><span>    validate_data(df_clean)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>return</span> df_clean
-</span></span></code></pre></div><h2 id=step-2-feature-engineering>Step 2: Feature Engineering
-<a class=heading-link href=#step-2-feature-engineering><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Build reusable feature engineering logic:</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff7b72>from</span> <span style=color:#ff7b72>sklearn.preprocessing</span> <span style=color:#ff7b72>import</span> StandardScaler
-</span></span><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>numpy</span> <span style=color:#ff7b72>as</span> <span style=color:#ff7b72>np</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>@task</span>
-</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>engineer_features</span>(df: pd<span style=color:#ff7b72;font-weight:700>.</span>DataFrame) <span style=color:#ff7b72;font-weight:700>-&gt;</span> tuple:
-</span></span><span style=display:flex><span>    <span style=color:#a5d6ff>&#34;&#34;&#34;Create features for model training&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Numerical features</span>
-</span></span><span style=display:flex><span>    numerical_features <span style=color:#ff7b72;font-weight:700>=</span> df<span style=color:#ff7b72;font-weight:700>.</span>select_dtypes(include<span style=color:#ff7b72;font-weight:700>=</span>[np<span style=color:#ff7b72;font-weight:700>.</span>number])<span style=color:#ff7b72;font-weight:700>.</span>columns
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Categorical encoding</span>
-</span></span><span style=display:flex><span>    df_encoded <span style=color:#ff7b72;font-weight:700>=</span> pd<span style=color:#ff7b72;font-weight:700>.</span>get_dummies(
-</span></span><span style=display:flex><span>        df,
-</span></span><span style=display:flex><span>        columns<span style=color:#ff7b72;font-weight:700>=</span>[<span style=color:#a5d6ff>&#39;category_column&#39;</span>],
-</span></span><span style=display:flex><span>        drop_first<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#79c0ff>True</span>
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Scaling</span>
-</span></span><span style=display:flex><span>    scaler <span style=color:#ff7b72;font-weight:700>=</span> StandardScaler()
-</span></span><span style=display:flex><span>    df_encoded[numerical_features] <span style=color:#ff7b72;font-weight:700>=</span> scaler<span style=color:#ff7b72;font-weight:700>.</span>fit_transform(
-</span></span><span style=display:flex><span>        df_encoded[numerical_features]
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Feature selection</span>
-</span></span><span style=display:flex><span>    feature_cols <span style=color:#ff7b72;font-weight:700>=</span> [col <span style=color:#ff7b72>for</span> col <span style=color:#ff7b72;font-weight:700>in</span> df_encoded<span style=color:#ff7b72;font-weight:700>.</span>columns
-</span></span><span style=display:flex><span>                    <span style=color:#ff7b72>if</span> col <span style=color:#ff7b72;font-weight:700>!=</span> <span style=color:#a5d6ff>&#39;target&#39;</span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    X <span style=color:#ff7b72;font-weight:700>=</span> df_encoded[feature_cols]<span style=color:#ff7b72;font-weight:700>.</span>values
-</span></span><span style=display:flex><span>    y <span style=color:#ff7b72;font-weight:700>=</span> df_encoded[<span style=color:#a5d6ff>&#39;target&#39;</span>]<span style=color:#ff7b72;font-weight:700>.</span>values
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>return</span> X, y, feature_cols
-</span></span></code></pre></div><h2 id=step-3-training-with-mlflow-tracking>Step 3: Training with MLflow Tracking
-<a class=heading-link href=#step-3-training-with-mlflow-tracking><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Track experiments and manage models:</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>mlflow</span>
-</span></span><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>mlflow.sklearn</span>
-</span></span><span style=display:flex><span><span style=color:#ff7b72>from</span> <span style=color:#ff7b72>sklearn.ensemble</span> <span style=color:#ff7b72>import</span> RandomForestClassifier
-</span></span><span style=display:flex><span><span style=color:#ff7b72>from</span> <span style=color:#ff7b72>sklearn.model_selection</span> <span style=color:#ff7b72>import</span> cross_val_score
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>@task</span>
-</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>train_model</span>(
-</span></span><span style=display:flex><span>    X_train: np<span style=color:#ff7b72;font-weight:700>.</span>ndarray,
-</span></span><span style=display:flex><span>    y_train: np<span style=color:#ff7b72;font-weight:700>.</span>ndarray,
-</span></span><span style=display:flex><span>    params: dict
-</span></span><span style=display:flex><span>) <span style=color:#ff7b72;font-weight:700>-&gt;</span> object:
-</span></span><span style=display:flex><span>    <span style=color:#a5d6ff>&#34;&#34;&#34;Train model with MLflow tracking&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>with</span> mlflow<span style=color:#ff7b72;font-weight:700>.</span>start_run():
-</span></span><span style=display:flex><span>        <span style=color:#8b949e;font-style:italic># Log parameters</span>
-</span></span><span style=display:flex><span>        mlflow<span style=color:#ff7b72;font-weight:700>.</span>log_params(params)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#8b949e;font-style:italic># Train model</span>
-</span></span><span style=display:flex><span>        model <span style=color:#ff7b72;font-weight:700>=</span> RandomForestClassifier(<span style=color:#ff7b72;font-weight:700>**</span>params)
-</span></span><span style=display:flex><span>        model<span style=color:#ff7b72;font-weight:700>.</span>fit(X_train, y_train)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#8b949e;font-style:italic># Cross-validation</span>
-</span></span><span style=display:flex><span>        cv_scores <span style=color:#ff7b72;font-weight:700>=</span> cross_val_score(
-</span></span><span style=display:flex><span>            model, X_train, y_train,
-</span></span><span style=display:flex><span>            cv<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>5</span>, scoring<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#39;f1&#39;</span>
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#8b949e;font-style:italic># Log metrics</span>
-</span></span><span style=display:flex><span>        mlflow<span style=color:#ff7b72;font-weight:700>.</span>log_metric(<span style=color:#a5d6ff>&#34;cv_f1_mean&#34;</span>, cv_scores<span style=color:#ff7b72;font-weight:700>.</span>mean())
-</span></span><span style=display:flex><span>        mlflow<span style=color:#ff7b72;font-weight:700>.</span>log_metric(<span style=color:#a5d6ff>&#34;cv_f1_std&#34;</span>, cv_scores<span style=color:#ff7b72;font-weight:700>.</span>std())
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#8b949e;font-style:italic># Log model</span>
-</span></span><span style=display:flex><span>        mlflow<span style=color:#ff7b72;font-weight:700>.</span>sklearn<span style=color:#ff7b72;font-weight:700>.</span>log_model(
-</span></span><span style=display:flex><span>            model,
-</span></span><span style=display:flex><span>            <span style=color:#a5d6ff>&#34;model&#34;</span>,
-</span></span><span style=display:flex><span>            registered_model_name<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;production_model&#34;</span>
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>return</span> model
-</span></span></code></pre></div><h2 id=step-4-model-validation>Step 4: Model Validation
-<a class=heading-link href=#step-4-model-validation><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Implement rigorous validation checks:</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>@task</span>
-</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>validate_model</span>(
-</span></span><span style=display:flex><span>    model: object,
-</span></span><span style=display:flex><span>    X_test: np<span style=color:#ff7b72;font-weight:700>.</span>ndarray,
-</span></span><span style=display:flex><span>    y_test: np<span style=color:#ff7b72;font-weight:700>.</span>ndarray
-</span></span><span style=display:flex><span>) <span style=color:#ff7b72;font-weight:700>-&gt;</span> dict:
-</span></span><span style=display:flex><span>    <span style=color:#a5d6ff>&#34;&#34;&#34;Validate model against test set&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>from</span> <span style=color:#ff7b72>sklearn.metrics</span> <span style=color:#ff7b72>import</span> (
-</span></span><span style=display:flex><span>        accuracy_score, precision_score,
-</span></span><span style=display:flex><span>        recall_score, f1_score
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    predictions <span style=color:#ff7b72;font-weight:700>=</span> model<span style=color:#ff7b72;font-weight:700>.</span>predict(X_test)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    metrics <span style=color:#ff7b72;font-weight:700>=</span> {
-</span></span><span style=display:flex><span>        <span style=color:#a5d6ff>&#39;accuracy&#39;</span>: accuracy_score(y_test, predictions),
-</span></span><span style=display:flex><span>        <span style=color:#a5d6ff>&#39;precision&#39;</span>: precision_score(y_test, predictions),
-</span></span><span style=display:flex><span>        <span style=color:#a5d6ff>&#39;recall&#39;</span>: recall_score(y_test, predictions),
-</span></span><span style=display:flex><span>        <span style=color:#a5d6ff>&#39;f1&#39;</span>: f1_score(y_test, predictions)
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Log to MLflow</span>
-</span></span><span style=display:flex><span>    mlflow<span style=color:#ff7b72;font-weight:700>.</span>log_metrics(metrics)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Validate thresholds</span>
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>assert</span> metrics[<span style=color:#a5d6ff>&#39;f1&#39;</span>] <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>0.8</span>, <span style=color:#a5d6ff>&#34;Model F1 below threshold&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>return</span> metrics
-</span></span></code></pre></div><h2 id=step-5-complete-pipeline>Step 5: Complete Pipeline
-<a class=heading-link href=#step-5-complete-pipeline><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Wire everything together:</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff7b72>from</span> <span style=color:#ff7b72>sklearn.model_selection</span> <span style=color:#ff7b72>import</span> train_test_split
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>@flow</span>(name<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;End-to-End ML Pipeline&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>ml_pipeline</span>(
-</span></span><span style=display:flex><span>    data_source: str,
-</span></span><span style=display:flex><span>    model_params: dict,
-</span></span><span style=display:flex><span>    test_size: float <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0.2</span>
-</span></span><span style=display:flex><span>):
-</span></span><span style=display:flex><span>    <span style=color:#a5d6ff>&#34;&#34;&#34;Complete ML pipeline from data to deployment&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Data phase</span>
-</span></span><span style=display:flex><span>    df <span style=color:#ff7b72;font-weight:700>=</span> training_pipeline(data_source)
-</span></span><span style=display:flex><span>    X, y, feature_names <span style=color:#ff7b72;font-weight:700>=</span> engineer_features(df)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Train/test split</span>
-</span></span><span style=display:flex><span>    X_train, X_test, y_train, y_test <span style=color:#ff7b72;font-weight:700>=</span> train_test_split(
-</span></span><span style=display:flex><span>        X, y, test_size<span style=color:#ff7b72;font-weight:700>=</span>test_size,
-</span></span><span style=display:flex><span>        stratify<span style=color:#ff7b72;font-weight:700>=</span>y, random_state<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>42</span>
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Training phase</span>
-</span></span><span style=display:flex><span>    model <span style=color:#ff7b72;font-weight:700>=</span> train_model(X_train, y_train, model_params)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Validation phase</span>
-</span></span><span style=display:flex><span>    metrics <span style=color:#ff7b72;font-weight:700>=</span> validate_model(model, X_test, y_test)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>return</span> {
-</span></span><span style=display:flex><span>        <span style=color:#a5d6ff>&#39;model&#39;</span>: model,
-</span></span><span style=display:flex><span>        <span style=color:#a5d6ff>&#39;metrics&#39;</span>: metrics,
-</span></span><span style=display:flex><span>        <span style=color:#a5d6ff>&#39;feature_names&#39;</span>: feature_names
-</span></span><span style=display:flex><span>    }
-</span></span></code></pre></div><h2 id=step-6-scheduling-and-automation>Step 6: Scheduling and Automation
-<a class=heading-link href=#step-6-scheduling-and-automation><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Schedule automated pipeline runs:</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff7b72>from</span> <span style=color:#ff7b72>prefect.schedules</span> <span style=color:#ff7b72>import</span> IntervalSchedule
-</span></span><span style=display:flex><span><span style=color:#ff7b72>from</span> <span style=color:#ff7b72>prefect.deployments</span> <span style=color:#ff7b72>import</span> Deployment
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Daily retraining schedule</span>
-</span></span><span style=display:flex><span>schedule <span style=color:#ff7b72;font-weight:700>=</span> IntervalSchedule(interval<span style=color:#ff7b72;font-weight:700>=</span>timedelta(days<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>1</span>))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>deployment <span style=color:#ff7b72;font-weight:700>=</span> Deployment<span style=color:#ff7b72;font-weight:700>.</span>build_from_flow(
-</span></span><span style=display:flex><span>    flow<span style=color:#ff7b72;font-weight:700>=</span>ml_pipeline,
-</span></span><span style=display:flex><span>    name<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;daily-retraining&#34;</span>,
-</span></span><span style=display:flex><span>    schedule<span style=color:#ff7b72;font-weight:700>=</span>schedule,
-</span></span><span style=display:flex><span>    parameters<span style=color:#ff7b72;font-weight:700>=</span>{
-</span></span><span style=display:flex><span>        <span style=color:#a5d6ff>&#39;data_source&#39;</span>: <span style=color:#a5d6ff>&#39;s3://bucket/data.csv&#39;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#a5d6ff>&#39;model_params&#39;</span>: {
-</span></span><span style=display:flex><span>            <span style=color:#a5d6ff>&#39;n_estimators&#39;</span>: <span style=color:#a5d6ff>100</span>,
-</span></span><span style=display:flex><span>            <span style=color:#a5d6ff>&#39;max_depth&#39;</span>: <span style=color:#a5d6ff>10</span>,
-</span></span><span style=display:flex><span>            <span style=color:#a5d6ff>&#39;random_state&#39;</span>: <span style=color:#a5d6ff>42</span>
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>deployment<span style=color:#ff7b72;font-weight:700>.</span>apply()
-</span></span></code></pre></div><h2 id=step-7-deployment-integration>Step 7: Deployment Integration
-<a class=heading-link href=#step-7-deployment-integration><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Automatically deploy validated models:</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>@task</span>
-</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>deploy_model</span>(model_uri: str, deployment_target: str):
-</span></span><span style=display:flex><span>    <span style=color:#a5d6ff>&#34;&#34;&#34;Deploy model to production&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>import</span> <span style=color:#ff7b72>boto3</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>if</span> deployment_target <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>&#39;sagemaker&#39;</span>:
-</span></span><span style=display:flex><span>        client <span style=color:#ff7b72;font-weight:700>=</span> boto3<span style=color:#ff7b72;font-weight:700>.</span>client(<span style=color:#a5d6ff>&#39;sagemaker&#39;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#8b949e;font-style:italic># Create SageMaker endpoint</span>
-</span></span><span style=display:flex><span>        response <span style=color:#ff7b72;font-weight:700>=</span> client<span style=color:#ff7b72;font-weight:700>.</span>create_endpoint(
-</span></span><span style=display:flex><span>            EndpointName<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#39;production-endpoint&#39;</span>,
-</span></span><span style=display:flex><span>            EndpointConfigName<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#39;ml-model-config&#39;</span>
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#ff7b72>return</span> response[<span style=color:#a5d6ff>&#39;EndpointArn&#39;</span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>elif</span> deployment_target <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>&#39;kubernetes&#39;</span>:
-</span></span><span style=display:flex><span>        <span style=color:#8b949e;font-style:italic># Deploy to K8s with Seldon Core</span>
-</span></span><span style=display:flex><span>        <span style=color:#ff7b72>import</span> <span style=color:#ff7b72>subprocess</span>
-</span></span><span style=display:flex><span>        subprocess<span style=color:#ff7b72;font-weight:700>.</span>run([
-</span></span><span style=display:flex><span>            <span style=color:#a5d6ff>&#39;kubectl&#39;</span>, <span style=color:#a5d6ff>&#39;apply&#39;</span>, <span style=color:#a5d6ff>&#39;-f&#39;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#a5d6ff>&#39;seldon-deployment.yaml&#39;</span>
-</span></span><span style=display:flex><span>        ])
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>@flow</span>(name<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;Deploy to Production&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>deployment_flow</span>():
-</span></span><span style=display:flex><span>    <span style=color:#a5d6ff>&#34;&#34;&#34;Deploy validated model to production&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Get latest model from registry</span>
-</span></span><span style=display:flex><span>    client <span style=color:#ff7b72;font-weight:700>=</span> mlflow<span style=color:#ff7b72;font-weight:700>.</span>tracking<span style=color:#ff7b72;font-weight:700>.</span>MlflowClient()
-</span></span><span style=display:flex><span>    latest_model <span style=color:#ff7b72;font-weight:700>=</span> client<span style=color:#ff7b72;font-weight:700>.</span>get_latest_versions(
-</span></span><span style=display:flex><span>        <span style=color:#a5d6ff>&#34;production_model&#34;</span>,
-</span></span><span style=display:flex><span>        stages<span style=color:#ff7b72;font-weight:700>=</span>[<span style=color:#a5d6ff>&#34;Production&#34;</span>]
-</span></span><span style=display:flex><span>    )[<span style=color:#a5d6ff>0</span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Deploy</span>
-</span></span><span style=display:flex><span>    deploy_model(latest_model<span style=color:#ff7b72;font-weight:700>.</span>source, <span style=color:#a5d6ff>&#39;sagemaker&#39;</span>)
-</span></span></code></pre></div><h2 id=infrastructure-as-code>Infrastructure as Code
-<a class=heading-link href=#infrastructure-as-code><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Deploy pipeline infrastructure with Terraform:</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-hcl data-lang=hcl><span style=display:flex><span><span style=color:#8b949e;font-style:italic># S3 bucket for data
-</span></span></span><span style=display:flex><span><span style=color:#ff7b72>resource</span> <span style=color:#a5d6ff>&#34;aws_s3_bucket&#34; &#34;ml_data&#34;</span> {
-</span></span><span style=display:flex><span>  bucket <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;ml-pipeline-data&#34;</span>
-</span></span><span style=display:flex><span>}<span style=color:#8b949e;font-style:italic>
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># ECS for Prefect agents
-</span></span></span><span style=display:flex><span><span style=color:#ff7b72>resource</span> <span style=color:#a5d6ff>&#34;aws_ecs_cluster&#34; &#34;prefect_agents&#34;</span> {
-</span></span><span style=display:flex><span>  name <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;prefect-agents&#34;</span>
-</span></span><span style=display:flex><span>}<span style=color:#8b949e;font-style:italic>
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># SageMaker for training
-</span></span></span><span style=display:flex><span><span style=color:#ff7b72>resource</span> <span style=color:#a5d6ff>&#34;aws_sagemaker_endpoint&#34; &#34;production&#34;</span> {
-</span></span><span style=display:flex><span>  name <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;ml-production-endpoint&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  endpoint_config_name <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#ff7b72>aws_sagemaker_endpoint_config</span>.<span style=color:#ff7b72>prod</span>.<span style=color:#ff7b72>name</span>
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h2 id=monitoring-and-alerting>Monitoring and Alerting
-<a class=heading-link href=#monitoring-and-alerting><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Implement production monitoring:</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>@task</span>
-</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>monitor_model_performance</span>(endpoint_url: str):
-</span></span><span style=display:flex><span>    <span style=color:#a5d6ff>&#34;&#34;&#34;Monitor model performance in production&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>import</span> <span style=color:#ff7b72>requests</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Health check</span>
-</span></span><span style=display:flex><span>    response <span style=color:#ff7b72;font-weight:700>=</span> requests<span style=color:#ff7b72;font-weight:700>.</span>get(<span style=color:#79c0ff>f</span><span style=color:#a5d6ff>&#34;</span><span style=color:#a5d6ff>{</span>endpoint_url<span style=color:#a5d6ff>}</span><span style=color:#a5d6ff>/health&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Latency check</span>
-</span></span><span style=display:flex><span>    start <span style=color:#ff7b72;font-weight:700>=</span> time<span style=color:#ff7b72;font-weight:700>.</span>time()
-</span></span><span style=display:flex><span>    requests<span style=color:#ff7b72;font-weight:700>.</span>post(<span style=color:#79c0ff>f</span><span style=color:#a5d6ff>&#34;</span><span style=color:#a5d6ff>{</span>endpoint_url<span style=color:#a5d6ff>}</span><span style=color:#a5d6ff>/predict&#34;</span>,
-</span></span><span style=display:flex><span>                  json<span style=color:#ff7b72;font-weight:700>=</span>{<span style=color:#a5d6ff>&#39;features&#39;</span>: [<span style=color:#ff7b72;font-weight:700>...</span>]})
-</span></span><span style=display:flex><span>    latency <span style=color:#ff7b72;font-weight:700>=</span> time<span style=color:#ff7b72;font-weight:700>.</span>time() <span style=color:#ff7b72;font-weight:700>-</span> start
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Alert on issues</span>
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>if</span> latency <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>1.0</span>:
-</span></span><span style=display:flex><span>        send_alert(<span style=color:#79c0ff>f</span><span style=color:#a5d6ff>&#34;High latency: </span><span style=color:#a5d6ff>{</span>latency<span style=color:#a5d6ff>}</span><span style=color:#a5d6ff>s&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>if</span> response<span style=color:#ff7b72;font-weight:700>.</span>status_code <span style=color:#ff7b72;font-weight:700>!=</span> <span style=color:#a5d6ff>200</span>:
-</span></span><span style=display:flex><span>        send_alert(<span style=color:#79c0ff>f</span><span style=color:#a5d6ff>&#34;Endpoint unhealthy: </span><span style=color:#a5d6ff>{</span>response<span style=color:#ff7b72;font-weight:700>.</span>status_code<span style=color:#a5d6ff>}</span><span style=color:#a5d6ff>&#34;</span>)
-</span></span></code></pre></div><h2 id=best-practices>Best Practices
-<a class=heading-link href=#best-practices><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><ol><li><strong>Version everything</strong>: Data, code, models, parameters</li><li><strong>Separate environments</strong>: Dev, staging, production</li><li><strong>Automated testing</strong>: Unit tests for pipeline components</li><li><strong>Feature parity</strong>: Ensure training/inference features match</li><li><strong>Data quality checks</strong>: Validate inputs before training</li><li><strong>Gradual rollout</strong>: Canary deployments for new models</li><li><strong>Monitoring dashboards</strong>: Track pipeline health</li></ol><h2 id=conclusion>Conclusion
-<a class=heading-link href=#conclusion><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Building robust ML pipelines requires orchestrating multiple components: workflow management, feature engineering, experiment tracking, and deployment automation. Modern tools like Prefect and MLflow significantly simplify this process.</p><p>The investment in proper pipeline infrastructure pays dividends through reproducible experiments, faster iteration cycles, and more reliable production systems. Start simple, iterate based on needs, and gradually add sophistication as your ML systems mature.</p></div><footer></footer></article></section></div><footer class=footer><section class=container>©
-2026
-Asad Ismail
-·
-Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>
+</code></pre><h2 id="step-1-workflow-orchestration-with-prefect">
+  Step 1: Workflow Orchestration with Prefect
+  <a class="heading-link" href="#step-1-workflow-orchestration-with-prefect">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Prefect provides modern workflow orchestration with excellent observability:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">prefect</span> <span style="color:#ff7b72">import</span> task, flow
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">prefect.context</span> <span style="color:#ff7b72">import</span> get_run_context
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">pandas</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">pd</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">datetime</span> <span style="color:#ff7b72">import</span> datetime
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">@task</span>(retries<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">3</span>, retry_delay_seconds<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">60</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">extract_data</span>(source: str) <span style="color:#ff7b72;font-weight:bold">-&gt;</span> pd<span style="color:#ff7b72;font-weight:bold">.</span>DataFrame:
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;&#34;&#34;Extract data from source with retry logic&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    logger <span style="color:#ff7b72;font-weight:bold">=</span> get_run_context()<span style="color:#ff7b72;font-weight:bold">.</span>task_run_logger
+</span></span><span style="display:flex;"><span>    logger<span style="color:#ff7b72;font-weight:bold">.</span>info(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#34;Extracting data from </span><span style="color:#a5d6ff">{</span>source<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Implementation: S3, database, API, etc.</span>
+</span></span><span style="display:flex;"><span>    df <span style="color:#ff7b72;font-weight:bold">=</span> pd<span style="color:#ff7b72;font-weight:bold">.</span>read_csv(source)
+</span></span><span style="display:flex;"><span>    logger<span style="color:#ff7b72;font-weight:bold">.</span>info(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#34;Extracted </span><span style="color:#a5d6ff">{</span>len(df)<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff"> rows&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> df
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">@task</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">transform_data</span>(df: pd<span style="color:#ff7b72;font-weight:bold">.</span>DataFrame) <span style="color:#ff7b72;font-weight:bold">-&gt;</span> pd<span style="color:#ff7b72;font-weight:bold">.</span>DataFrame:
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;&#34;&#34;Transform and clean data&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Handle missing values</span>
+</span></span><span style="display:flex;"><span>    df <span style="color:#ff7b72;font-weight:bold">=</span> df<span style="color:#ff7b72;font-weight:bold">.</span>dropna(subset<span style="color:#ff7b72;font-weight:bold">=</span>[<span style="color:#a5d6ff">&#39;target&#39;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Remove duplicates</span>
+</span></span><span style="display:flex;"><span>    df <span style="color:#ff7b72;font-weight:bold">=</span> df<span style="color:#ff7b72;font-weight:bold">.</span>drop_duplicates()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Feature engineering</span>
+</span></span><span style="display:flex;"><span>    df[<span style="color:#a5d6ff">&#39;feature_ratio&#39;</span>] <span style="color:#ff7b72;font-weight:bold">=</span> df[<span style="color:#a5d6ff">&#39;feature_a&#39;</span>] <span style="color:#ff7b72;font-weight:bold">/</span> df[<span style="color:#a5d6ff">&#39;feature_b&#39;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> df
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">@task</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">validate_data</span>(df: pd<span style="color:#ff7b72;font-weight:bold">.</span>DataFrame) <span style="color:#ff7b72;font-weight:bold">-&gt;</span> bool:
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;&#34;&#34;Validate data quality&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">assert</span> len(df) <span style="color:#ff7b72;font-weight:bold">&gt;</span> <span style="color:#a5d6ff">1000</span>, <span style="color:#a5d6ff">&#34;Insufficient data&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">assert</span> df[<span style="color:#a5d6ff">&#39;target&#39;</span>]<span style="color:#ff7b72;font-weight:bold">.</span>notna()<span style="color:#ff7b72;font-weight:bold">.</span>all(), <span style="color:#a5d6ff">&#34;Missing target values&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> <span style="color:#79c0ff">True</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">@flow</span>(name<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;ML Training Pipeline&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">training_pipeline</span>(data_source: str):
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;&#34;&#34;Main training pipeline&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Extract, transform, validate</span>
+</span></span><span style="display:flex;"><span>    df <span style="color:#ff7b72;font-weight:bold">=</span> extract_data(data_source)
+</span></span><span style="display:flex;"><span>    df_clean <span style="color:#ff7b72;font-weight:bold">=</span> transform_data(df)
+</span></span><span style="display:flex;"><span>    validate_data(df_clean)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> df_clean
+</span></span></code></pre></div><h2 id="step-2-feature-engineering">
+  Step 2: Feature Engineering
+  <a class="heading-link" href="#step-2-feature-engineering">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Build reusable feature engineering logic:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">sklearn.preprocessing</span> <span style="color:#ff7b72">import</span> StandardScaler
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">numpy</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">np</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">@task</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">engineer_features</span>(df: pd<span style="color:#ff7b72;font-weight:bold">.</span>DataFrame) <span style="color:#ff7b72;font-weight:bold">-&gt;</span> tuple:
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;&#34;&#34;Create features for model training&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Numerical features</span>
+</span></span><span style="display:flex;"><span>    numerical_features <span style="color:#ff7b72;font-weight:bold">=</span> df<span style="color:#ff7b72;font-weight:bold">.</span>select_dtypes(include<span style="color:#ff7b72;font-weight:bold">=</span>[np<span style="color:#ff7b72;font-weight:bold">.</span>number])<span style="color:#ff7b72;font-weight:bold">.</span>columns
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Categorical encoding</span>
+</span></span><span style="display:flex;"><span>    df_encoded <span style="color:#ff7b72;font-weight:bold">=</span> pd<span style="color:#ff7b72;font-weight:bold">.</span>get_dummies(
+</span></span><span style="display:flex;"><span>        df,
+</span></span><span style="display:flex;"><span>        columns<span style="color:#ff7b72;font-weight:bold">=</span>[<span style="color:#a5d6ff">&#39;category_column&#39;</span>],
+</span></span><span style="display:flex;"><span>        drop_first<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">True</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Scaling</span>
+</span></span><span style="display:flex;"><span>    scaler <span style="color:#ff7b72;font-weight:bold">=</span> StandardScaler()
+</span></span><span style="display:flex;"><span>    df_encoded[numerical_features] <span style="color:#ff7b72;font-weight:bold">=</span> scaler<span style="color:#ff7b72;font-weight:bold">.</span>fit_transform(
+</span></span><span style="display:flex;"><span>        df_encoded[numerical_features]
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Feature selection</span>
+</span></span><span style="display:flex;"><span>    feature_cols <span style="color:#ff7b72;font-weight:bold">=</span> [col <span style="color:#ff7b72">for</span> col <span style="color:#ff7b72;font-weight:bold">in</span> df_encoded<span style="color:#ff7b72;font-weight:bold">.</span>columns
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff7b72">if</span> col <span style="color:#ff7b72;font-weight:bold">!=</span> <span style="color:#a5d6ff">&#39;target&#39;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    X <span style="color:#ff7b72;font-weight:bold">=</span> df_encoded[feature_cols]<span style="color:#ff7b72;font-weight:bold">.</span>values
+</span></span><span style="display:flex;"><span>    y <span style="color:#ff7b72;font-weight:bold">=</span> df_encoded[<span style="color:#a5d6ff">&#39;target&#39;</span>]<span style="color:#ff7b72;font-weight:bold">.</span>values
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> X, y, feature_cols
+</span></span></code></pre></div><h2 id="step-3-training-with-mlflow-tracking">
+  Step 3: Training with MLflow Tracking
+  <a class="heading-link" href="#step-3-training-with-mlflow-tracking">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Track experiments and manage models:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">mlflow</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">mlflow.sklearn</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">sklearn.ensemble</span> <span style="color:#ff7b72">import</span> RandomForestClassifier
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">sklearn.model_selection</span> <span style="color:#ff7b72">import</span> cross_val_score
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">@task</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">train_model</span>(
+</span></span><span style="display:flex;"><span>    X_train: np<span style="color:#ff7b72;font-weight:bold">.</span>ndarray,
+</span></span><span style="display:flex;"><span>    y_train: np<span style="color:#ff7b72;font-weight:bold">.</span>ndarray,
+</span></span><span style="display:flex;"><span>    params: dict
+</span></span><span style="display:flex;"><span>) <span style="color:#ff7b72;font-weight:bold">-&gt;</span> object:
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;&#34;&#34;Train model with MLflow tracking&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">with</span> mlflow<span style="color:#ff7b72;font-weight:bold">.</span>start_run():
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># Log parameters</span>
+</span></span><span style="display:flex;"><span>        mlflow<span style="color:#ff7b72;font-weight:bold">.</span>log_params(params)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># Train model</span>
+</span></span><span style="display:flex;"><span>        model <span style="color:#ff7b72;font-weight:bold">=</span> RandomForestClassifier(<span style="color:#ff7b72;font-weight:bold">**</span>params)
+</span></span><span style="display:flex;"><span>        model<span style="color:#ff7b72;font-weight:bold">.</span>fit(X_train, y_train)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># Cross-validation</span>
+</span></span><span style="display:flex;"><span>        cv_scores <span style="color:#ff7b72;font-weight:bold">=</span> cross_val_score(
+</span></span><span style="display:flex;"><span>            model, X_train, y_train,
+</span></span><span style="display:flex;"><span>            cv<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">5</span>, scoring<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;f1&#39;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># Log metrics</span>
+</span></span><span style="display:flex;"><span>        mlflow<span style="color:#ff7b72;font-weight:bold">.</span>log_metric(<span style="color:#a5d6ff">&#34;cv_f1_mean&#34;</span>, cv_scores<span style="color:#ff7b72;font-weight:bold">.</span>mean())
+</span></span><span style="display:flex;"><span>        mlflow<span style="color:#ff7b72;font-weight:bold">.</span>log_metric(<span style="color:#a5d6ff">&#34;cv_f1_std&#34;</span>, cv_scores<span style="color:#ff7b72;font-weight:bold">.</span>std())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># Log model</span>
+</span></span><span style="display:flex;"><span>        mlflow<span style="color:#ff7b72;font-weight:bold">.</span>sklearn<span style="color:#ff7b72;font-weight:bold">.</span>log_model(
+</span></span><span style="display:flex;"><span>            model,
+</span></span><span style="display:flex;"><span>            <span style="color:#a5d6ff">&#34;model&#34;</span>,
+</span></span><span style="display:flex;"><span>            registered_model_name<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;production_model&#34;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> model
+</span></span></code></pre></div><h2 id="step-4-model-validation">
+  Step 4: Model Validation
+  <a class="heading-link" href="#step-4-model-validation">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Implement rigorous validation checks:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">@task</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">validate_model</span>(
+</span></span><span style="display:flex;"><span>    model: object,
+</span></span><span style="display:flex;"><span>    X_test: np<span style="color:#ff7b72;font-weight:bold">.</span>ndarray,
+</span></span><span style="display:flex;"><span>    y_test: np<span style="color:#ff7b72;font-weight:bold">.</span>ndarray
+</span></span><span style="display:flex;"><span>) <span style="color:#ff7b72;font-weight:bold">-&gt;</span> dict:
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;&#34;&#34;Validate model against test set&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">from</span> <span style="color:#ff7b72">sklearn.metrics</span> <span style="color:#ff7b72">import</span> (
+</span></span><span style="display:flex;"><span>        accuracy_score, precision_score,
+</span></span><span style="display:flex;"><span>        recall_score, f1_score
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    predictions <span style="color:#ff7b72;font-weight:bold">=</span> model<span style="color:#ff7b72;font-weight:bold">.</span>predict(X_test)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    metrics <span style="color:#ff7b72;font-weight:bold">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#39;accuracy&#39;</span>: accuracy_score(y_test, predictions),
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#39;precision&#39;</span>: precision_score(y_test, predictions),
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#39;recall&#39;</span>: recall_score(y_test, predictions),
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#39;f1&#39;</span>: f1_score(y_test, predictions)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Log to MLflow</span>
+</span></span><span style="display:flex;"><span>    mlflow<span style="color:#ff7b72;font-weight:bold">.</span>log_metrics(metrics)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Validate thresholds</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">assert</span> metrics[<span style="color:#a5d6ff">&#39;f1&#39;</span>] <span style="color:#ff7b72;font-weight:bold">&gt;</span> <span style="color:#a5d6ff">0.8</span>, <span style="color:#a5d6ff">&#34;Model F1 below threshold&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> metrics
+</span></span></code></pre></div><h2 id="step-5-complete-pipeline">
+  Step 5: Complete Pipeline
+  <a class="heading-link" href="#step-5-complete-pipeline">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Wire everything together:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">sklearn.model_selection</span> <span style="color:#ff7b72">import</span> train_test_split
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">@flow</span>(name<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;End-to-End ML Pipeline&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">ml_pipeline</span>(
+</span></span><span style="display:flex;"><span>    data_source: str,
+</span></span><span style="display:flex;"><span>    model_params: dict,
+</span></span><span style="display:flex;"><span>    test_size: float <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0.2</span>
+</span></span><span style="display:flex;"><span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;&#34;&#34;Complete ML pipeline from data to deployment&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Data phase</span>
+</span></span><span style="display:flex;"><span>    df <span style="color:#ff7b72;font-weight:bold">=</span> training_pipeline(data_source)
+</span></span><span style="display:flex;"><span>    X, y, feature_names <span style="color:#ff7b72;font-weight:bold">=</span> engineer_features(df)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Train/test split</span>
+</span></span><span style="display:flex;"><span>    X_train, X_test, y_train, y_test <span style="color:#ff7b72;font-weight:bold">=</span> train_test_split(
+</span></span><span style="display:flex;"><span>        X, y, test_size<span style="color:#ff7b72;font-weight:bold">=</span>test_size,
+</span></span><span style="display:flex;"><span>        stratify<span style="color:#ff7b72;font-weight:bold">=</span>y, random_state<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">42</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Training phase</span>
+</span></span><span style="display:flex;"><span>    model <span style="color:#ff7b72;font-weight:bold">=</span> train_model(X_train, y_train, model_params)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Validation phase</span>
+</span></span><span style="display:flex;"><span>    metrics <span style="color:#ff7b72;font-weight:bold">=</span> validate_model(model, X_test, y_test)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#39;model&#39;</span>: model,
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#39;metrics&#39;</span>: metrics,
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#39;feature_names&#39;</span>: feature_names
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h2 id="step-6-scheduling-and-automation">
+  Step 6: Scheduling and Automation
+  <a class="heading-link" href="#step-6-scheduling-and-automation">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Schedule automated pipeline runs:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">prefect.schedules</span> <span style="color:#ff7b72">import</span> IntervalSchedule
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">prefect.deployments</span> <span style="color:#ff7b72">import</span> Deployment
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Daily retraining schedule</span>
+</span></span><span style="display:flex;"><span>schedule <span style="color:#ff7b72;font-weight:bold">=</span> IntervalSchedule(interval<span style="color:#ff7b72;font-weight:bold">=</span>timedelta(days<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>deployment <span style="color:#ff7b72;font-weight:bold">=</span> Deployment<span style="color:#ff7b72;font-weight:bold">.</span>build_from_flow(
+</span></span><span style="display:flex;"><span>    flow<span style="color:#ff7b72;font-weight:bold">=</span>ml_pipeline,
+</span></span><span style="display:flex;"><span>    name<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;daily-retraining&#34;</span>,
+</span></span><span style="display:flex;"><span>    schedule<span style="color:#ff7b72;font-weight:bold">=</span>schedule,
+</span></span><span style="display:flex;"><span>    parameters<span style="color:#ff7b72;font-weight:bold">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#39;data_source&#39;</span>: <span style="color:#a5d6ff">&#39;s3://bucket/data.csv&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#39;model_params&#39;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#a5d6ff">&#39;n_estimators&#39;</span>: <span style="color:#a5d6ff">100</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a5d6ff">&#39;max_depth&#39;</span>: <span style="color:#a5d6ff">10</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a5d6ff">&#39;random_state&#39;</span>: <span style="color:#a5d6ff">42</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>deployment<span style="color:#ff7b72;font-weight:bold">.</span>apply()
+</span></span></code></pre></div><h2 id="step-7-deployment-integration">
+  Step 7: Deployment Integration
+  <a class="heading-link" href="#step-7-deployment-integration">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Automatically deploy validated models:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">@task</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">deploy_model</span>(model_uri: str, deployment_target: str):
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;&#34;&#34;Deploy model to production&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">import</span> <span style="color:#ff7b72">boto3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">if</span> deployment_target <span style="color:#ff7b72;font-weight:bold">==</span> <span style="color:#a5d6ff">&#39;sagemaker&#39;</span>:
+</span></span><span style="display:flex;"><span>        client <span style="color:#ff7b72;font-weight:bold">=</span> boto3<span style="color:#ff7b72;font-weight:bold">.</span>client(<span style="color:#a5d6ff">&#39;sagemaker&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># Create SageMaker endpoint</span>
+</span></span><span style="display:flex;"><span>        response <span style="color:#ff7b72;font-weight:bold">=</span> client<span style="color:#ff7b72;font-weight:bold">.</span>create_endpoint(
+</span></span><span style="display:flex;"><span>            EndpointName<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;production-endpoint&#39;</span>,
+</span></span><span style="display:flex;"><span>            EndpointConfigName<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;ml-model-config&#39;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">return</span> response[<span style="color:#a5d6ff">&#39;EndpointArn&#39;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">elif</span> deployment_target <span style="color:#ff7b72;font-weight:bold">==</span> <span style="color:#a5d6ff">&#39;kubernetes&#39;</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># Deploy to K8s with Seldon Core</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">import</span> <span style="color:#ff7b72">subprocess</span>
+</span></span><span style="display:flex;"><span>        subprocess<span style="color:#ff7b72;font-weight:bold">.</span>run([
+</span></span><span style="display:flex;"><span>            <span style="color:#a5d6ff">&#39;kubectl&#39;</span>, <span style="color:#a5d6ff">&#39;apply&#39;</span>, <span style="color:#a5d6ff">&#39;-f&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a5d6ff">&#39;seldon-deployment.yaml&#39;</span>
+</span></span><span style="display:flex;"><span>        ])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">@flow</span>(name<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;Deploy to Production&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">deployment_flow</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;&#34;&#34;Deploy validated model to production&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Get latest model from registry</span>
+</span></span><span style="display:flex;"><span>    client <span style="color:#ff7b72;font-weight:bold">=</span> mlflow<span style="color:#ff7b72;font-weight:bold">.</span>tracking<span style="color:#ff7b72;font-weight:bold">.</span>MlflowClient()
+</span></span><span style="display:flex;"><span>    latest_model <span style="color:#ff7b72;font-weight:bold">=</span> client<span style="color:#ff7b72;font-weight:bold">.</span>get_latest_versions(
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#34;production_model&#34;</span>,
+</span></span><span style="display:flex;"><span>        stages<span style="color:#ff7b72;font-weight:bold">=</span>[<span style="color:#a5d6ff">&#34;Production&#34;</span>]
+</span></span><span style="display:flex;"><span>    )[<span style="color:#a5d6ff">0</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Deploy</span>
+</span></span><span style="display:flex;"><span>    deploy_model(latest_model<span style="color:#ff7b72;font-weight:bold">.</span>source, <span style="color:#a5d6ff">&#39;sagemaker&#39;</span>)
+</span></span></code></pre></div><h2 id="infrastructure-as-code">
+  Infrastructure as Code
+  <a class="heading-link" href="#infrastructure-as-code">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Deploy pipeline infrastructure with Terraform:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># S3 bucket for data
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span><span style="color:#ff7b72">resource</span> <span style="color:#a5d6ff">&#34;aws_s3_bucket&#34; &#34;ml_data&#34;</span> {
+</span></span><span style="display:flex;"><span>  bucket <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;ml-pipeline-data&#34;</span>
+</span></span><span style="display:flex;"><span>}<span style="color:#8b949e;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># ECS for Prefect agents
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span><span style="color:#ff7b72">resource</span> <span style="color:#a5d6ff">&#34;aws_ecs_cluster&#34; &#34;prefect_agents&#34;</span> {
+</span></span><span style="display:flex;"><span>  name <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;prefect-agents&#34;</span>
+</span></span><span style="display:flex;"><span>}<span style="color:#8b949e;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># SageMaker for training
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span><span style="color:#ff7b72">resource</span> <span style="color:#a5d6ff">&#34;aws_sagemaker_endpoint&#34; &#34;production&#34;</span> {
+</span></span><span style="display:flex;"><span>  name <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;ml-production-endpoint&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  endpoint_config_name <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#ff7b72">aws_sagemaker_endpoint_config</span>.<span style="color:#ff7b72">prod</span>.<span style="color:#ff7b72">name</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="monitoring-and-alerting">
+  Monitoring and Alerting
+  <a class="heading-link" href="#monitoring-and-alerting">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Implement production monitoring:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">@task</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">monitor_model_performance</span>(endpoint_url: str):
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;&#34;&#34;Monitor model performance in production&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">import</span> <span style="color:#ff7b72">requests</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Health check</span>
+</span></span><span style="display:flex;"><span>    response <span style="color:#ff7b72;font-weight:bold">=</span> requests<span style="color:#ff7b72;font-weight:bold">.</span>get(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#34;</span><span style="color:#a5d6ff">{</span>endpoint_url<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">/health&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Latency check</span>
+</span></span><span style="display:flex;"><span>    start <span style="color:#ff7b72;font-weight:bold">=</span> time<span style="color:#ff7b72;font-weight:bold">.</span>time()
+</span></span><span style="display:flex;"><span>    requests<span style="color:#ff7b72;font-weight:bold">.</span>post(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#34;</span><span style="color:#a5d6ff">{</span>endpoint_url<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">/predict&#34;</span>,
+</span></span><span style="display:flex;"><span>                  json<span style="color:#ff7b72;font-weight:bold">=</span>{<span style="color:#a5d6ff">&#39;features&#39;</span>: [<span style="color:#ff7b72;font-weight:bold">...</span>]})
+</span></span><span style="display:flex;"><span>    latency <span style="color:#ff7b72;font-weight:bold">=</span> time<span style="color:#ff7b72;font-weight:bold">.</span>time() <span style="color:#ff7b72;font-weight:bold">-</span> start
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Alert on issues</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">if</span> latency <span style="color:#ff7b72;font-weight:bold">&gt;</span> <span style="color:#a5d6ff">1.0</span>:
+</span></span><span style="display:flex;"><span>        send_alert(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#34;High latency: </span><span style="color:#a5d6ff">{</span>latency<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">s&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">if</span> response<span style="color:#ff7b72;font-weight:bold">.</span>status_code <span style="color:#ff7b72;font-weight:bold">!=</span> <span style="color:#a5d6ff">200</span>:
+</span></span><span style="display:flex;"><span>        send_alert(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#34;Endpoint unhealthy: </span><span style="color:#a5d6ff">{</span>response<span style="color:#ff7b72;font-weight:bold">.</span>status_code<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#34;</span>)
+</span></span></code></pre></div><h2 id="best-practices">
+  Best Practices
+  <a class="heading-link" href="#best-practices">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<ol>
+<li><strong>Version everything</strong>: Data, code, models, parameters</li>
+<li><strong>Separate environments</strong>: Dev, staging, production</li>
+<li><strong>Automated testing</strong>: Unit tests for pipeline components</li>
+<li><strong>Feature parity</strong>: Ensure training/inference features match</li>
+<li><strong>Data quality checks</strong>: Validate inputs before training</li>
+<li><strong>Gradual rollout</strong>: Canary deployments for new models</li>
+<li><strong>Monitoring dashboards</strong>: Track pipeline health</li>
+</ol>
+<h2 id="conclusion">
+  Conclusion
+  <a class="heading-link" href="#conclusion">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Building robust ML pipelines requires orchestrating multiple components: workflow management, feature engineering, experiment tracking, and deployment automation. Modern tools like Prefect and MLflow significantly simplify this process.</p>
+<p>The investment in proper pipeline infrastructure pays dividends through reproducible experiments, faster iteration cycles, and more reliable production systems. Start simple, iterate based on needs, and gradually add sophistication as your ML systems mature.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2026
+     Asad Ismail 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+  
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

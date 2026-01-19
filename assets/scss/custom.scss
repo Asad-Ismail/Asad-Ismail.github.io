@@ -710,11 +710,14 @@ a {
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         border: 1px solid var(--glass-border);
-        border-radius: 20px;
-        padding: var(--space-8);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 16px;
+        padding: var(--space-5) var(--space-6);
+        transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
 
         // Enhanced gradient glow on hover
         &::before {
@@ -726,44 +729,30 @@ a {
           height: 100%;
           background: var(--gradient-subtle);
           opacity: 0;
-          transition: opacity 0.4s ease;
+          transition: opacity 0.3s ease;
           z-index: 0;
         }
 
         &:hover {
-          transform: translateY(-6px) scale(1.01);
-          box-shadow: var(--shadow-xl), 0 0 60px rgba(34, 211, 238, 0.25);
-          border-color: rgba(34, 211, 238, 0.4);
+          transform: translateY(-3px);
+          box-shadow: var(--shadow-lg), 0 0 30px rgba(34, 211, 238, 0.2);
+          border-color: rgba(34, 211, 238, 0.3);
         }
 
         &:hover::before {
           opacity: 1;
         }
 
-        .date {
-          font-family: var(--font-mono);
-          font-size: var(--text-xs);
-          color: var(--accent-cyan);
-          margin-bottom: var(--space-4);
-          display: block;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.08em;
-          position: relative;
-          z-index: 1;
-        }
-
         .title {
           font-family: var(--font-display);
-          font-size: var(--text-2xl);
-          font-weight: 700;
+          font-size: var(--text-xl);
+          font-weight: 600;
           color: var(--fg-primary);
           line-height: var(--leading-tight);
-          margin-bottom: var(--space-4);
           display: block;
           position: relative;
           z-index: 1;
-          letter-spacing: -0.02em;
+          letter-spacing: -0.01em;
 
           &:hover {
             background: var(--gradient-text);
@@ -773,10 +762,14 @@ a {
           }
         }
 
-        .summary {
-          font-size: var(--text-base);
-          color: var(--fg-secondary);
-          line-height: var(--leading-relaxed);
+        .date {
+          font-family: var(--font-mono);
+          font-size: var(--text-xs);
+          color: var(--fg-tertiary);
+          display: block;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
           position: relative;
           z-index: 1;
         }
