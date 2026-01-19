@@ -11,78 +11,82 @@ Welcome to my content hub! Here you'll find my latest videos, tutorials, and way
 
 ## Latest Videos
 
-### ML Model Deployment Strategies
+### Mixture of Experts (MoE)
 
-A comprehensive guide to deploying machine learning models in production environments, covering best practices and common pitfalls.
+Understanding the architecture used by modern large language models to increase capacity without proportionally increasing compute costs. Theory + code implementation.
 
+<div class="youtube-container">
 {{< youtube "IRnTpsDYQQQ" >}}
-
----
-
-### Building ML Pipelines at Scale
-
-Learn how to build scalable, production-ready ML pipelines that can handle real-world workloads efficiently.
-
-{{< youtube "WlyS8qYaABw" >}}
-
----
-
-### Computer Vision for Edge Devices
-
-Techniques and strategies for optimizing computer vision models to run efficiently on edge devices with limited resources.
-
-{{< youtube "rw7VUCCeNUA" >}}
-
----
-
-### Introduction to Transformers
-
-Understanding the transformer architecture that powers modern large language models and how it revolutionized NLP.
-
-{{< youtube "GjAJJnKN2CY" >}}
-
----
-
-### PyTorch for Production
-
-Best practices for taking PyTorch models from development to production deployment.
-
-{{< youtube "ALJ9uDVYJ2s" >}}
-
----
-
-### MLOps Fundamentals
-
-Core concepts and practices for MLOps, including model versioning, CI/CD for ML, and monitoring in production.
-
-{{< youtube "LLbJIzAMmCM" >}}
-
----
-
-## Stay Updated
-
-### Subscribe to my Substack
-
-Get the latest insights on machine learning, MLOps, Computer Vision, and LLMs delivered directly to your inbox.
-
-<div style="width: 100%; height: 200px; margin: 2em 0;">
-  <iframe
-    src="https://substack.com/@asadismail2/embed"
-    width="100%"
-    height="320"
-    style="border:1px solid #EEE; background:white;"
-    frameborder="0"
-    scrolling="no">
-  </iframe>
 </div>
 
-**[Visit my Substack Publication](https://substack.com/@asadismail2)** for in-depth articles, tutorials, and research updates.
+---
+
+### RLHF Explained & Coded (feat. PPO)
+
+A deep dive into Reinforcement Learning from Human Feedback - one of the most important techniques for fine-tuning Large Language Models with complete code walkthrough.
+
+<div class="youtube-container">
+{{< youtube "WlyS8qYaABw" >}}
+</div>
 
 ---
 
-## Connect
+### Understanding PaliGemma: VLM for Task Transfer
 
-- **YouTube Channel**: [@AIMLArchives](https://www.youtube.com/@AIMLArchives) - Subscribe for video tutorials and talks on ML, CV, and MLOps
-- **Substack**: [@asadismail2](https://substack.com/@asadismail2) - Read my latest articles on ML engineering
-- **GitHub**: [Asad-Ismail](https://github.com/Asad-Ismail) - Check out my code and projects
-- **LinkedIn**: [Asad Ismail](https://www.linkedin.com/in/asadismaeel/) - Let's connect professionally
+Comprehensive walkthrough of PaliGemma, a versatile 3B Vision-Language Model for transfer learning, including paper analysis and fine-tuning on custom object detection datasets.
+
+<div class="youtube-container">
+{{< youtube "rw7VUCCeNUA" >}}
+</div>
+
+---
+
+### Understanding Flamingo: Vision-Language Model
+
+Exploring Flamingo, a powerful few-shot visual language model that combines image and text understanding for state-of-the-art few-shot learning performance.
+
+<div class="youtube-container">
+{{< youtube "GjAJJnKN2CY" >}}
+</div>
+
+---
+
+### Understanding GLIP: Vision-Language Detection
+
+Deep dive into GLIP (Grounded Language-Image Pre-training), a groundbreaking approach that unifies vision and language for object detection tasks.
+
+<div class="youtube-container">
+{{< youtube "ALJ9uDVYJ2s" >}}
+</div>
+
+---
+
+### Dynamic Heads for Object Detection
+
+From paper to implementation: Understanding Dynamic Heads, a self-attention mechanism that enables object detection models to adapt features across different scale and context.
+
+<div class="youtube-container">
+{{< youtube "LLbJIzAMmCM" >}}
+</div>
+
+---
+
+## Connect Links
+
+<div class="connect-links">
+  <a href="https://www.youtube.com/@AIMLArchives" target="_blank" rel="noopener">
+    <strong>📺 YouTube Channel</strong>
+  </a>
+
+  <a href="https://substack.com/@asadismail2" target="_blank" rel="noopener">
+    <strong>📝 Substack</strong>
+  </a>
+
+  <a href="https://github.com/Asad-Ismail" target="_blank" rel="noopener">
+    <strong>💻 GitHub</strong>
+  </a>
+
+  <a href="https://www.linkedin.com/in/asadismaeel/" target="_blank" rel="noopener">
+    <strong>💼 LinkedIn</strong>
+  </a>
+</div>

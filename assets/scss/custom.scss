@@ -1471,6 +1471,141 @@ footer {
 }
 
 // ========================================
+// MEDIA/CONTENT PAGE - YouTube Videos
+// ========================================
+.post-single {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-16) var(--space-6);
+
+  h1 {
+    font-size: clamp(2.5rem, 5vw, var(--text-5xl));
+    font-weight: 800;
+    margin-bottom: var(--space-8);
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  h2 {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    margin-top: var(--space-16);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 2px solid var(--glass-border);
+    color: var(--fg-primary);
+  }
+
+  h3 {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    margin-top: var(--space-10);
+    margin-bottom: var(--space-3);
+    color: var(--fg-primary);
+  }
+
+  p {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--fg-secondary);
+    margin-bottom: var(--space-4);
+  }
+
+  // YouTube video container with proper aspect ratio
+  .youtube-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: var(--space-8) auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-xl), 0 0 40px rgba(34, 211, 238, 0.15);
+    border: 2px solid var(--glass-border);
+    background: var(--bg-secondary);
+
+    iframe {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: none;
+    }
+
+    // Add subtle gradient overlay
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+      z-index: 10;
+      opacity: 0.8;
+    }
+  }
+
+  // Substack embed styling
+  .substack-embed {
+    max-width: 900px;
+    margin: var(--space-8) auto;
+
+    iframe {
+      border-radius: 12px;
+      border: 2px solid var(--glass-border);
+      box-shadow: var(--shadow-lg);
+    }
+  }
+
+  // Connect section links
+  .connect-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--space-4) var(--space-6);
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 2px solid var(--glass-border);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+
+      &:hover {
+        transform: translateY(-3px);
+        border-color: var(--accent-cyan);
+        box-shadow: var(--shadow-lg), 0 0 30px rgba(34, 211, 238, 0.2);
+      }
+
+      strong {
+        font-family: var(--font-display);
+        font-size: var(--text-lg);
+        font-weight: 600;
+        color: var(--fg-primary);
+      }
+    }
+  }
+
+  // Horizontal rule styling
+  hr {
+    border: none;
+    height: 2px;
+    background: var(--gradient-primary);
+    margin: var(--space-16) 0;
+    opacity: 0.3;
+  }
+}
+
+// ========================================
 // RESPONSIVE
 // ========================================
 @media (max-width: 768px) {

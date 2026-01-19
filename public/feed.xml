@@ -13,14 +13,14 @@
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h2&gt;
-&lt;h3 id="ml-model-deployment-strategies"&gt;
- ML Model Deployment Strategies
- &lt;a class="heading-link" href="#ml-model-deployment-strategies"&gt;
+&lt;h3 id="mixture-of-experts-moe"&gt;
+ Mixture of Experts (MoE)
+ &lt;a class="heading-link" href="#mixture-of-experts-moe"&gt;
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h3&gt;
-&lt;p&gt;A comprehensive guide to deploying machine learning models in production environments, covering best practices and common pitfalls.&lt;/p&gt;</description></item><item><title>Projects</title><link>https://Asad-Ismail.github.io/projects/</link><pubDate>Sun, 11 Jan 2026 00:00:00 +0000</pubDate><guid>https://Asad-Ismail.github.io/projects/</guid><description>&lt;h1 id="projects"&gt;
+&lt;p&gt;Understanding the architecture used by modern large language models to increase capacity without proportionally increasing compute costs. Theory + code implementation.&lt;/p&gt;</description></item><item><title>Projects</title><link>https://Asad-Ismail.github.io/projects/</link><pubDate>Sun, 11 Jan 2026 00:00:00 +0000</pubDate><guid>https://Asad-Ismail.github.io/projects/</guid><description>&lt;h1 id="projects"&gt;
  Projects
  &lt;a class="heading-link" href="#projects"&gt;
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
