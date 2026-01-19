@@ -388,10 +388,12 @@ a {
   top: 0;
   z-index: 100;
   padding: var(--space-4) 0;
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  border-bottom: none;
+
+  // Ultra-subtle glass effect for scroll separation
+  background: rgba(5, 9, 17, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(34, 211, 238, 0.06);
 
   max-width: 1280px;
   margin-left: auto;
@@ -629,23 +631,22 @@ a {
       .btn {
         position: relative;
         transition: all 0.3s ease;
+        font-size: var(--text-base);
+        padding: var(--space-4) var(--space-8);
+        font-weight: 600;
 
-        // Primary button enhancement - first button
+        // Primary button - first button
         &:first-child {
-          font-size: var(--text-base);
-          padding: var(--space-4) var(--space-8);
-          font-weight: 700;
           background: var(--gradient-primary);
           background-size: 200% 200%;
           border: 2px solid rgba(34, 211, 238, 0.6);
-          z-index: 2;
           box-shadow:
             0 4px 20px rgba(34, 211, 238, 0.4),
             0 0 60px rgba(34, 211, 238, 0.2),
             inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
 
-        // Secondary buttons
+        // Secondary button - outline style
         &:not(:first-child) {
           background: rgba(34, 211, 238, 0.15);
           border: 2px solid rgba(34, 211, 238, 0.4);
@@ -655,18 +656,6 @@ a {
             background: rgba(34, 211, 238, 0.25);
             border-color: rgba(34, 211, 238, 0.6);
             box-shadow: 0 0 40px rgba(34, 211, 238, 0.4);
-          }
-
-          // Third button - different accent color
-          &:nth-child(3) {
-            background: rgba(168, 85, 247, 0.15);
-            border-color: rgba(168, 85, 247, 0.4);
-
-            &:hover {
-              background: rgba(168, 85, 247, 0.25);
-              border-color: rgba(168, 85, 247, 0.6);
-              box-shadow: 0 0 40px rgba(168, 85, 247, 0.4);
-            }
           }
         }
       }
