@@ -271,7 +271,7 @@ h1, .h1 {
   font-size: var(--text-5xl);
   font-weight: 700;
   line-height: var(--leading-tight);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-3);
   color: var(--fg-primary);
   letter-spacing: -0.02em;
 }
@@ -281,7 +281,8 @@ h2, .h2 {
   font-size: var(--text-3xl);
   font-weight: 600;
   line-height: var(--leading-tight);
-  margin-bottom: var(--space-4);
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-3);
   color: var(--fg-primary);
   letter-spacing: -0.01em;
 }
@@ -291,7 +292,8 @@ h3, .h3 {
   font-size: var(--text-2xl);
   font-weight: 600;
   line-height: var(--leading-tight);
-  margin-bottom: var(--space-3);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-2);
   color: var(--fg-primary);
   letter-spacing: -0.01em;
 }
@@ -307,8 +309,8 @@ h4, .h4 {
 
 p {
   font-size: var(--text-base);
-  line-height: var(--leading-relaxed);
-  margin-bottom: var(--space-4);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-2);
   max-width: 70ch;
   color: var(--fg-secondary);
 }
@@ -861,7 +863,7 @@ a {
     .summary {
       font-size: var(--text-base);
       color: var(--fg-secondary);
-      line-height: var(--leading-relaxed);
+      line-height: var(--leading-normal);
       position: relative;
       z-index: 1;
     }
@@ -955,7 +957,7 @@ a {
     .project-description {
       font-size: var(--text-sm);
       color: var(--fg-secondary);
-      line-height: var(--leading-relaxed);
+      line-height: var(--leading-normal);
       margin-bottom: var(--space-4);
       position: relative;
     }
@@ -995,12 +997,12 @@ a {
     margin: 0 auto;
 
     section {
-      margin-bottom: var(--space-16);
+      margin-bottom: var(--space-8);
 
       h2 {
         font-size: var(--text-2xl);
-        margin-bottom: var(--space-4);
-        padding-bottom: var(--space-3);
+        margin-bottom: var(--space-3);
+        padding-bottom: var(--space-2);
         border-bottom: 1px solid var(--glass-border);
         background: var(--gradient-text);
         -webkit-background-clip: text;
@@ -1011,16 +1013,18 @@ a {
       p, li {
         font-size: var(--text-base);
         color: var(--fg-secondary);
+        line-height: var(--leading-normal);
       }
 
       ul {
         list-style: none;
         padding-left: 0;
+        margin-bottom: var(--space-3);
 
         li {
           position: relative;
           padding-left: var(--space-6);
-          margin-bottom: var(--space-3);
+          margin-bottom: var(--space-2);
 
           &::before {
             content: "→";
@@ -1154,9 +1158,10 @@ a {
         li {
           font-size: var(--text-sm);
           color: var(--fg-secondary);
-          margin-bottom: var(--space-3);
+          margin-bottom: var(--space-2);
           padding-left: var(--space-4);
           position: relative;
+          line-height: var(--leading-normal);
 
           &::before {
             content: "→";
@@ -1290,13 +1295,13 @@ textarea {
 pre {
   font-family: var(--font-mono);
   font-size: var(--text-sm);
-  line-height: var(--leading-relaxed);
+  line-height: var(--leading-normal);
   background: var(--bg-secondary);
   border: 1px solid var(--glass-border);
   border-radius: 10px;
   padding: var(--space-4);
   overflow-x: auto;
-  margin: var(--space-6) 0;
+  margin: var(--space-3) 0;
   box-shadow: var(--shadow-sm);
 
   &::before {
@@ -1304,7 +1309,7 @@ pre {
     display: block;
     font-size: var(--text-xs);
     color: var(--accent-cyan);
-    margin-bottom: var(--space-3);
+    margin-bottom: var(--space-2);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-weight: 600;
@@ -1338,7 +1343,7 @@ table {
   border: 1px solid var(--glass-border);
   border-radius: 10px;
   overflow: hidden;
-  margin: var(--space-6) 0;
+  margin: var(--space-4) 0;
   box-shadow: var(--shadow-sm);
 }
 
@@ -1378,12 +1383,12 @@ tbody tr:hover {
 blockquote {
   font-family: var(--font-body);
   font-size: var(--text-base);
-  line-height: var(--leading-relaxed);
+  line-height: var(--leading-normal);
   color: var(--fg-secondary);
   border-left: 3px solid;
   border-image: var(--gradient-primary) 1;
   padding-left: var(--space-4);
-  margin: var(--space-6) 0;
+  margin: var(--space-3) 0;
   background: var(--gradient-subtle);
   padding: var(--space-4);
   border-radius: 0 10px 10px 0;
@@ -1474,7 +1479,7 @@ footer {
   h1 {
     font-size: clamp(2.5rem, 5vw, var(--text-5xl));
     font-weight: 800;
-    margin-bottom: var(--space-8);
+    margin-bottom: var(--space-4);
     background: var(--gradient-text);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -1484,9 +1489,9 @@ footer {
   h2 {
     font-size: var(--text-3xl);
     font-weight: 700;
-    margin-top: var(--space-16);
-    margin-bottom: var(--space-6);
-    padding-bottom: var(--space-4);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-3);
+    padding-bottom: var(--space-2);
     border-bottom: 2px solid var(--glass-border);
     color: var(--fg-primary);
   }
@@ -1494,16 +1499,16 @@ footer {
   h3 {
     font-size: var(--text-2xl);
     font-weight: 600;
-    margin-top: var(--space-10);
-    margin-bottom: var(--space-3);
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-2);
     color: var(--fg-primary);
   }
 
   p {
     font-size: var(--text-base);
-    line-height: var(--leading-relaxed);
+    line-height: var(--leading-normal);
     color: var(--fg-secondary);
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-2);
   }
 
   // YouTube video container with proper aspect ratio
@@ -1511,7 +1516,7 @@ footer {
     position: relative;
     width: 100%;
     max-width: 900px;
-    margin: var(--space-8) auto;
+    margin: var(--space-4) auto;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: var(--shadow-xl), 0 0 40px rgba(34, 211, 238, 0.15);
@@ -1543,7 +1548,7 @@ footer {
   // Substack embed styling
   .substack-embed {
     max-width: 900px;
-    margin: var(--space-8) auto;
+    margin: var(--space-4) auto;
 
     iframe {
       border-radius: 12px;
@@ -1559,7 +1564,7 @@ footer {
     justify-content: center;
     align-items: center;
     gap: var(--space-4);
-    margin-top: var(--space-8);
+    margin-top: var(--space-4);
 
     a {
       display: inline-flex;
@@ -1593,7 +1598,7 @@ footer {
     border: none;
     height: 2px;
     background: var(--gradient-primary);
-    margin: var(--space-16) 0;
+    margin: var(--space-6) 0;
     opacity: 0.3;
   }
 }
