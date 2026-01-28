@@ -9,6 +9,9 @@ resources/_gen/
 !static/img/*.png
 !static/img/*.jpg
 !static/img/*.jpeg
+!static/images/*.png
+!static/images/*.jpg
+!static/images/*.jpeg
 
 # Flow task management
 .flow/
