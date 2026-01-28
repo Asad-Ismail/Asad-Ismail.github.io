@@ -47,7 +47,6 @@ Regardless of the exact internal chat template, the provider must serialize:
 - User messages
 
 into one continuous token stream.
-
 Caching applies to a prefix of that serialized stream.
 
 Conceptually:
@@ -161,7 +160,7 @@ Both approaches keep the tools schema identical across requests, preserving cach
 
 ---
 
-## Engineering playbook for 90%+ cache hit rates
+## Engineering playbook for high cache hit rates
 
 Even with identical prompts and a stable cache key, you will see intermittent misses due to best effort routing and finite cache retention. Monitor caching as a distribution, not a single datapoint. These practices help maximize hit rates.
 
@@ -259,3 +258,7 @@ Where teams trip:
 - Cache wins require treating system + tools as a stable contract and late binding everything else
 
 Code: [taming_agent_context](https://github.com/Asad-Ismail/taming_agent_context/tree/main/maning_context)
+
+---
+
+Feel free to reach out: [GitHub](https://github.com/Asad-Ismail) • [LinkedIn](https://linkedin.com/in/asad-ismail) • [Substack](https://substack.com/@asadismail) • [YouTube](https://youtube.com/@asadismail) • [Email](mailto:asad@example.com)

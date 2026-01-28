@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Asad Ismail</title>
-    <link>https://Asad-Ismail.github.io/</link>
+    <link>http://localhost:50071/</link>
     <description>Recent content on Asad Ismail</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 28 Jan 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://Asad-Ismail.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:50071/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Why Your Prompt Cache Keeps Missing</title>
-      <link>https://Asad-Ismail.github.io/posts/prompt_caching/</link>
+      <link>http://localhost:50071/posts/prompt_caching/</link>
       <pubDate>Wed, 28 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>https://Asad-Ismail.github.io/posts/prompt_caching/</guid>
+      <guid>http://localhost:50071/posts/prompt_caching/</guid>
       <description>&lt;h2 id=&#34;why-you-should-care&#34;&gt;&#xA;  Why you should care&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#why-you-should-care&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Agentic workflows resend a large, mostly static context on every call: system instructions, tool schemas, and growing conversation history. Prompt caching can make those repeated input tokens far cheaper and reduce latency. But the failure modes are subtle: small changes can shift where your prompt diverges in the cached prefix and wipe most (or all) cached reuse, raising both cost and latency.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Media</title>
-      <link>https://Asad-Ismail.github.io/content/</link>
+      <link>http://localhost:50071/content/</link>
       <pubDate>Sun, 11 Jan 2026 19:00:00 +0000</pubDate>
-      <guid>https://Asad-Ismail.github.io/content/</guid>
+      <guid>http://localhost:50071/content/</guid>
       <description>&lt;h1 id=&#34;media&#34;&gt;&#xA;  Media&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#media&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;Selected videos on ML architecture and implementation. More &lt;a href=&#34;https://www.youtube.com/@AIMLArchives&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;videos&#34;&gt;&#xA;  Videos&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#videos&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;h3 id=&#34;mixture-of-experts-moe&#34;&gt;&#xA;  Mixture of Experts (MoE)&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#mixture-of-experts-moe&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;Understanding the architecture used by modern large language models to increase capacity without proportionally increasing compute costs. Theory + code implementation.&lt;/p&gt;&#xA;&lt;div class=&#34;youtube-container&#34;&gt;&#xA;&#xA;    &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&#34; allowfullscreen=&#34;allowfullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/IRnTpsDYQQQ?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;/div&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;rlhf-explained--coded-feat-ppo&#34;&gt;&#xA;  RLHF Explained &amp;amp; Coded (feat. PPO)&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#rlhf-explained--coded-feat-ppo&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;A deep dive into Reinforcement Learning from Human Feedback - one of the most important techniques for fine-tuning Large Language Models with complete code walkthrough.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Projects</title>
-      <link>https://Asad-Ismail.github.io/projects/</link>
+      <link>http://localhost:50071/projects/</link>
       <pubDate>Sun, 11 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>https://Asad-Ismail.github.io/projects/</guid>
+      <guid>http://localhost:50071/projects/</guid>
       <description>&lt;h1 id=&#34;projects&#34;&gt;&#xA;  Projects&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#projects&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;Welcome to my projects page! Here you&amp;rsquo;ll find a selection of my work in machine learning, computer vision, MLOps, and deep learning systems.&lt;/p&gt;&#xA;&lt;h2 id=&#34;featured-projects&#34;&gt;&#xA;  Featured Projects&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#featured-projects&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;h3 id=&#34;computer-vision-for-edge-devices&#34;&gt;&#xA;  Computer Vision for Edge Devices&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#computer-vision-for-edge-devices&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;Deploying and optimizing computer vision models to run efficiently on resource-constrained edge devices. This work focuses on model compression, quantization, and optimization techniques that enable real-time inference on embedded systems.&lt;/p&gt;</description>
     </item>
     <item>
       <title>ML Model Deployment on AWS: A Practical Guide</title>
-      <link>https://Asad-Ismail.github.io/posts/mlmodeldeployment/</link>
+      <link>http://localhost:50071/posts/mlmodeldeployment/</link>
       <pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>https://Asad-Ismail.github.io/posts/mlmodeldeployment/</guid>
+      <guid>http://localhost:50071/posts/mlmodeldeployment/</guid>
       <description>&lt;h1 id=&#34;ml-model-deployment-on-aws&#34;&gt;&#xA;  ML Model Deployment on AWS&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#ml-model-deployment-on-aws&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;Most ML projects should start with batch processing. It is cheaper, easier to debug, and forces you to think about whether you actually need real-time predictions. Only move to real-time endpoints when batch genuinely does not work for your use case.&lt;/p&gt;&#xA;&lt;p&gt;This guide covers four deployment patterns with working AWS code.&lt;/p&gt;&#xA;&lt;h2 id=&#34;four-deployment-patterns&#34;&gt;&#xA;  Four Deployment Patterns&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#four-deployment-patterns&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Pick based on your latency and cost requirements:&lt;/p&gt;</description>
     </item>
     <item>
       <title>About</title>
-      <link>https://Asad-Ismail.github.io/about/</link>
+      <link>http://localhost:50071/about/</link>
       <pubDate>Mon, 12 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://Asad-Ismail.github.io/about/</guid>
+      <guid>http://localhost:50071/about/</guid>
       <description>&lt;h2 id=&#34;hi-im-asad&#34;&gt;&#xA;  Hi, I&amp;rsquo;m Asad&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#hi-im-asad&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;I build ML systems end-to-end: training, deployment, and the infrastructure to scale them. Background in computer vision and deep learning, with a focus on production-grade MLOps. Currently building LLM-powered agents.&lt;/p&gt;&#xA;&lt;p&gt;Always interested in new projects. Feel free to reach out: &lt;a href=&#34;https://github.com/Asad-Ismail&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub&lt;/a&gt; • &lt;a href=&#34;https://www.linkedin.com/in/asadismaeel/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;LinkedIn&lt;/a&gt; • &lt;a href=&#34;https://substack.com/@asadismail2&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Substack&lt;/a&gt; • &lt;a href=&#34;https://www.youtube.com/@AIMLArchives&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;YouTube&lt;/a&gt; • &lt;a href=&#34;mailto:asadismaeel@gmail.com&#34; &gt;Email&lt;/a&gt;&lt;/p&gt;</description>
     </item>
   </channel>
