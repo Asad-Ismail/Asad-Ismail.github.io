@@ -1,1 +1,68 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tags on Asad Ismail</title><link>https://Asad-Ismail.github.io/tags/</link><description>Recent content in Tags on Asad Ismail</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 11 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Asad-Ismail.github.io/tags/feed.xml" rel="self" type="application/rss+xml"/><item><title>Automation</title><link>https://Asad-Ismail.github.io/tags/automation/</link><pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate><guid>https://Asad-Ismail.github.io/tags/automation/</guid><description/></item><item><title>Deep Learning</title><link>https://Asad-Ismail.github.io/tags/deep-learning/</link><pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate><guid>https://Asad-Ismail.github.io/tags/deep-learning/</guid><description/></item><item><title>Deployment</title><link>https://Asad-Ismail.github.io/tags/deployment/</link><pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate><guid>https://Asad-Ismail.github.io/tags/deployment/</guid><description/></item><item><title>Machine Learning</title><link>https://Asad-Ismail.github.io/tags/machine-learning/</link><pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate><guid>https://Asad-Ismail.github.io/tags/machine-learning/</guid><description/></item><item><title>ML Pipeline</title><link>https://Asad-Ismail.github.io/tags/ml-pipeline/</link><pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate><guid>https://Asad-Ismail.github.io/tags/ml-pipeline/</guid><description/></item><item><title>MLOps</title><link>https://Asad-Ismail.github.io/tags/mlops/</link><pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate><guid>https://Asad-Ismail.github.io/tags/mlops/</guid><description/></item><item><title>Production</title><link>https://Asad-Ismail.github.io/tags/production/</link><pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate><guid>https://Asad-Ismail.github.io/tags/production/</guid><description/></item><item><title>PyTorch</title><link>https://Asad-Ismail.github.io/tags/pytorch/</link><pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate><guid>https://Asad-Ismail.github.io/tags/pytorch/</guid><description/></item><item><title>TensorFlow</title><link>https://Asad-Ismail.github.io/tags/tensorflow/</link><pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate><guid>https://Asad-Ismail.github.io/tags/tensorflow/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Asad Ismail</title>
+    <link>https://Asad-Ismail.github.io/tags/</link>
+    <description>Recent content in Tags on Asad Ismail</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 28 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://Asad-Ismail.github.io/tags/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cost Optimization</title>
+      <link>https://Asad-Ismail.github.io/tags/cost-optimization/</link>
+      <pubDate>Wed, 28 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://Asad-Ismail.github.io/tags/cost-optimization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LLM</title>
+      <link>https://Asad-Ismail.github.io/tags/llm/</link>
+      <pubDate>Wed, 28 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://Asad-Ismail.github.io/tags/llm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>MLOps</title>
+      <link>https://Asad-Ismail.github.io/tags/mlops/</link>
+      <pubDate>Wed, 28 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://Asad-Ismail.github.io/tags/mlops/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>OpenAI</title>
+      <link>https://Asad-Ismail.github.io/tags/openai/</link>
+      <pubDate>Wed, 28 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://Asad-Ismail.github.io/tags/openai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Prompt Caching</title>
+      <link>https://Asad-Ismail.github.io/tags/prompt-caching/</link>
+      <pubDate>Wed, 28 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://Asad-Ismail.github.io/tags/prompt-caching/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AWS</title>
+      <link>https://Asad-Ismail.github.io/tags/aws/</link>
+      <pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://Asad-Ismail.github.io/tags/aws/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Deployment</title>
+      <link>https://Asad-Ismail.github.io/tags/deployment/</link>
+      <pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://Asad-Ismail.github.io/tags/deployment/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Machine Learning</title>
+      <link>https://Asad-Ismail.github.io/tags/machine-learning/</link>
+      <pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://Asad-Ismail.github.io/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

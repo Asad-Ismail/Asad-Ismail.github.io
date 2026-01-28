@@ -32,3 +32,7 @@ Thumbs.db
 
 # Ralph scripts (development tools)
 scripts/ralph/
+
+# Python virtual environment
+.venv/
+venv/

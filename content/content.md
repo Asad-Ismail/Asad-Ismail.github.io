@@ -5,11 +5,11 @@ draft: false
 description: "Asad Ismail's media hub featuring ML tutorials, deep learning videos, and MLOps content from AIMLArchives YouTube channel and Substack newsletter"
 ---
 
-# Content & Media
+# Media
 
-Welcome to my content hub! Here you'll find my latest videos, tutorials, and ways to stay connected with my work on machine learning, computer vision, and MLOps.
+Selected videos on ML architecture and implementation. More [here](https://www.youtube.com/@AIMLArchives).
 
-## Latest Videos
+## Videos
 
 ### Mixture of Experts (MoE)
 

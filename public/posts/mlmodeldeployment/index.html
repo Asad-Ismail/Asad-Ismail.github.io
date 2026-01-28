@@ -1,128 +1,744 @@
-<!doctype html><html lang=en><head><title>ML Model Deployment: Strategies and Best Practices · Asad Ismail</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Asad Ismail"><meta name=description content="A comprehensive guide to deploying machine learning models in production, covering different strategies, challenges, and best practices."><meta name=keywords content="machine learning,mlops,computer vision,deep learning,llm,pytorch,tensorflow"><meta name=fediverse:creator content><meta name=twitter:card content="summary"><meta name=twitter:title content="ML Model Deployment: Strategies and Best Practices"><meta name=twitter:description content="A comprehensive guide to deploying machine learning models in production, covering different strategies, challenges, and best practices."><meta property="og:url" content="https://Asad-Ismail.github.io/posts/mlmodeldeployment/"><meta property="og:site_name" content="Asad Ismail"><meta property="og:title" content="ML Model Deployment: Strategies and Best Practices"><meta property="og:description" content="A comprehensive guide to deploying machine learning models in production, covering different strategies, challenges, and best practices."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-01-11T00:00:00+00:00"><meta property="article:modified_time" content="2025-01-11T00:00:00+00:00"><meta property="article:tag" content="Machine Learning"><meta property="article:tag" content="MLOps"><meta property="article:tag" content="Deployment"><meta property="article:tag" content="Production"><link rel=canonical href=https://Asad-Ismail.github.io/posts/mlmodeldeployment/><link rel=preload href=/fonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin><link rel=stylesheet href=/css/coder.min.a38307e5862a7b0d7417d91e21e15185fb9466f7c137691d5c4d82198bd7cd06.css integrity="sha256-o4MH5YYqew10F9keIeFRhfuUZvfBN2kdXE2CGYvXzQY=" crossorigin=anonymous media=screen><link rel=stylesheet href=/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin=anonymous media=screen><link rel=stylesheet href=/scss/custom.min.6da896c93e9f0eabbe0c9624bc9fd6fa437bed105463dc6bcceb5beaa4ea56d2.css integrity="sha256-baiWyT6fDqu+DJYkvJ/W+kN77RBUY9xrzOtb6qTqVtI=" crossorigin=anonymous media=screen><link rel=icon type=image/svg+xml href=/img/favicon.svg sizes=any><link rel=icon type=image/png href=/img/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/img/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","headline":"ML Model Deployment: Strategies and Best Practices","author":{"@type":"Person","name":"Asad Ismail"},"datePublished":"2025-01-11","description":"A comprehensive guide to deploying machine learning models in production, covering different strategies, challenges, and best practices."}</script></head><body class="preload-transitions colorscheme-auto"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=https://Asad-Ismail.github.io/>Asad Ismail
-</a><input type=checkbox id=menu-toggle>
-<label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/>Home</a></li><li class=navigation-item><a class=navigation-link href=/posts/>Blog</a></li><li class=navigation-item><a class=navigation-link href=/projects/>Projects</a></li><li class=navigation-item><a class=navigation-link href=/about/>About</a></li><li class=navigation-item><a class=navigation-link href=/content/>Media</a></li></ul></section></nav><div class=content><section class="container post"><article><header><div class=post-title><h1 class=title><a class=title-link href=https://Asad-Ismail.github.io/posts/mlmodeldeployment/>ML Model Deployment: Strategies and Best Practices</a></h1></div><div class=post-meta><div class=date><span class=posted-on><i class="fa-solid fa-calendar" aria-hidden=true></i>
-<time datetime=2025-01-11T00:00:00Z>January 11, 2025
-</time></span><span class=reading-time><i class="fa-solid fa-clock" aria-hidden=true></i>
-3-minute read</span></div><div class=authors><i class="fa-solid fa-user" aria-hidden=true></i>
-<a href=/authors/asad-ismail/>Asad Ismail</a></div><div class=categories><i class="fa-solid fa-folder" aria-hidden=true></i>
-<a href=/categories/machine-learning/>Machine Learning</a>
-<span class=separator>•</span>
-<a href=/categories/engineering/>Engineering</a></div><div class=tags><i class="fa-solid fa-tag" aria-hidden=true></i>
-<span class=tag><a href=/tags/machine-learning/>Machine Learning</a>
-</span><span class=separator>•</span>
-<span class=tag><a href=/tags/mlops/>MLOps</a>
-</span><span class=separator>•</span>
-<span class=tag><a href=/tags/deployment/>Deployment</a>
-</span><span class=separator>•</span>
-<span class=tag><a href=/tags/production/>Production</a></span></div></div></header><div class=post-content><h1 id=ml-model-deployment-strategies-and-best-practices>ML Model Deployment: Strategies and Best Practices
-<a class=heading-link href=#ml-model-deployment-strategies-and-best-practices><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h1><p>Deploying machine learning models to production is a critical step in the ML lifecycle that often receives less attention than model development. A well-trained model is useless if it cannot be reliably served to users or systems in production environments. In this post, we&rsquo;ll explore key deployment strategies and best practices for production ML systems.</p><h2 id=common-deployment-strategies>Common Deployment Strategies
-<a class=heading-link href=#common-deployment-strategies><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><h3 id=1-real-time-api-deployment>1. Real-time API Deployment
-<a class=heading-link href=#1-real-time-api-deployment><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>The most common approach for online inference is exposing your model through a REST or gRPC API:</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Example Flask API for model serving</span>
-</span></span><span style=display:flex><span><span style=color:#ff7b72>from</span> <span style=color:#ff7b72>flask</span> <span style=color:#ff7b72>import</span> Flask, request, jsonify
-</span></span><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>joblib</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>app <span style=color:#ff7b72;font-weight:700>=</span> Flask(<span style=color:#79c0ff>__name__</span>)
-</span></span><span style=display:flex><span>model <span style=color:#ff7b72;font-weight:700>=</span> joblib<span style=color:#ff7b72;font-weight:700>.</span>load(<span style=color:#a5d6ff>&#39;model.pkl&#39;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>@app.route</span>(<span style=color:#a5d6ff>&#39;/predict&#39;</span>, methods<span style=color:#ff7b72;font-weight:700>=</span>[<span style=color:#a5d6ff>&#39;POST&#39;</span>])
-</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>predict</span>():
-</span></span><span style=display:flex><span>    data <span style=color:#ff7b72;font-weight:700>=</span> request<span style=color:#ff7b72;font-weight:700>.</span>json
-</span></span><span style=display:flex><span>    prediction <span style=color:#ff7b72;font-weight:700>=</span> model<span style=color:#ff7b72;font-weight:700>.</span>predict([data[<span style=color:#a5d6ff>&#39;features&#39;</span>]])
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>return</span> jsonify({<span style=color:#a5d6ff>&#39;prediction&#39;</span>: prediction[<span style=color:#a5d6ff>0</span>]})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ff7b72>if</span> <span style=color:#79c0ff>__name__</span> <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>&#39;__main__&#39;</span>:
-</span></span><span style=display:flex><span>    app<span style=color:#ff7b72;font-weight:700>.</span>run(host<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#39;0.0.0.0&#39;</span>, port<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>5000</span>)
-</span></span></code></pre></div><p><strong>Pros:</strong></p><ul><li>Low latency predictions</li><li>Real-time user interactions</li><li>Easy integration with web services</li></ul><p><strong>Cons:</strong></p><ul><li>Requires infrastructure management</li><li>Scaling challenges during peak loads</li><li>Higher operational costs</li></ul><h3 id=2-batch-processing>2. Batch Processing
-<a class=heading-link href=#2-batch-processing><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>For use cases that don&rsquo;t require immediate predictions, batch processing is more efficient:</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Example batch inference script</span>
-</span></span><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>pandas</span> <span style=color:#ff7b72>as</span> <span style=color:#ff7b72>pd</span>
-</span></span><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>joblib</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>batch_predict</span>(input_csv, output_csv):
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Load input data</span>
-</span></span><span style=display:flex><span>    df <span style=color:#ff7b72;font-weight:700>=</span> pd<span style=color:#ff7b72;font-weight:700>.</span>read_csv(input_csv)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Load model</span>
-</span></span><span style=display:flex><span>    model <span style=color:#ff7b72;font-weight:700>=</span> joblib<span style=color:#ff7b72;font-weight:700>.</span>load(<span style=color:#a5d6ff>&#39;model.pkl&#39;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Generate predictions</span>
-</span></span><span style=display:flex><span>    predictions <span style=color:#ff7b72;font-weight:700>=</span> model<span style=color:#ff7b72;font-weight:700>.</span>predict(df)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Save results</span>
-</span></span><span style=display:flex><span>    df[<span style=color:#a5d6ff>&#39;prediction&#39;</span>] <span style=color:#ff7b72;font-weight:700>=</span> predictions
-</span></span><span style=display:flex><span>    df<span style=color:#ff7b72;font-weight:700>.</span>to_csv(output_csv, index<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#79c0ff>False</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ff7b72>if</span> <span style=color:#79c0ff>__name__</span> <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>&#39;__main__&#39;</span>:
-</span></span><span style=display:flex><span>    batch_predict(<span style=color:#a5d6ff>&#39;input.csv&#39;</span>, <span style=color:#a5d6ff>&#39;predictions.csv&#39;</span>)
-</span></span></code></pre></div><p><strong>Pros:</strong></p><ul><li>Cost-effective for large volumes</li><li>Better resource utilization</li><li>Simpler monitoring and debugging</li></ul><p><strong>Cons:</strong></p><ul><li>Delayed insights</li><li>Not suitable for real-time applications</li></ul><h3 id=3-edge-deployment>3. Edge Deployment
-<a class=heading-link href=#3-edge-deployment><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Deploying models directly on edge devices (mobile, IoT, embedded systems):</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Example using ONNX for edge deployment</span>
-</span></span><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>onnxruntime</span> <span style=color:#ff7b72>as</span> <span style=color:#ff7b72>rt</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Load ONNX model</span>
-</span></span><span style=display:flex><span>sess <span style=color:#ff7b72;font-weight:700>=</span> rt<span style=color:#ff7b72;font-weight:700>.</span>InferenceSession(<span style=color:#a5d6ff>&#39;model.onnx&#39;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Run inference</span>
-</span></span><span style=display:flex><span>input_name <span style=color:#ff7b72;font-weight:700>=</span> sess<span style=color:#ff7b72;font-weight:700>.</span>get_inputs()[<span style=color:#a5d6ff>0</span>]<span style=color:#ff7b72;font-weight:700>.</span>name
-</span></span><span style=display:flex><span>output_name <span style=color:#ff7b72;font-weight:700>=</span> sess<span style=color:#ff7b72;font-weight:700>.</span>get_outputs()[<span style=color:#a5d6ff>0</span>]<span style=color:#ff7b72;font-weight:700>.</span>name
-</span></span><span style=display:flex><span>prediction <span style=color:#ff7b72;font-weight:700>=</span> sess<span style=color:#ff7b72;font-weight:700>.</span>run([output_name], {input_name: input_data})
-</span></span></code></pre></div><p><strong>Pros:</strong></p><ul><li>No network latency</li><li>Privacy and security benefits</li><li>Works offline</li></ul><p><strong>Cons:</strong></p><ul><li>Limited computational resources</li><li>Model size constraints</li><li>Device-specific optimization needed</li></ul><h2 id=key-challenges-in-model-deployment>Key Challenges in Model Deployment
-<a class=heading-link href=#key-challenges-in-model-deployment><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><h3 id=1-model-versioning-and-tracking>1. Model Versioning and Tracking
-<a class=heading-link href=#1-model-versioning-and-tracking><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Always version your models and maintain a clear deployment history:</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Organize model artifacts</span>
-</span></span><span style=display:flex><span>model_artifacts/
-</span></span><span style=display:flex><span>├── model_v1.0.pkl
-</span></span><span style=display:flex><span>├── model_v1.1.pkl
-</span></span><span style=display:flex><span>├── model_v2.0.pkl
-</span></span><span style=display:flex><span>└── deployment_metadata.json
-</span></span></code></pre></div><h3 id=2-monitoring-and-observability>2. Monitoring and Observability
-<a class=heading-link href=#2-monitoring-and-observability><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Track key metrics in production:</p><ul><li><strong>Prediction latency</strong>: Time to generate predictions</li><li><strong>Error rates</strong>: Failed requests or timeouts</li><li><strong>Data drift</strong>: Changes in input data distribution</li><li><strong>Model performance</strong>: Accuracy, precision, recall over time</li></ul><h3 id=3-ab-testing>3. A/B Testing
-<a class=heading-link href=#3-ab-testing><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Deploy new models alongside existing ones to validate improvements:</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>ab_routing</span>(request, model_a, model_b, traffic_split<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>0.1</span>):
-</span></span><span style=display:flex><span>    <span style=color:#a5d6ff>&#34;&#34;&#34;Route traffic between model versions&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>if</span> random<span style=color:#ff7b72;font-weight:700>.</span>random() <span style=color:#ff7b72;font-weight:700>&lt;</span> traffic_split:
-</span></span><span style=display:flex><span>        <span style=color:#ff7b72>return</span> model_b<span style=color:#ff7b72;font-weight:700>.</span>predict(request)
-</span></span><span style=display:flex><span>    <span style=color:#ff7b72>return</span> model_a<span style=color:#ff7b72;font-weight:700>.</span>predict(request)
-</span></span></code></pre></div><h2 id=best-practices>Best Practices
-<a class=heading-link href=#best-practices><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><h3 id=1-containerization>1. Containerization
-<a class=heading-link href=#1-containerization><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Use Docker for reproducible deployments:</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:#ff7b72>FROM</span><span style=color:#6e7681> </span><span style=color:#a5d6ff>python:3.9-slim</span><span style=color:#f85149>
-</span></span></span><span style=display:flex><span><span style=color:#f85149>
-</span></span></span><span style=display:flex><span><span style=color:#ff7b72>WORKDIR</span><span style=color:#6e7681> </span><span style=color:#a5d6ff>/app</span><span style=color:#f85149>
-</span></span></span><span style=display:flex><span><span style=color:#ff7b72>COPY</span> requirements.txt .<span style=color:#f85149>
-</span></span></span><span style=display:flex><span><span style=color:#ff7b72>RUN</span> pip install -r requirements.txt<span style=color:#f85149>
-</span></span></span><span style=display:flex><span><span style=color:#f85149>
-</span></span></span><span style=display:flex><span><span style=color:#ff7b72>COPY</span> model.pkl .<span style=color:#f85149>
-</span></span></span><span style=display:flex><span><span style=color:#ff7b72>COPY</span> api.py .<span style=color:#f85149>
-</span></span></span><span style=display:flex><span><span style=color:#f85149>
-</span></span></span><span style=display:flex><span><span style=color:#ff7b72>EXPOSE</span><span style=color:#6e7681> </span><span style=color:#a5d6ff>5000</span><span style=color:#f85149>
-</span></span></span><span style=display:flex><span><span style=color:#ff7b72>CMD</span> [<span style=color:#a5d6ff>&#34;python&#34;</span>, <span style=color:#a5d6ff>&#34;api.py&#34;</span>]<span style=color:#f85149>
-</span></span></span></code></pre></div><h3 id=2-scalability-architecture>2. Scalability Architecture
-<a class=heading-link href=#2-scalability-architecture><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><pre tabindex=0><code>Load Balancer → [API Server 1, API Server 2, ...] → Model Storage
-                         ↓
-                   [Redis Cache] → Feature Store
-</code></pre><h3 id=3-automated-cicd-pipeline>3. Automated CI/CD Pipeline
-<a class=heading-link href=#3-automated-cicd-pipeline><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><ul><li>Automated testing before deployment</li><li>Gradual rollout strategies (canary deployments)</li><li>Automatic rollback on failure detection</li></ul><h3 id=4-resource-optimization>4. Resource Optimization
-<a class=heading-link href=#4-resource-optimization><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Use model quantization for faster inference</span>
-</span></span><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>torch</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Quantize model to reduce size and improve speed</span>
-</span></span><span style=display:flex><span>quantized_model <span style=color:#ff7b72;font-weight:700>=</span> torch<span style=color:#ff7b72;font-weight:700>.</span>quantization<span style=color:#ff7b72;font-weight:700>.</span>quantize_dynamic(
-</span></span><span style=display:flex><span>    model, {torch<span style=color:#ff7b72;font-weight:700>.</span>nn<span style=color:#ff7b72;font-weight:700>.</span>Linear}, dtype<span style=color:#ff7b72;font-weight:700>=</span>torch<span style=color:#ff7b72;font-weight:700>.</span>qint8
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h2 id=conclusion>Conclusion
-<a class=heading-link href=#conclusion><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Successful ML model deployment requires careful planning and consideration of your specific use case requirements. Whether you choose real-time APIs, batch processing, or edge deployment, the key is to implement robust monitoring, version control, and automated deployment pipelines.</p><p>Remember: deployment is not the end of the lifecycle. Continuous monitoring and retraining based on production data are essential for maintaining model performance over time.</p></div><footer></footer></article></section></div><footer class=footer><section class=container>©
-2026
-Asad Ismail
-·
-Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+  ML Model Deployment on AWS: A Practical Guide · Asad Ismail
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Asad Ismail">
+<meta name="description" content="Hands-on guide to deploying ML models on AWS with real examples using SageMaker, Lambda, and Batch.">
+<meta name="keywords" content="machine learning, mlops, computer vision, deep learning, llm, pytorch, tensorflow">
+<meta name="fediverse:creator" content="" />
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ML Model Deployment on AWS: A Practical Guide">
+  <meta name="twitter:description" content="Hands-on guide to deploying ML models on AWS with real examples using SageMaker, Lambda, and Batch.">
+
+<meta property="og:url" content="https://Asad-Ismail.github.io/posts/mlmodeldeployment/">
+  <meta property="og:site_name" content="Asad Ismail">
+  <meta property="og:title" content="ML Model Deployment on AWS: A Practical Guide">
+  <meta property="og:description" content="Hands-on guide to deploying ML models on AWS with real examples using SageMaker, Lambda, and Batch.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-01-11T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-01-11T00:00:00+00:00">
+    <meta property="article:tag" content="Machine Learning">
+    <meta property="article:tag" content="MLOps">
+    <meta property="article:tag" content="Deployment">
+    <meta property="article:tag" content="AWS">
+
+
+
+
+<link rel="canonical" href="https://Asad-Ismail.github.io/posts/mlmodeldeployment/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.e927f7340e309d76dcb8fda85f1531ae7341aa9cd0b7f3ab77885dae77b1a0a2.css" integrity="sha256-6Sf3NA4wnXbcuP2oXxUxrnNBqpzQt/Ord4hdrnexoKI=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+  
+  
+    
+    <link rel="stylesheet" href="/scss/custom.min.8ba507da6285f16607bd9df55568252050a16fdfd5f8f4af47bb3a68cd32fe96.css" integrity="sha256-i6UH2mKF8WYHvZ31VWglIFChb9/V&#43;PSvR7s6aM0y/pY=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ML Model Deployment on AWS: A Practical Guide",
+  "author": {
+    "@type": "Person",
+    "name": "Asad Ismail"
+  },
+  "datePublished": "2025-01-11",
+  "description": "Hands-on guide to deploying ML models on AWS with real examples using SageMaker, Lambda, and Batch."
+}
+</script>
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="https://Asad-Ismail.github.io/">
+      Asad Ismail
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/">Home</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">Blog</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/content/">Media</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">About</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://Asad-Ismail.github.io/posts/mlmodeldeployment/">
+              ML Model Deployment on AWS: A Practical Guide
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2025-01-11T00:00:00Z">
+                January 11, 2025
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              7-minute read
+            </span>
+          </div>
+          <div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <a href="/authors/asad-ismail/">Asad Ismail</a></div>
+
+          <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="/categories/machine-learning/">Machine Learning</a>
+      <span class="separator">•</span>
+    <a href="/categories/engineering/">Engineering</a></div>
+
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/machine-learning/">Machine Learning</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/mlops/">MLOps</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/deployment/">Deployment</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/aws/">AWS</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <h1 id="ml-model-deployment-on-aws">
+  ML Model Deployment on AWS
+  <a class="heading-link" href="#ml-model-deployment-on-aws">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>Most ML projects should start with batch processing. It is cheaper, easier to debug, and forces you to think about whether you actually need real-time predictions. Only move to real-time endpoints when batch genuinely does not work for your use case.</p>
+<p>This guide covers four deployment patterns with working AWS code.</p>
+<h2 id="four-deployment-patterns">
+  Four Deployment Patterns
+  <a class="heading-link" href="#four-deployment-patterns">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Pick based on your latency and cost requirements:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Pattern</th>
+          <th>Latency</th>
+          <th>Cost</th>
+          <th>AWS Service</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Real-time API</td>
+          <td>&lt;100ms</td>
+          <td>$$$</td>
+          <td>SageMaker Endpoints</td>
+      </tr>
+      <tr>
+          <td>Batch</td>
+          <td>Hours</td>
+          <td>$</td>
+          <td>SageMaker Batch Transform</td>
+      </tr>
+      <tr>
+          <td>Serverless</td>
+          <td>100ms-5s</td>
+          <td>$$</td>
+          <td>Lambda + API Gateway</td>
+      </tr>
+      <tr>
+          <td>Edge</td>
+          <td>&lt;10ms</td>
+          <td>Free after deploy</td>
+          <td>IoT Greengrass</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="1-real-time-api-with-sagemaker">
+  1. Real-time API with SageMaker
+  <a class="heading-link" href="#1-real-time-api-with-sagemaker">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><strong>When to use:</strong> User-facing applications that need instant responses. Fraud detection during checkout, content recommendations as users browse, or chatbot intent classification.</p>
+<p><strong>Why SageMaker Endpoints:</strong> Managed infrastructure with built-in load balancing, autoscaling, and A/B testing. No need to manage EC2 instances or containers yourself.</p>
+<p><strong>Trade-offs:</strong> Always-on instances cost money even when idle. For sporadic traffic, consider serverless instead.</p>
+<p><strong>Example: Fraud detection API</strong> that scores transactions in real-time during payment processing.</p>
+<p><strong>Deploy a scikit-learn model:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">sagemaker</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">sagemaker.sklearn</span> <span style="color:#ff7b72">import</span> SKLearnModel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Package your model</span>
+</span></span><span style="display:flex;"><span>model <span style="color:#ff7b72;font-weight:bold">=</span> SKLearnModel(
+</span></span><span style="display:flex;"><span>    model_data<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;s3://my-bucket/models/fraud-detector.tar.gz&#39;</span>,
+</span></span><span style="display:flex;"><span>    role<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;arn:aws:iam::123456789:role/SageMakerRole&#39;</span>,
+</span></span><span style="display:flex;"><span>    entry_point<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;inference.py&#39;</span>,
+</span></span><span style="display:flex;"><span>    framework_version<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;1.2-1&#39;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Deploy with autoscaling</span>
+</span></span><span style="display:flex;"><span>predictor <span style="color:#ff7b72;font-weight:bold">=</span> model<span style="color:#ff7b72;font-weight:bold">.</span>deploy(
+</span></span><span style="display:flex;"><span>    initial_instance_count<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">2</span>,
+</span></span><span style="display:flex;"><span>    instance_type<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;ml.m5.large&#39;</span>,
+</span></span><span style="display:flex;"><span>    endpoint_name<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;fraud-detector-prod&#39;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Test it</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#ff7b72;font-weight:bold">=</span> predictor<span style="color:#ff7b72;font-weight:bold">.</span>predict([[<span style="color:#a5d6ff">0.5</span>, <span style="color:#a5d6ff">1.2</span>, <span style="color:#a5d6ff">0.8</span>, <span style="color:#a5d6ff">2.1</span>]])
+</span></span></code></pre></div><p><strong>Your inference.py:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">joblib</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">numpy</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">np</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">model_fn</span>(model_dir):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> joblib<span style="color:#ff7b72;font-weight:bold">.</span>load(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;</span><span style="color:#a5d6ff">{</span>model_dir<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">/model.pkl&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">predict_fn</span>(input_data, model):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> model<span style="color:#ff7b72;font-weight:bold">.</span>predict_proba(input_data)[:, <span style="color:#a5d6ff">1</span>]<span style="color:#ff7b72;font-weight:bold">.</span>tolist()
+</span></span></code></pre></div><p><strong>Add autoscaling:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws application-autoscaling register-scalable-target <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>  --service-namespace sagemaker <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>  --resource-id endpoint/fraud-detector-prod/variant/AllTraffic <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>  --scalable-dimension sagemaker:variant:DesiredInstanceCount <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>  --min-capacity <span style="color:#a5d6ff">1</span> --max-capacity <span style="color:#a5d6ff">10</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>aws application-autoscaling put-scaling-policy <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>  --policy-name fraud-scaling <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>  --service-namespace sagemaker <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>  --resource-id endpoint/fraud-detector-prod/variant/AllTraffic <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>  --scalable-dimension sagemaker:variant:DesiredInstanceCount <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>  --policy-type TargetTrackingScaling <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>  --target-tracking-scaling-policy-configuration <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>    <span style="color:#a5d6ff">&#39;{&#34;TargetValue&#34;: 1000, &#34;PredefinedMetricSpecification&#34;: {&#34;PredefinedMetricType&#34;: &#34;SageMakerVariantInvocationsPerInstance&#34;}}&#39;</span>
+</span></span></code></pre></div><p><strong>Cost:</strong> ~$150/month for 2x ml.m5.large instances.</p>
+<p><strong>Watch out for:</strong> Endpoint updates take 5-10 minutes and cause brief downtime unless you use blue-green deployments. Test your autoscaling before you need it - scaling from 2 to 10 instances takes several minutes, not seconds.</p>
+<hr>
+<h2 id="2-batch-processing-with-sagemaker-batch-transform">
+  2. Batch Processing with SageMaker Batch Transform
+  <a class="heading-link" href="#2-batch-processing-with-sagemaker-batch-transform">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><strong>When to use:</strong> Predictions that can wait hours. Nightly churn scoring, weekly lead prioritization, or pre-computing recommendations for all users.</p>
+<p><strong>Why Batch Transform:</strong> Spins up instances only during the job, then shuts down. Pay for 20 minutes of compute instead of 24/7 endpoint costs.</p>
+<p><strong>Trade-offs:</strong> Results are stale by the time you use them. Not suitable for real-time decisions.</p>
+<p><strong>Example: Churn prediction</strong> that runs every night at 2 AM, scores all customers, and writes results to S3 for the marketing team.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">sagemaker.sklearn</span> <span style="color:#ff7b72">import</span> SKLearnModel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#ff7b72;font-weight:bold">=</span> SKLearnModel(
+</span></span><span style="display:flex;"><span>    model_data<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;s3://my-bucket/models/churn-model.tar.gz&#39;</span>,
+</span></span><span style="display:flex;"><span>    role<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;arn:aws:iam::123456789:role/SageMakerRole&#39;</span>,
+</span></span><span style="display:flex;"><span>    entry_point<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;inference.py&#39;</span>,
+</span></span><span style="display:flex;"><span>    framework_version<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;1.2-1&#39;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Run batch transform</span>
+</span></span><span style="display:flex;"><span>transformer <span style="color:#ff7b72;font-weight:bold">=</span> model<span style="color:#ff7b72;font-weight:bold">.</span>transformer(
+</span></span><span style="display:flex;"><span>    instance_count<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">4</span>,
+</span></span><span style="display:flex;"><span>    instance_type<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;ml.m5.xlarge&#39;</span>,
+</span></span><span style="display:flex;"><span>    output_path<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;s3://my-bucket/predictions/2025-01-27/&#39;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>transformer<span style="color:#ff7b72;font-weight:bold">.</span>transform(
+</span></span><span style="display:flex;"><span>    data<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;s3://my-bucket/data/customers.csv&#39;</span>,
+</span></span><span style="display:flex;"><span>    content_type<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;text/csv&#39;</span>,
+</span></span><span style="display:flex;"><span>    split_type<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;Line&#39;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>transformer<span style="color:#ff7b72;font-weight:bold">.</span>wait()  <span style="color:#8b949e;font-style:italic"># Takes ~20 mins for 1M rows</span>
+</span></span></code></pre></div><p><strong>Schedule with EventBridge:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;schedule&#34;</span>: <span style="color:#a5d6ff">&#34;cron(0 2 * * ? *)&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;targets&#34;</span>: [{
+</span></span><span style="display:flex;"><span>    <span style="color:#7ee787">&#34;arn&#34;</span>: <span style="color:#a5d6ff">&#34;arn:aws:sagemaker:us-east-1:123456789:pipeline/daily-scoring&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#7ee787">&#34;roleArn&#34;</span>: <span style="color:#a5d6ff">&#34;arn:aws:iam::123456789:role/EventBridgeSageMaker&#34;</span>
+</span></span><span style="display:flex;"><span>  }]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Cost:</strong> ~$5 for scoring 1M records (4x ml.m5.xlarge for 20 mins).</p>
+<p><strong>Tip:</strong> Store predictions with timestamps and model versions. When you retrain, you will want to compare old vs new predictions on the same data. Without versioning, you cannot debug why results changed.</p>
+<hr>
+<h2 id="3-serverless-with-lambda">
+  3. Serverless with Lambda
+  <a class="heading-link" href="#3-serverless-with-lambda">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><strong>When to use:</strong> Low or unpredictable traffic. Internal tools, MVPs, or event-driven workflows where a file upload triggers prediction.</p>
+<p><strong>Why Lambda:</strong> Zero cost when idle. Scales automatically from 0 to thousands of concurrent requests.</p>
+<p><strong>Trade-offs:</strong> Cold starts add 3-5 seconds latency. Model size limited to 250MB (deployment package) or 10GB (container image). Max 15 minute timeout.</p>
+<p><strong>Example: Document classifier</strong> that triggers when PDFs are uploaded to S3, classifies them, and routes to the right department.</p>
+<p><strong>Lambda function:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">json</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">boto3</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">pickle</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">os</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Load model at cold start</span>
+</span></span><span style="display:flex;"><span>s3 <span style="color:#ff7b72;font-weight:bold">=</span> boto3<span style="color:#ff7b72;font-weight:bold">.</span>client(<span style="color:#a5d6ff">&#39;s3&#39;</span>)
+</span></span><span style="display:flex;"><span>s3<span style="color:#ff7b72;font-weight:bold">.</span>download_file(<span style="color:#a5d6ff">&#39;my-bucket&#39;</span>, <span style="color:#a5d6ff">&#39;models/model.pkl&#39;</span>, <span style="color:#a5d6ff">&#39;/tmp/model.pkl&#39;</span>)
+</span></span><span style="display:flex;"><span>model <span style="color:#ff7b72;font-weight:bold">=</span> pickle<span style="color:#ff7b72;font-weight:bold">.</span>load(open(<span style="color:#a5d6ff">&#39;/tmp/model.pkl&#39;</span>, <span style="color:#a5d6ff">&#39;rb&#39;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">lambda_handler</span>(event, context):
+</span></span><span style="display:flex;"><span>    body <span style="color:#ff7b72;font-weight:bold">=</span> json<span style="color:#ff7b72;font-weight:bold">.</span>loads(event[<span style="color:#a5d6ff">&#39;body&#39;</span>])
+</span></span><span style="display:flex;"><span>    features <span style="color:#ff7b72;font-weight:bold">=</span> body[<span style="color:#a5d6ff">&#39;features&#39;</span>]
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    prediction <span style="color:#ff7b72;font-weight:bold">=</span> model<span style="color:#ff7b72;font-weight:bold">.</span>predict([features])[<span style="color:#a5d6ff">0</span>]
+</span></span><span style="display:flex;"><span>    proba <span style="color:#ff7b72;font-weight:bold">=</span> model<span style="color:#ff7b72;font-weight:bold">.</span>predict_proba([features])[<span style="color:#a5d6ff">0</span>]<span style="color:#ff7b72;font-weight:bold">.</span>max()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#39;statusCode&#39;</span>: <span style="color:#a5d6ff">200</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#39;body&#39;</span>: json<span style="color:#ff7b72;font-weight:bold">.</span>dumps({
+</span></span><span style="display:flex;"><span>            <span style="color:#a5d6ff">&#39;prediction&#39;</span>: int(prediction),
+</span></span><span style="display:flex;"><span>            <span style="color:#a5d6ff">&#39;confidence&#39;</span>: float(proba)
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><strong>Deploy with AWS SAM</strong> (Serverless Application Model - a CLI tool that packages and deploys Lambda functions):</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># template.yaml</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#7ee787">AWSTemplateFormatVersion</span>:<span style="color:#6e7681"> </span><span style="color:#a5d6ff">&#39;2010-09-09&#39;</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#7ee787">Transform</span>:<span style="color:#6e7681"> </span><span style="color:#a5d6ff">AWS::Serverless-2016-10-31</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#7ee787">Resources</span>:<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#7ee787">PredictFunction</span>:<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#7ee787">Type</span>:<span style="color:#6e7681"> </span><span style="color:#a5d6ff">AWS::Serverless::Function</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#7ee787">Properties</span>:<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">      </span><span style="color:#7ee787">Handler</span>:<span style="color:#6e7681"> </span><span style="color:#a5d6ff">app.lambda_handler</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">      </span><span style="color:#7ee787">Runtime</span>:<span style="color:#6e7681"> </span><span style="color:#a5d6ff">python3.11</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">      </span><span style="color:#7ee787">MemorySize</span>:<span style="color:#6e7681"> </span><span style="color:#a5d6ff">512</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">      </span><span style="color:#7ee787">Timeout</span>:<span style="color:#6e7681"> </span><span style="color:#a5d6ff">30</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">      </span><span style="color:#7ee787">Events</span>:<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">        </span><span style="color:#7ee787">Predict</span>:<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">          </span><span style="color:#7ee787">Type</span>:<span style="color:#6e7681"> </span><span style="color:#a5d6ff">Api</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">          </span><span style="color:#7ee787">Properties</span>:<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">            </span><span style="color:#7ee787">Path</span>:<span style="color:#6e7681"> </span><span style="color:#a5d6ff">/predict</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">            </span><span style="color:#7ee787">Method</span>:<span style="color:#6e7681"> </span><span style="color:#a5d6ff">post</span><span style="color:#6e7681">
+</span></span></span></code></pre></div><p><strong>Cold starts:</strong> The first request after idle time takes 3-5 seconds. Provisioned concurrency keeps instances warm:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws lambda put-provisioned-concurrency-config <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>  --function-name PredictFunction <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>  --qualifier prod <span style="color:#79c0ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#79c0ff"></span>  --provisioned-concurrent-executions <span style="color:#a5d6ff">5</span>
+</span></span></code></pre></div><p><strong>Cost:</strong> ~$0.20 per 1000 requests + $3.50/month per provisioned instance.</p>
+<p><strong>Honest take:</strong> Lambda works great for small models under 50MB. Once you start fighting package size limits, switching to container images, or paying for provisioned concurrency to avoid cold starts, you have probably outgrown Lambda. Just use SageMaker at that point.</p>
+<hr>
+<h2 id="4-edge-with-iot-greengrass">
+  4. Edge with IoT Greengrass
+  <a class="heading-link" href="#4-edge-with-iot-greengrass">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><strong>When to use:</strong> Devices with unreliable connectivity, strict latency requirements, or data privacy constraints that prevent sending data to the cloud.</p>
+<p><strong>Why Greengrass:</strong> Runs inference locally on the device. Works offline. Sub-10ms latency since there is no network round-trip.</p>
+<p><strong>Trade-offs:</strong> Limited compute on edge devices. Models must be small (typically under 100MB). Harder to update and monitor than cloud deployments.</p>
+<p><strong>Common devices:</strong> Raspberry Pi, NVIDIA Jetson, industrial gateways, cameras with onboard compute.</p>
+<p><strong>Example: Quality inspection</strong> on a factory floor camera that detects defects in real-time without sending images to the cloud.</p>
+<p><strong>Step 1: Convert model to ONNX</strong> (smaller and runs on CPU without framework dependencies):</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Convert to ONNX for edge</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">torch</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>load(<span style="color:#a5d6ff">&#39;model.pt&#39;</span>)
+</span></span><span style="display:flex;"><span>dummy <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>randn(<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">10</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>torch<span style="color:#ff7b72;font-weight:bold">.</span>onnx<span style="color:#ff7b72;font-weight:bold">.</span>export(
+</span></span><span style="display:flex;"><span>    model, dummy, <span style="color:#a5d6ff">&#39;model.onnx&#39;</span>,
+</span></span><span style="display:flex;"><span>    input_names<span style="color:#ff7b72;font-weight:bold">=</span>[<span style="color:#a5d6ff">&#39;input&#39;</span>],
+</span></span><span style="display:flex;"><span>    output_names<span style="color:#ff7b72;font-weight:bold">=</span>[<span style="color:#a5d6ff">&#39;output&#39;</span>],
+</span></span><span style="display:flex;"><span>    dynamic_axes<span style="color:#ff7b72;font-weight:bold">=</span>{<span style="color:#a5d6ff">&#39;input&#39;</span>: {<span style="color:#a5d6ff">0</span>: <span style="color:#a5d6ff">&#39;batch&#39;</span>}}
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p><strong>Step 2: Create Greengrass component</strong> (recipe.yaml):</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#7ee787">ComponentName</span>:<span style="color:#6e7681"> </span><span style="color:#a5d6ff">ml-inference</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#7ee787">ComponentVersion</span>:<span style="color:#6e7681"> </span><span style="color:#a5d6ff">1.0.0</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#7ee787">ComponentConfiguration</span>:<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#7ee787">DefaultConfiguration</span>:<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#7ee787">ModelPath</span>:<span style="color:#6e7681"> </span><span style="color:#a5d6ff">/greengrass/v2/models/model.onnx</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#7ee787">Manifests</span>:<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>- <span style="color:#7ee787">Platform</span>:<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">      </span><span style="color:#7ee787">os</span>:<span style="color:#6e7681"> </span><span style="color:#a5d6ff">linux</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#7ee787">Artifacts</span>:<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">      </span>- <span style="color:#7ee787">URI</span>:<span style="color:#6e7681"> </span><span style="color:#a5d6ff">s3://my-bucket/components/inference.zip</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#7ee787">Lifecycle</span>:<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">      </span><span style="color:#7ee787">Run</span>:<span style="color:#6e7681"> </span><span style="color:#a5d6ff">python3 {artifacts:path}/inference.py</span><span style="color:#6e7681">
+</span></span></span></code></pre></div><p><strong>Step 3: Run inference on device:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">onnxruntime</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">rt</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">numpy</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">np</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>session <span style="color:#ff7b72;font-weight:bold">=</span> rt<span style="color:#ff7b72;font-weight:bold">.</span>InferenceSession(<span style="color:#a5d6ff">&#39;/greengrass/v2/models/model.onnx&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">predict</span>(features):
+</span></span><span style="display:flex;"><span>    input_name <span style="color:#ff7b72;font-weight:bold">=</span> session<span style="color:#ff7b72;font-weight:bold">.</span>get_inputs()[<span style="color:#a5d6ff">0</span>]<span style="color:#ff7b72;font-weight:bold">.</span>name
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> session<span style="color:#ff7b72;font-weight:bold">.</span>run(<span style="color:#79c0ff">None</span>, {input_name: np<span style="color:#ff7b72;font-weight:bold">.</span>array([features], dtype<span style="color:#ff7b72;font-weight:bold">=</span>np<span style="color:#ff7b72;font-weight:bold">.</span>float32)})[<span style="color:#a5d6ff">0</span>]
+</span></span></code></pre></div><p><strong>Honest take:</strong> Edge deployment is harder than it looks. Debugging a model running on a device in a factory is painful compared to checking CloudWatch logs. Start with cloud deployment and only go edge when you have a clear reason (latency, connectivity, privacy). The operational overhead is significant.</p>
+<hr>
+<h2 id="monitoring">
+  Monitoring
+  <a class="heading-link" href="#monitoring">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Models degrade silently. The data distribution shifts, upstream systems change, or bugs creep into feature pipelines. Without monitoring, you only find out when users complain.</p>
+<p><strong>Start simple:</strong> Most teams set up elaborate drift detection but forget basic latency alerts. Get latency and error rate alarms working first. Add drift detection later.</p>
+<p><strong>Three things to monitor:</strong></p>
+<ol>
+<li><strong>Infrastructure:</strong> Latency, error rates, CPU/memory usage</li>
+<li><strong>Data quality:</strong> Input distribution drift from training data</li>
+<li><strong>Model performance:</strong> Prediction accuracy over time (requires delayed labels)</li>
+</ol>
+<p><strong>Latency and error alarms</strong> (alert before users notice):</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">boto3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cloudwatch <span style="color:#ff7b72;font-weight:bold">=</span> boto3<span style="color:#ff7b72;font-weight:bold">.</span>client(<span style="color:#a5d6ff">&#39;cloudwatch&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Latency alarm</span>
+</span></span><span style="display:flex;"><span>cloudwatch<span style="color:#ff7b72;font-weight:bold">.</span>put_metric_alarm(
+</span></span><span style="display:flex;"><span>    AlarmName<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;HighLatency-FraudDetector&#39;</span>,
+</span></span><span style="display:flex;"><span>    MetricName<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;ModelLatency&#39;</span>,
+</span></span><span style="display:flex;"><span>    Namespace<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;AWS/SageMaker&#39;</span>,
+</span></span><span style="display:flex;"><span>    Dimensions<span style="color:#ff7b72;font-weight:bold">=</span>[{<span style="color:#a5d6ff">&#39;Name&#39;</span>: <span style="color:#a5d6ff">&#39;EndpointName&#39;</span>, <span style="color:#a5d6ff">&#39;Value&#39;</span>: <span style="color:#a5d6ff">&#39;fraud-detector-prod&#39;</span>}],
+</span></span><span style="display:flex;"><span>    Statistic<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;p99&#39;</span>,
+</span></span><span style="display:flex;"><span>    Period<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">300</span>,
+</span></span><span style="display:flex;"><span>    EvaluationPeriods<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">2</span>,
+</span></span><span style="display:flex;"><span>    Threshold<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">500</span>,  <span style="color:#8b949e;font-style:italic"># 500ms</span>
+</span></span><span style="display:flex;"><span>    ComparisonOperator<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;GreaterThanThreshold&#39;</span>,
+</span></span><span style="display:flex;"><span>    AlarmActions<span style="color:#ff7b72;font-weight:bold">=</span>[<span style="color:#a5d6ff">&#39;arn:aws:sns:us-east-1:123456789:alerts&#39;</span>]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Error rate alarm  </span>
+</span></span><span style="display:flex;"><span>cloudwatch<span style="color:#ff7b72;font-weight:bold">.</span>put_metric_alarm(
+</span></span><span style="display:flex;"><span>    AlarmName<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;HighErrors-FraudDetector&#39;</span>,
+</span></span><span style="display:flex;"><span>    MetricName<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;Invocation5XXErrors&#39;</span>,
+</span></span><span style="display:flex;"><span>    Namespace<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;AWS/SageMaker&#39;</span>,
+</span></span><span style="display:flex;"><span>    Dimensions<span style="color:#ff7b72;font-weight:bold">=</span>[{<span style="color:#a5d6ff">&#39;Name&#39;</span>: <span style="color:#a5d6ff">&#39;EndpointName&#39;</span>, <span style="color:#a5d6ff">&#39;Value&#39;</span>: <span style="color:#a5d6ff">&#39;fraud-detector-prod&#39;</span>}],
+</span></span><span style="display:flex;"><span>    Statistic<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;Sum&#39;</span>,
+</span></span><span style="display:flex;"><span>    Period<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">300</span>,
+</span></span><span style="display:flex;"><span>    EvaluationPeriods<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>,
+</span></span><span style="display:flex;"><span>    Threshold<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">10</span>,
+</span></span><span style="display:flex;"><span>    ComparisonOperator<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;GreaterThanThreshold&#39;</span>,
+</span></span><span style="display:flex;"><span>    AlarmActions<span style="color:#ff7b72;font-weight:bold">=</span>[<span style="color:#a5d6ff">&#39;arn:aws:sns:us-east-1:123456789:alerts&#39;</span>]
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p><strong>Data drift detection with SageMaker Model Monitor:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">sagemaker.model_monitor</span> <span style="color:#ff7b72">import</span> DefaultModelMonitor
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>monitor <span style="color:#ff7b72;font-weight:bold">=</span> DefaultModelMonitor(
+</span></span><span style="display:flex;"><span>    role<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;arn:aws:iam::123456789:role/SageMakerRole&#39;</span>,
+</span></span><span style="display:flex;"><span>    instance_count<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>,
+</span></span><span style="display:flex;"><span>    instance_type<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;ml.m5.large&#39;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Create baseline from training data</span>
+</span></span><span style="display:flex;"><span>monitor<span style="color:#ff7b72;font-weight:bold">.</span>suggest_baseline(
+</span></span><span style="display:flex;"><span>    baseline_dataset<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;s3://my-bucket/data/training.csv&#39;</span>,
+</span></span><span style="display:flex;"><span>    dataset_format<span style="color:#ff7b72;font-weight:bold">=</span>{<span style="color:#a5d6ff">&#39;csv&#39;</span>: {<span style="color:#a5d6ff">&#39;header&#39;</span>: <span style="color:#79c0ff">True</span>}}
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Schedule hourly checks</span>
+</span></span><span style="display:flex;"><span>monitor<span style="color:#ff7b72;font-weight:bold">.</span>create_monitoring_schedule(
+</span></span><span style="display:flex;"><span>    monitor_schedule_name<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;fraud-drift-monitor&#39;</span>,
+</span></span><span style="display:flex;"><span>    endpoint_input<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;fraud-detector-prod&#39;</span>,
+</span></span><span style="display:flex;"><span>    output_s3_uri<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;s3://my-bucket/monitoring/&#39;</span>,
+</span></span><span style="display:flex;"><span>    schedule_cron_expression<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;cron(0 * * * ? *)&#39;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p><strong>Reality check:</strong> Drift detection tells you something changed, not whether it matters. A feature distribution can shift without affecting model accuracy. Do not auto-retrain based on drift alone - investigate first.</p>
+<hr>
+<h2 id="rollback-strategy">
+  Rollback Strategy
+  <a class="heading-link" href="#rollback-strategy">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>New models fail in production. Maybe the training data had a bug, or the model overfits to recent patterns. You need to revert to the previous version in seconds, not hours.</p>
+<p><strong>SageMaker production variants</strong> let you run multiple model versions behind the same endpoint. Route 10% of traffic to the new model, watch metrics, then gradually shift traffic or rollback instantly.</p>
+<p><strong>Example: Canary deployment</strong> with 10% traffic to new model:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">sagemaker</span> <span style="color:#ff7b72">import</span> ModelPackage
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Deploy new model to 10% traffic</span>
+</span></span><span style="display:flex;"><span>predictor<span style="color:#ff7b72;font-weight:bold">.</span>update_endpoint(
+</span></span><span style="display:flex;"><span>    initial_instance_count<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">2</span>,
+</span></span><span style="display:flex;"><span>    instance_type<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;ml.m5.large&#39;</span>,
+</span></span><span style="display:flex;"><span>    model_name<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;fraud-detector-v2&#39;</span>,
+</span></span><span style="display:flex;"><span>    variant_name<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;v2&#39;</span>,
+</span></span><span style="display:flex;"><span>    initial_variant_weight<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">0.1</span>  <span style="color:#8b949e;font-style:italic"># 10% traffic</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Metrics stable after 1 hour? Shift all traffic</span>
+</span></span><span style="display:flex;"><span>sm <span style="color:#ff7b72;font-weight:bold">=</span> boto3<span style="color:#ff7b72;font-weight:bold">.</span>client(<span style="color:#a5d6ff">&#39;sagemaker&#39;</span>)
+</span></span><span style="display:flex;"><span>sm<span style="color:#ff7b72;font-weight:bold">.</span>update_endpoint_weights_and_capacities(
+</span></span><span style="display:flex;"><span>    EndpointName<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;fraud-detector-prod&#39;</span>,
+</span></span><span style="display:flex;"><span>    DesiredWeightsAndCapacities<span style="color:#ff7b72;font-weight:bold">=</span>[
+</span></span><span style="display:flex;"><span>        {<span style="color:#a5d6ff">&#39;VariantName&#39;</span>: <span style="color:#a5d6ff">&#39;v1&#39;</span>, <span style="color:#a5d6ff">&#39;DesiredWeight&#39;</span>: <span style="color:#a5d6ff">0</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#a5d6ff">&#39;VariantName&#39;</span>: <span style="color:#a5d6ff">&#39;v2&#39;</span>, <span style="color:#a5d6ff">&#39;DesiredWeight&#39;</span>: <span style="color:#a5d6ff">1</span>}
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># If something breaks, instant rollback</span>
+</span></span><span style="display:flex;"><span>sm<span style="color:#ff7b72;font-weight:bold">.</span>update_endpoint_weights_and_capacities(
+</span></span><span style="display:flex;"><span>    EndpointName<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;fraud-detector-prod&#39;</span>,
+</span></span><span style="display:flex;"><span>    DesiredWeightsAndCapacities<span style="color:#ff7b72;font-weight:bold">=</span>[
+</span></span><span style="display:flex;"><span>        {<span style="color:#a5d6ff">&#39;VariantName&#39;</span>: <span style="color:#a5d6ff">&#39;v1&#39;</span>, <span style="color:#a5d6ff">&#39;DesiredWeight&#39;</span>: <span style="color:#a5d6ff">1</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#a5d6ff">&#39;VariantName&#39;</span>: <span style="color:#a5d6ff">&#39;v2&#39;</span>, <span style="color:#a5d6ff">&#39;DesiredWeight&#39;</span>: <span style="color:#a5d6ff">0</span>}
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><hr>
+<h2 id="cost-comparison">
+  Cost Comparison
+  <a class="heading-link" href="#cost-comparison">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>ML infrastructure costs can spiral. A real-time endpoint running 24/7 costs 30x more than a batch job that runs for 20 minutes. Choose the cheapest option that meets your latency requirements.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Scenario</th>
+          <th>Service</th>
+          <th>Monthly Cost</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1M predictions/day, real-time</td>
+          <td>SageMaker (2x ml.m5.large)</td>
+          <td>~$150</td>
+      </tr>
+      <tr>
+          <td>1M predictions/day, batch</td>
+          <td>Batch Transform</td>
+          <td>~$5</td>
+      </tr>
+      <tr>
+          <td>10K predictions/day, serverless</td>
+          <td>Lambda</td>
+          <td>~$2</td>
+      </tr>
+      <tr>
+          <td>Edge inference</td>
+          <td>Greengrass</td>
+          <td>~$0 (device cost only)</td>
+      </tr>
+  </tbody>
+</table>
+<p>If you can wait 6 hours for results, batch costs 30x less than real-time.</p>
+<hr>
+<h2 id="tldr">
+  TL;DR
+  <a class="heading-link" href="#tldr">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Start with batch. Move to real-time only when you must. Skip edge unless you have a clear reason.</p>
+<p>Set up latency alerts before anything else. Add Model Monitor after your basic monitoring works.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2026
+     Asad Ismail 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

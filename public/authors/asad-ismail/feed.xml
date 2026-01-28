@@ -1,45 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Asad Ismail</title><link>https://Asad-Ismail.github.io/authors/asad-ismail/</link><description>Recent content on Asad Ismail</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 11 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Asad-Ismail.github.io/authors/asad-ismail/feed.xml" rel="self" type="application/rss+xml"/><item><title>Building an End-to-End ML Pipeline with Modern Tools</title><link>https://Asad-Ismail.github.io/posts/building-ml-pipeline/</link><pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate><guid>https://Asad-Ismail.github.io/posts/building-ml-pipeline/</guid><description>&lt;h1 id="building-an-end-to-end-ml-pipeline-with-modern-tools"&gt;
- Building an End-to-End ML Pipeline with Modern Tools
- &lt;a class="heading-link" href="#building-an-end-to-end-ml-pipeline-with-modern-tools"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h1&gt;
-&lt;p&gt;Production machine learning requires more than just training models—it needs robust, automated pipelines that handle data ingestion, preprocessing, training, validation, and deployment. This post demonstrates building a complete ML pipeline using modern MLOps tools.&lt;/p&gt;
-&lt;h2 id="what-is-an-ml-pipeline"&gt;
- What is an ML Pipeline?
- &lt;a class="heading-link" href="#what-is-an-ml-pipeline"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;An ML pipeline orchestrates the entire machine learning lifecycle:&lt;/p&gt;</description></item><item><title>ML Model Deployment: Strategies and Best Practices</title><link>https://Asad-Ismail.github.io/posts/mlmodeldeployment/</link><pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate><guid>https://Asad-Ismail.github.io/posts/mlmodeldeployment/</guid><description>&lt;h1 id="ml-model-deployment-strategies-and-best-practices"&gt;
- ML Model Deployment: Strategies and Best Practices
- &lt;a class="heading-link" href="#ml-model-deployment-strategies-and-best-practices"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h1&gt;
-&lt;p&gt;Deploying machine learning models to production is a critical step in the ML lifecycle that often receives less attention than model development. A well-trained model is useless if it cannot be reliably served to users or systems in production environments. In this post, we&amp;rsquo;ll explore key deployment strategies and best practices for production ML systems.&lt;/p&gt;</description></item><item><title>PyTorch vs TensorFlow: Choosing the Right Framework for Production</title><link>https://Asad-Ismail.github.io/posts/pytorch-vs-tensorflow/</link><pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate><guid>https://Asad-Ismail.github.io/posts/pytorch-vs-tensorflow/</guid><description>&lt;h1 id="pytorch-vs-tensorflow-choosing-the-right-framework-for-production"&gt;
- PyTorch vs TensorFlow: Choosing the Right Framework for Production
- &lt;a class="heading-link" href="#pytorch-vs-tensorflow-choosing-the-right-framework-for-production"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h1&gt;
-&lt;p&gt;When building production machine learning systems, choosing the right deep learning framework is a critical decision that impacts development velocity, model performance, and operational complexity. PyTorch and TensorFlow dominate the landscape, each with distinct strengths and trade-offs. This post compares both frameworks from a production perspective.&lt;/p&gt;
-&lt;h2 id="architecture-and-philosophy"&gt;
- Architecture and Philosophy
- &lt;a class="heading-link" href="#architecture-and-philosophy"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h2&gt;
-&lt;h3 id="pytorch-pythonic-and-dynamic"&gt;
- PyTorch: Pythonic and Dynamic
- &lt;a class="heading-link" href="#pytorch-pythonic-and-dynamic"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;PyTorch embraces Python&amp;rsquo;s design philosophy with dynamic computation graphs:&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Asad Ismail</title>
+    <link>https://Asad-Ismail.github.io/authors/asad-ismail/</link>
+    <description>Recent content on Asad Ismail</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 28 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://Asad-Ismail.github.io/authors/asad-ismail/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why Your Prompt Cache Keeps Missing</title>
+      <link>https://Asad-Ismail.github.io/posts/prompt_caching/</link>
+      <pubDate>Wed, 28 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://Asad-Ismail.github.io/posts/prompt_caching/</guid>
+      <description>&lt;h2 id=&#34;why-you-should-care&#34;&gt;&#xA;  Why you should care&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#why-you-should-care&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Agentic workflows resend a large, mostly static context on every call: system instructions, tool schemas, and growing conversation history. Prompt caching can make those repeated input tokens far cheaper and reduce latency. But the failure modes are subtle: small changes can shift where your prompt diverges in the cached prefix and wipe most (or all) cached reuse, raising both cost and latency.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ML Model Deployment on AWS: A Practical Guide</title>
+      <link>https://Asad-Ismail.github.io/posts/mlmodeldeployment/</link>
+      <pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://Asad-Ismail.github.io/posts/mlmodeldeployment/</guid>
+      <description>&lt;h1 id=&#34;ml-model-deployment-on-aws&#34;&gt;&#xA;  ML Model Deployment on AWS&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#ml-model-deployment-on-aws&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;Most ML projects should start with batch processing. It is cheaper, easier to debug, and forces you to think about whether you actually need real-time predictions. Only move to real-time endpoints when batch genuinely does not work for your use case.&lt;/p&gt;&#xA;&lt;p&gt;This guide covers four deployment patterns with working AWS code.&lt;/p&gt;&#xA;&lt;h2 id=&#34;four-deployment-patterns&#34;&gt;&#xA;  Four Deployment Patterns&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#four-deployment-patterns&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Pick based on your latency and cost requirements:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
