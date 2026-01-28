@@ -258,7 +258,3 @@ Where teams trip:
 - Cache wins require treating system + tools as a stable contract and late binding everything else
 
 Code: [taming_agent_context](https://github.com/Asad-Ismail/taming_agent_context/tree/main/maning_context)
-
----
-
-Feel free to reach out: [GitHub](https://github.com/Asad-Ismail) • [LinkedIn](https://linkedin.com/in/asad-ismail) • [Substack](https://substack.com/@asadismail) • [YouTube](https://youtube.com/@asadismail) • [Email](mailto:asad@example.com)
