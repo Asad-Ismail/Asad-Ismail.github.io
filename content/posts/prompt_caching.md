@@ -257,4 +257,6 @@ Where teams trip:
 - Tool ordering changes move divergence early
 - Cache wins require treating system + tools as a stable contract and late binding everything else
 
+**Treat your system prompt + tools as an immutable contract. Late-bind everything else.**
+
 Code: [taming_agent_context](https://github.com/Asad-Ismail/taming_agent_context/tree/main/maning_context)
