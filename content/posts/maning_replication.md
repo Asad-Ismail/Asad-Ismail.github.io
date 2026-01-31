@@ -9,7 +9,8 @@ authors = ["Asad Ismail"]
 +++
 ## Why you should care
 
-Manus published a [blog post](https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus) claiming their agent completes tasks in ~50 steps with high reliability. They attributed this to six context engineering techniques: KV-cache stability, filesystem offloading, tool masking, goal recitation, error visibility, and few-shot variation.
+
+Manus published a [blog post](https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus) describing how their agent typically runs for around 50 steps (tool calls) per task, and how context engineering techniques help maintain reliability over such long agent runs. They attribute this to six context engineering techniques: KV-cache stability, filesystem offloading, tool masking, goal recitation, error visibility, and few-shot variation.
 
 I wanted to see if these claims hold up with actual numbers, so I built a simple agent and ran ablations against each technique.
 
@@ -110,7 +111,7 @@ But Manus averages 50 steps. At that length, restating goals probably prevents d
 
 Cache stability and file offloading are real and measurable. Breaking either one tanks performance. Tool masking via `tool_choice` works. Recitation matters more as tasks get longer.
 
-The Manus techniques work—the hard part is wiring them up without accidentally breaking the cache.
+The techniques described by Manus worked for them—the hard part is wiring them up without accidentally breaking the cache. As always, your mileage may vary.
 
 ## Reproduce it
 
