@@ -20,6 +20,7 @@ resources/_gen/
 @AGENT.md
 @fix_plan.md
 PROMPT.md
+CLAUDE.md
 *.log
 
 # OS files

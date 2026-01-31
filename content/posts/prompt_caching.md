@@ -2,17 +2,16 @@
 draft = false
 date = 2026-01-28T00:00:00Z
 title = "Why Your Prompt Cache Keeps Missing"
-description = "Prompt caching can cut LLM costs by 90%, but subtle serialization issues break cache reuse. This post maps the failure patterns and engineering rules for high cache hit rates."
-tags = ["LLM", "Prompt Caching", "OpenAI", "MLOps", "Cost Optimization"]
+description = "Prompt caching can cut LLM costs by 90%, but small changes break cache reuse. This post covers the failure patterns and rules for high cache hit rates."
+tags = ["LLMs", "Prompt Caching", "Cost Optimization"]
 categories = ["Machine Learning", "Engineering"]
 authors = ["Asad Ismail"]
 +++
-
 ## Why you should care
 
-Agentic workflows resend a large, mostly static context on every call: system instructions, tool schemas, and growing conversation history. Prompt caching can make those repeated input tokens far cheaper and reduce latency. But the failure modes are subtle: small changes can shift where your prompt diverges in the cached prefix and wipe most (or all) cached reuse, raising both cost and latency.
+Agentic workflows resend a large, mostly static context on every call: system instructions, tool schemas, and growing conversation history. Prompt caching can make those repeated tokens far cheaper and faster. But the failure modes are subtle: small changes can shift where your prompt diverges from the cached prefix and wipe most (or all) reuse.
 
-This post maps the failure patterns we hit in practice and the rules that kept cache hit rates high.
+This post covers the failure patterns I ran into and the rules that kept cache hit rates high.
 
 > **Scope:** We focus here on OpenAI's prompt caching behavior as observed via `cached_tokens` in API responses. Other providers (Anthropic, Google) also cache context but with different boundary rules. For a cross-provider evaluation including latency benchmarks, see [Lumer et al., "Don't Break the Cache" (2026)](https://arxiv.org/abs/2601.06007).
 
@@ -62,7 +61,7 @@ So “end of system message” in your source code is not a cache boundary. It i
 
 ## Where this breaks: two experiments
 
-We ran two experiments to see how small changes affect caching in practice. All numbers come from actual API responses (`prompt_tokens`, `cached_tokens`).
+I ran two experiments to see how small changes affect caching. All numbers come from actual API responses (`prompt_tokens`, `cached_tokens`).
 
 ### Experiment 1: UUID placement
 
@@ -88,11 +87,11 @@ UUID at the start of system breaks caching (early divergence). Appending at the 
 | System end | 1,946 | 0 | 0.0% |
 | User end | 1,947 | 1,792 | 92.0% |
 
-With tools in the request, appending to the system message collapsed cached tokens to zero. Appending to the user message preserved cache reuse.
+With tools in the request, appending to the system message collapsed cached tokens to zero. Appending to the user message preserved reuse.
 
-Why? With tools present, the "end of system" edit lands earlier in the serialized stream than the cached checkpoint, so it misses the cache.
+Why? Tools serialize after system. So "end of system" lands earlier in the token stream than you'd expect—before the cached checkpoint.
 
-**Practical rule:** Treat run IDs/timestamps as dynamic metadata and late bind them:
+**Practical rule:** Late-bind dynamic metadata:
 
 ```python
 # Often breaks cache when tools are present
@@ -119,9 +118,9 @@ Using a larger prompt (12,540 tokens total: system + tools array + user messages
 | Prepend new tool | 12,690 | 9,984 | 2,432 tokens |
 | Append new tool | 12,692 | 12,032 | 384 tokens |
 
-Prepending a tool moved the divergence earlier and wiped a much larger cached prefix. Appending preserved more cache reuse.
+Prepending moved the divergence point earlier, wiping a larger prefix. Appending kept more cache.
 
-At smaller prompt sizes, tool changes sometimes collapsed caching to zero. If the available cache checkpoint falls inside the tools region and you modify tools, that checkpoint becomes invalid.
+At smaller prompt sizes, tool changes sometimes collapsed caching to zero—if the checkpoint falls inside the tools region, any tool modification invalidates it.
 
 **Practical rule:** Treat tool ordering like an API contract:
 
@@ -133,36 +132,13 @@ tools = [new_tool] + existing_tools
 tools = existing_tools + [new_tool]
 ```
 
-### Gating tool availability without schema churn
-
-You often want certain tools available only in specific steps—for example, allowing "write" tools only after user confirmation. The key is to do this without changing the tools array you send to the API.
-
-Always send the full, stable tool schema. Control availability either in your application logic (validate after the LLM responds) or via prompt instructions (tell the LLM which tools to use this step):
-
-```python
-TOOLS_V1 = [tool_a, tool_b, tool_c, tool_d]  # always send this exact list
-
-# Option 1: App-layer gating (validate after LLM responds)
-response = openai.chat.completions.create(tools=TOOLS_V1, ...)
-for tool_call in response.tool_calls:
-    if tool_call.function.name not in allowed_this_step:
-        # reject, ask for confirmation, or re-prompt
-
-# Option 2: Prompt-layer gating (instruct in user message)
-messages = [
-    {"role": "system", "content": STABLE_SYSTEM},
-    {"role": "user", "content": f"{query}\n\nFor this step, only use: {allowed_this_step}"},
-]
-response = openai.chat.completions.create(tools=TOOLS_V1, messages=messages, ...)
-```
-
-Both approaches keep the tools schema identical across requests, preserving cache reuse. Filtering tools before sending (`tools_for_step = [t for t in TOOLS_V1 if ...]`) would break caching—don't do it.
+> **Need to gate tool availability per step?** Send a stable schema and control access via `tool_choice`, app-layer validation, or prompt instructions—see [Testing Manus's Context Engineering Claims](/posts/maning_replication/) for patterns and experiment data.
 
 ---
 
-## Engineering playbook for high cache hit rates
+## Playbook
 
-Even with identical prompts and a stable cache key, you will see intermittent misses due to best effort routing and finite cache retention. Monitor caching as a distribution, not a single datapoint. These practices help maximize hit rates.
+Even with identical prompts and a stable cache key, you'll see intermittent misses—routing is best-effort and caches expire. Monitor as a distribution, not a single number.
 
 ### 1) Treat the serialized stream as the cache boundary
 
@@ -225,38 +201,63 @@ Alert on:
 
 - **Expecting 100% cache hits**: Caching is best-effort. Even with identical prompts and `prompt_cache_key`, you will see occasional misses due to routing, cache eviction, or overflow. Design for high hit rates, not guaranteed hits.
 
-## Cost and latency impact
+## Cost and latency impact (napkin math)
 
-Using [GPT-5.2 pricing](https://platform.openai.com/docs/pricing) as an example:
+Real-world cache performance varies. You won't hit 100% cache rates—routing, eviction, and prompt drift all cause misses. But even rough estimates show why this matters.
+
+**Assumptions (GPT-5.2 pricing, adjust for your model):**
 
 - 10,000 calls/day
-- 10,000 prompt tokens/call → 100M prompt tokens/day
+- ~10,000 prompt tokens/call → ~100M prompt tokens/day
 - Uncached input: $1.75 / 1M tokens
 - Cached input: $0.175 / 1M tokens (90% discount)
 
-Then:
+**Scenario comparison:**
 
-- **No caching:** 100M × $1.75 = **$175/day**
-- **90% cached:**  
-  - Uncached 10M × $1.75 = **$17.50/day**  
-  - Cached 90M × $0.175 = **$15.75/day**  
-  - Total = **$33.25/day**
+| Scenario | Effective cache rate | Daily cost (approx) |
+|----------|---------------------|--------------------|
+| No caching | 0% | ~$175 |
+| Broken caching (drift/schema churn) | 20-40% | ~$120-140 |
+| Healthy caching | 70-85% | ~$45-60 |
+| Optimized (stable prefix + routing) | 85-95% | ~$30-45 |
 
-Broken caching can easily push you back toward the $175/day regime, purely from prompt/tool drift.
+The math is rough because:
+- Not all tokens in a request are cacheable (only the matching prefix)
+- Cache hit rate varies by time of day, traffic patterns, and API tier
+- First request in a session always misses
 
-**Latency:** Cache hits also reduce time to first token (TTFT). Research shows 13-31% TTFT improvement across providers, though actual latency depends on your API tier (standard, batch, or flex). Naive full-context caching can sometimes *increase* latency, so strategic cache control matters.
+Point is: broken caching costs 3-4x more. Monitor your actual `cached_tokens` to know where you stand.
 
-> Pricing varies by model. Check [current pricing](https://platform.openai.com/docs/pricing) for your chosen model.
+**Latency:** Cache hits also reduce time to first token (TTFT). Lumer et al. measured 13-31% TTFT improvement across providers, though actual latency depends on your API tier (standard, batch, or flex). Naive full-context caching can sometimes *increase* latency, so strategic cache control matters.
+
+> Pricing varies by model and changes over time. Check [current pricing](https://platform.openai.com/docs/pricing) for your model.
 
 ## Bottom line
 
 The docs say: "static early, variable late; tools identical."
 
-Where teams trip:
+What they don't say:
 - With tools present, "end of system" is not "late" in the serialized stream
 - Tool ordering changes move divergence early
 - Cache wins require treating system + tools as a stable contract and late binding everything else
 
-**Treat your system prompt + tools as an immutable contract. Late-bind everything else.**
-
 Code: [taming_agent_context](https://github.com/Asad-Ismail/taming_agent_context/tree/main/maning_context)
+
+---
+
+## References
+
+1. **OpenAI Prompt Caching Guide** — Official documentation on caching behavior, boundaries, and `prompt_cache_key`.  
+   [platform.openai.com/docs/guides/prompt-caching](https://platform.openai.com/docs/guides/prompt-caching)
+
+2. **OpenAI Prompt Caching Announcement** — Launch post with caching mechanics overview.  
+   [openai.com/index/api-prompt-caching](https://openai.com/index/api-prompt-caching/)
+
+3. **Lumer et al., "Don't Break the Cache" (2026)** — Cross-provider evaluation of prompt caching including latency benchmarks (13-31% TTFT improvement) and failure mode analysis.  
+   [arxiv.org/abs/2601.06007](https://arxiv.org/abs/2601.06007)
+
+4. **OpenAI Pricing** — Current token pricing for cached vs uncached input.  
+   [platform.openai.com/docs/pricing](https://platform.openai.com/docs/pricing)
+
+5. **Testing Manus's Context Engineering Claims** — Related post with tool gating experiments and cache stability ablations.  
+   [/posts/maning_replication/](/posts/maning_replication/)
