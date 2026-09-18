@@ -1,9 +1,7 @@
-<article class="writing-row">
-<p class="post-meta">
-<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time> · {{ .Params.publication | default "Personal blog" }}</p>
-<h3>
-<a href="{{ .Params.externalLink | default .RelPermalink }}">{{ .Title }} <span aria-hidden="true">↗</span>
-</a>
-</h3>
-<p>{{ .Description }}</p>
-</article>
+<li class="writing-row">
+  <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time>
+  <div>
+    <a href="{{ .Params.externalLink | default .RelPermalink }}">{{ .Title }}</a>
+    {{ with .Params.publication }}<span class="publication">{{ if eq . "Prosus AI Tech Blog" }}Prosus{{ else }}{{ . }}{{ end }}</span>{{ end }}
+  </div>
+</li>

@@ -1,7 +1,13 @@
-{{ define "content" }}<section class="wrap archive">
-<header class="page-heading">
-<p class="eyebrow">The notebook</p>
-<h1>{{ if eq .Section "posts" }}Writing<span class="accent">.</span>{{ else }}{{ .Title }}{{ end }}</h1>
-<p>{{ .Description | default "Engineering notes, experiments, and lessons from building AI systems." }}</p>{{ .Content }}</header>
-<h2 class="sr-only">All articles</h2>
-<div class="archive-rows">{{ range .Paginator.Pages }}{{ partial "writing-row.html" . }}{{ end }}</div>{{ template "_internal/pagination.html" . }}</section>{{ end }}
+{{ define "content" }}
+<section class="wrap archive">
+  <header class="page-heading">
+    <h1>{{ .Title }}</h1>
+    {{ if eq .Section "posts" }}<p>My posts here and on Medium, most recent first.</p>{{ end }}
+    {{ .Content }}
+  </header>
+  <ul class="writing-list">
+    {{ range .Paginator.Pages }}{{ partial "writing-row.html" . }}{{ end }}
+  </ul>
+  {{ template "_internal/pagination.html" . }}
+</section>
+{{ end }}

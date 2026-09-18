@@ -1,12 +1,5 @@
-<div class="project-grid">{{ range $i, $project := . }}<article class="project-card">
-<div class="project-top">
-<span class="project-number">{{ printf "%02d" (add $i 1) }}</span>
-<span class="project-category">{{ .category }}</span>
-<span aria-hidden="true">↗</span>
-</div>
-<h3>
-<a href="{{ .url }}">{{ .name }}</a>
-</h3>
-<p>{{ .description }}</p>
-<div class="project-tags">{{ range .tags }}<span>{{ . }}</span>{{ end }}</div>
-</article>{{ end }}</div>
+<ul class="project-list">
+  {{ range . }}
+  <li><a href="{{ .url }}">{{ .name }}</a> — {{ .description }}</li>
+  {{ end }}
+</ul>

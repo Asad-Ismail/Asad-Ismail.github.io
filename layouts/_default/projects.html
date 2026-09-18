@@ -1,11 +1,7 @@
-{{ define "content" }}<section class="wrap projects-page">
-<header class="page-heading">
-<p class="eyebrow">Open source / Selected work</p>
-<h1>Ideas, made <span class="serif">executable.</span>
-</h1>
-<p>{{ .Description }}</p>
-</header>
-<h2 class="sr-only">Selected projects</h2>{{ partial "project-grid.html" .Site.Data.projects }}<p class="projects-more">
-<a class="text-link" href="https://github.com/Asad-Ismail">More experiments on GitHub ↗</a>
-</p>
-</section>{{ end }}
+{{ define "content" }}
+<section class="wrap projects-page">
+  <header class="page-heading"><h1>Projects</h1><p>A few things I’ve built and shared.</p></header>
+  {{ partial "project-grid.html" .Site.Data.projects }}
+  <p class="more"><a href="https://github.com/Asad-Ismail?tab=repositories">More on GitHub</a></p>
+</section>
+{{ end }}

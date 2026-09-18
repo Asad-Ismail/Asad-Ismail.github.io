@@ -3,7 +3,7 @@
     "name": "inferbench",
     "category": "Inference",
     "url": "https://github.com/Asad-Ismail/inferbench",
-    "description": "Load-test long-context, multi-turn LLM endpoints. Measure throughput, tail latency, and prefix-cache behavior under pressure.",
+    "description": "Load testing for long-context, multi-turn LLM endpoints.",
     "tags": [
       "Python",
       "Load testing",
@@ -14,7 +14,7 @@
     "name": "PRISM-Memory",
     "category": "Agent memory",
     "url": "https://github.com/Asad-Ismail/prism-memory",
-    "description": "A 7B adapter that turns conversations into compact, dated memory records for later retrieval.",
+    "description": "A small model that turns conversations into searchable memory.",
     "tags": [
       "Qwen",
       "Fine-tuning",
@@ -25,7 +25,7 @@
     "name": "onebit",
     "category": "Local AI",
     "url": "https://github.com/Asad-Ismail/onebit",
-    "description": "Run LLMs locally on Apple Silicon. Download, quantize, and stream generation through MLX in one command.",
+    "description": "Run quantized LLMs on Apple Silicon with MLX.",
     "tags": [
       "MLX",
       "Metal",
@@ -36,7 +36,7 @@
     "name": "InteractiveAnnotation",
     "category": "Computer vision",
     "url": "https://github.com/Asad-Ismail/InteractiveAnnotation",
-    "description": "Interactive image segmentation with Segment Anything. Refine masks with clicks and export annotations in COCO format.",
+    "description": "Image annotation with Segment Anything and COCO export.",
     "tags": [
       "SAM",
       "Segmentation",
@@ -47,7 +47,7 @@
     "name": "tiny-infer-cc",
     "category": "ML systems",
     "url": "https://github.com/Asad-Ismail/tiny-infer-cc",
-    "description": "A small inference compiler that lowers a restricted neural network graph into C++ with operator fusion and memory reuse.",
+    "description": "A small neural network compiler that generates C++.",
     "tags": [
       "Compilers",
       "C++",
@@ -58,7 +58,7 @@
     "name": "Real World ML",
     "category": "First principles",
     "url": "https://github.com/Asad-Ismail/Real_World_ML",
-    "description": "Machine learning algorithms implemented from scratch, alongside applied examples that connect the theory to working systems.",
+    "description": "ML algorithms from scratch, with practical examples.",
     "tags": [
       "Python",
       "ML foundations",

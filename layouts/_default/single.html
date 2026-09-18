@@ -1,9 +1,14 @@
-{{ define "content" }}<article class="wrap article-page">
-<header class="page-heading">
-<p class="eyebrow">{{ if eq .Type "posts" }}Field notes · {{ .Date.Format "2 January 2006" }}{{ with .Params.publication }} · {{ . }}{{ end }}{{ else }}Asad Ismail{{ end }}</p>
-<h1>{{ .Title }}</h1>{{ with .Description }}<p>{{ . }}</p>{{ end }}</header>
-<div class="prose">{{ .Content }}{{ with .Params.externalLink }}<p>
-<a class="button primary" href="{{ . }}">Read on {{ $.Params.publication }} ↗</a>
-</p>{{ end }}</div>{{ if eq .Type "posts" }}<div class="article-back">
-<a class="text-link" href="/posts/">← Back to all writing</a>
-</div>{{ end }}</article>{{ partial "posts/math.html" . }}{{ end }}
+{{ define "content" }}
+<article class="wrap article-page">
+  <header class="page-heading">
+    <h1>{{ .Title }}</h1>
+    {{ if eq .Type "posts" }}<p class="post-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>{{ with .Params.publication }} · {{ . }}{{ end }}</p>{{ end }}
+  </header>
+  <div class="prose">
+    {{ .Content }}
+    {{ with .Params.externalLink }}<p><a href="{{ . }}">Read the full article on {{ $.Params.publication }}</a>.</p>{{ end }}
+  </div>
+  {{ if eq .Type "posts" }}<p class="article-back"><a href="/posts/">All writing</a></p>{{ end }}
+</article>
+{{ partial "posts/math.html" . }}
+{{ end }}

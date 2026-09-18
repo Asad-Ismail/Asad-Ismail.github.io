@@ -22,7 +22,7 @@ The check covers internal links, local assets, heading structure, structured dat
 - `layouts/`: custom Hugo templates. Both `layouts/posts/list.html` and `layouts/posts/single.html` override the theme's section-specific templates.
 - `assets/css/site.css`: the active stylesheet. The older theme SCSS is retained but is not loaded by the custom base layout.
 
-The site uses system fonts and CSS artwork, with no client-side JavaScript or font download required for the main pages. The media page retains its YouTube embeds.
+The site uses a narrow, single-column layout, system fonts, blue text links, and plain lists. The homepage has a short bio, writing, and projects. Avoid marketing headlines, decorative artwork, card grids, badges, and repeated calls to action. The direction follows the user’s preference for George Hotz, Andrej Karpathy, and Lilian Weng’s personal sites. No client-side JavaScript or font download is required for the main pages. The media page retains its YouTube embeds.
 
 ## Sources
 
