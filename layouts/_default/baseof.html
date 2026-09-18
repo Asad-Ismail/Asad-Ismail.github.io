@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if not .IsHome }}{{ .Title }} · {{ end }}Asad Ismail — Applied AI</title>
+<meta name="description" content="{{ .Description | default .Site.Params.description }}">
+<meta name="theme-color" content="#f5f4ee">
+<link rel="canonical" href="{{ .Params.externalLink | default .Permalink }}">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description" content="{{ .Description | default .Site.Params.description }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:type" content="{{ if and .IsPage (eq .Type "posts") }}article{{ else }}website{{ end }}">
+<meta property="og:image" content="{{ "images/my_pic.jpg" | absURL }}">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" type="application/rss+xml" title="Asad Ismail — Writing" href="/posts/feed.xml">
+{{ $style := resources.Get "css/site.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+{{ partial "seo.html" . }}
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header wrap">
+<a class="wordmark" href="/" aria-label="Asad Ismail, home">
+<span class="monogram" aria-hidden="true">ai<span>.</span>
+</span>
+<span>Asad Ismail</span>
+</a>
+<nav aria-label="Main navigation">
+<a href="/posts/" {{ if eq .Section "posts" }}aria-current="page"{{ end }}>Writing</a>
+<a href="/projects/" {{ if eq .RelPermalink "/projects/" }}aria-current="page"{{ end }}>Projects</a>
+<a href="/about/" {{ if eq .RelPermalink "/about/" }}aria-current="page"{{ end }}>About</a>
+<a class="nav-contact" href="mailto:asadismaeel@gmail.com">Let’s talk <span aria-hidden="true">↗</span>
+</a>
+</nav>
+</header>
+<main id="main">{{ block "content" . }}{{ end }}</main>
+<footer class="site-footer wrap">
+<div>
+<a class="footer-name" href="/">Asad Ismail<span>.</span>
+</a>
+<p>Applied AI. From first principles to production.</p>
+</div>
+<nav aria-label="Social links">
+<a href="https://github.com/Asad-Ismail">GitHub ↗</a>
+<a href="https://www.linkedin.com/in/asadismaeel/">LinkedIn ↗</a>
+<a href="https://medium.com/@asad.ismail.prosus">Medium ↗</a>
+<a href="/content/">Videos ↗</a>
+<a href="/posts/feed.xml">RSS ↗</a>
+</nav>
+<p class="footer-note">© {{ now.Year }} Asad Ismail · Rotterdam, Netherlands</p>
+</footer>
+</body>
+</html>

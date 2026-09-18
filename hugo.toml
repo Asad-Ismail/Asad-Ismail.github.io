@@ -1,4 +1,4 @@
-baseURL = 'https://Asad-Ismail.github.io/'
+baseURL = 'https://asad-ismail.github.io/'
 languageCode = 'en-us'
 title = 'Asad Ismail'
 theme = "hugo-coder"
@@ -19,7 +19,7 @@ style = "github-dark"
     url = "/"
     weight = 1
   [[menu.main]]
-    name = "Blog"
+    name = "Writing"
     url = "/posts/"
     weight = 2
   [[menu.main]]
@@ -35,8 +35,8 @@ style = "github-dark"
 [params]
   enableFontAwesome = true
   author = "Asad Ismail"
-  info = "Senior ML Engineer | MLOps | Computer Vision | LLMs"
-  description = "Portfolio and blog of a senior machine learning engineer specializing in MLOps, Computer Vision, and LLMs"
+  info = "Senior AI Engineer at Prosus | Agents, evaluation, inference"
+  description = "Asad Ismail — Senior AI Engineer at Prosus. Building AI agents, memory, evaluations, and inference systems. Writing and open-source projects."
   keywords = "machine learning, mlops, computer vision, deep learning, llm, pytorch, tensorflow"
   #avatarurl = "images/my_pic.jpg"
   gravatar = "asadismaeel@gmail.com"
@@ -60,7 +60,7 @@ style = "github-dark"
   author = "authors"
 
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS"]
   section = ["HTML", "RSS"]
   page = ["HTML"]
 [outputFormats.RSS]

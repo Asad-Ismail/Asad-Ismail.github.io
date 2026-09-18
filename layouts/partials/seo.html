@@ -1,37 +1,7 @@
-<!-- Structured Data for SEO -->
 {{ if .IsHome }}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Asad Ismail",
-  "url": "https://Asad-Ismail.github.io/",
-  "jobTitle": "Machine Learning Engineer",
-  "email": "asadismaeel@gmail.com",
-  "sameAs": [
-    "https://github.com/Asad-Ismail",
-    "https://linkedin.com/in/asad-ismail",
-    "https://asadismail.substack.com",
-    "https://www.youtube.com/@AsadIsmailML",
-    "https://twitter.com/AsadIsmailML"
-  ],
-  "knowsAbout": ["Machine Learning", "Deep Learning", "Computer Vision", "Natural Language Processing", "PyTorch", "TensorFlow", "Neural Networks"]
-}
-</script>
-{{ end }}
-
-{{ if eq .Kind "page" }}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "{{ .Title }}",
-  "author": {
-    "@type": "Person",
-    "name": "Asad Ismail"
-  },
-  "datePublished": "{{ .Date.Format "2006-01-02" }}",
-  "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}"
-}
-</script>
+{{ $person := dict "@context" "https://schema.org" "@type" "Person" "name" "Asad Ismail" "url" .Site.BaseURL "jobTitle" "Senior AI Engineer" "worksFor" (dict "@type" "Organization" "name" "Prosus") "sameAs" (slice "https://github.com/Asad-Ismail" "https://www.linkedin.com/in/asadismaeel/" "https://medium.com/@asad.ismail.prosus" "https://medium.com/@asadismaeel" "https://www.youtube.com/@AIMLArchives") }}
+<script type="application/ld+json">{{ $person | jsonify | safeJS }}</script>
+{{ else if and .IsPage (eq .Type "posts") }}
+{{ $article := dict "@context" "https://schema.org" "@type" "BlogPosting" "headline" .Title "author" (dict "@type" "Person" "name" "Asad Ismail") "datePublished" (.Date.Format "2006-01-02") "description" .Description "url" (.Params.externalLink | default .Permalink) }}
+<script type="application/ld+json">{{ $article | jsonify | safeJS }}</script>
 {{ end }}

@@ -48,12 +48,13 @@ jobs:
 
       - name: Build with Hugo
         run: |
-          hugo --minify
+          hugo --minify --destination "${{ runner.temp }}/site"
+          python3 scripts/check_site.py "${{ runner.temp }}/site"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ${{ runner.temp }}/site
 
   # Deployment job
   deploy:
