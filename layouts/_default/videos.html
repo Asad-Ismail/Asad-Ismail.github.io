@@ -1,0 +1,10 @@
+{{ define "content" }}
+<section class="wrap videos-page">
+  <header class="page-heading">
+    <h1>Videos</h1>
+    <p>{{ .Description }}</p>
+    <a href="https://www.youtube.com/@AIMLArchives">Visit AIMLArchives on YouTube <span aria-hidden="true">→</span></a>
+  </header>
+  <div class="video-grid">{{ range .Site.Data.videos }}{{ partial "video.html" . }}{{ end }}</div>
+</section>
+{{ end }}

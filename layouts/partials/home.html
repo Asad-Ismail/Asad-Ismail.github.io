@@ -1,29 +1,39 @@
 <div class="wrap home">
   <header class="intro">
-    <img class="portrait" src="/images/my_pic.jpg" alt="Asad Ismail" width="112" height="112">
-    <h1>Asad Ismail</h1>
-    <p>I’m an AI engineer at Prosus, working on Toqan’s agents, memory, evaluation, and inference.</p>
-    <p>Previously, computer vision at Bayer and embedded deep learning at Visteon. Based in Rotterdam.</p>
-    <nav class="profile-links" aria-label="Contact and profiles">
-      <a href="mailto:asadismaeel@gmail.com">Email</a>
-      <a href="https://github.com/Asad-Ismail">GitHub</a>
-      <a href="https://www.linkedin.com/in/asadismaeel/">LinkedIn</a>
-      <a href="https://www.youtube.com/@AIMLArchives">YouTube</a>
-    </nav>
+    <div class="intro-copy">
+      <p class="intro-context">AI engineering · Rotterdam</p>
+      <h1>Asad Ismail</h1>
+      <p>I build agents, memory, evaluation, and inference systems at Prosus. Here I share what I learn through writing, code, and videos.</p>
+      <p class="intro-history">Previously, computer vision at Bayer and embedded deep learning at Visteon.</p>
+      <nav class="profile-links" aria-label="Contact and profiles">
+        <a href="mailto:asadismaeel@gmail.com">Email</a>
+        <a href="https://github.com/Asad-Ismail">GitHub</a>
+        <a href="https://www.linkedin.com/in/asadismaeel/">LinkedIn</a>
+      </nav>
+    </div>
+    <img class="portrait" src="/images/my_pic.jpg" alt="Asad Ismail" width="144" height="160">
   </header>
 
-  <section id="writing" aria-labelledby="writing-title">
-    <h2 id="writing-title">Writing</h2>
-    <ul class="writing-list">
-      {{ range (where .Site.RegularPages "Type" "posts").ByDate.Reverse }}
-        {{ partial "writing-row.html" . }}
-      {{ end }}
-    </ul>
-  </section>
+  <div class="publishing-columns">
+    <section id="writing" aria-labelledby="writing-title">
+      <div class="section-heading"><h2 id="writing-title">Blog &amp; writing</h2><a href="/posts/">All articles <span aria-hidden="true">→</span></a></div>
+      <p class="section-description">Notes here and in the Prosus AI Tech Blog.</p>
+      <ul class="writing-list">
+        {{ range first 5 (where .Site.RegularPages "Type" "posts").ByDate.Reverse }}
+          {{ partial "writing-row.html" . }}
+        {{ end }}
+      </ul>
+    </section>
 
-  <section id="projects" aria-labelledby="projects-title">
-    <h2 id="projects-title">Projects</h2>
+    <section id="videos" aria-labelledby="videos-title">
+      <div class="section-heading"><h2 id="videos-title">Videos</h2><a href="/content/">All videos <span aria-hidden="true">→</span></a></div>
+      <p class="section-description">ML architectures, explained through code.</p>
+      <div class="video-list">{{ range first 2 .Site.Data.videos }}{{ partial "video.html" . }}{{ end }}</div>
+    </section>
+  </div>
+
+  <section id="projects" class="home-projects" aria-labelledby="projects-title">
+    <div class="section-heading"><h2 id="projects-title">Projects</h2><a href="/projects/">All projects <span aria-hidden="true">→</span></a></div>
     {{ partial "project-grid.html" .Site.Data.projects }}
-    <p class="more"><a href="https://github.com/Asad-Ismail?tab=repositories">More on GitHub</a></p>
   </section>
 </div>

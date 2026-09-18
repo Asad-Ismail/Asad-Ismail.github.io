@@ -1,0 +1,10 @@
+<article class="video">
+  <a class="video-link" href="https://www.youtube.com/watch?v={{ .id }}">
+    <div class="video-image">
+      <img src="https://i.ytimg.com/vi/{{ .id }}/hqdefault.jpg" alt="" width="480" height="270" loading="lazy">
+      <span class="play" aria-hidden="true">▶</span>
+    </div>
+    <h3>{{ .title }}</h3>
+  </a>
+  <p>{{ .description }}</p>
+</article>

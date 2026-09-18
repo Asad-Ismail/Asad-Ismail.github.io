@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ if not .IsHome }}{{ .Title }} · {{ end }}Asad Ismail — Applied AI</title>
 <meta name="description" content="{{ .Description | default .Site.Params.description }}">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#faf9f5">
 <link rel="canonical" href="{{ .Params.externalLink | default .Permalink }}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="{{ .Title }}">
@@ -20,19 +20,18 @@
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-{{ if not .IsHome }}
 <header class="site-header wrap">
-  <a class="site-name" href="/">Asad Ismail</a>
+  <a class="site-name" href="/">Asad Ismail<span aria-hidden="true">.</span></a>
   <nav aria-label="Main navigation">
-    <a href="/posts/" {{ if eq .Section "posts" }}aria-current="page"{{ end }}>Writing</a>
+    <a href="/posts/" {{ if eq .Section "posts" }}aria-current="page"{{ end }}>Blog &amp; writing</a>
+    <a href="/content/" {{ if eq .RelPermalink "/content/" }}aria-current="page"{{ end }}>Videos</a>
     <a href="/projects/" {{ if eq .RelPermalink "/projects/" }}aria-current="page"{{ end }}>Projects</a>
     <a href="/about/" {{ if eq .RelPermalink "/about/" }}aria-current="page"{{ end }}>About</a>
   </nav>
 </header>
-{{ end }}
 <main id="main">{{ block "content" . }}{{ end }}</main>
 <footer class="site-footer wrap">
-  <nav aria-label="Footer"><a href="/about/">About</a><a href="/content/">Videos</a><a href="/posts/feed.xml">RSS</a></nav>
+  <nav aria-label="Footer"><a href="/posts/">Blog &amp; writing</a><a href="/content/">Videos</a><a href="mailto:asadismaeel@gmail.com">Email</a><a href="/posts/feed.xml">RSS</a></nav>
   <span>© {{ now.Year }} Asad Ismail</span>
 </footer>
 </body>

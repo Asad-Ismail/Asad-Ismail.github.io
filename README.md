@@ -12,17 +12,18 @@ python3 scripts/check_site.py /tmp/asad-site
 hugo server
 ```
 
-The check covers internal links, local assets, heading structure, structured data, article listings, and project links. Browser QA should cover 320px, 390px, 768px, and 1280px widths, plus the existing long articles and media page.
+The check covers internal links, local assets, heading structure, structured data, article listings, project links, video links, and the persistent navigation. Browser QA should cover 320px, 390px, 768px, and 1280px widths, plus the existing long articles and videos page.
 
 ## Edit content
 
 - `content/posts/`: original Markdown articles and short entries linking to Medium. External entries use `externalLink` and `publication`; the full article stays on Medium.
+- `data/videos.json`: the six AIMLArchives videos, used for homepage previews and the `/content/` video gallery.
 - `data/projects.json`: curated public personal repositories, used on the homepage and projects page.
 - `content/about.md`: professional background verified against LinkedIn on 18 September 2026.
 - `layouts/`: custom Hugo templates. Both `layouts/posts/list.html` and `layouts/posts/single.html` override the theme's section-specific templates.
 - `assets/css/site.css`: the active stylesheet. The older theme SCSS is retained but is not loaded by the custom base layout.
 
-The site uses a narrow, single-column layout, system fonts, blue text links, and plain lists. The homepage has a short bio, writing, and projects. Avoid marketing headlines, decorative artwork, card grids, badges, and repeated calls to action. The direction follows the user’s preference for George Hotz, Andrej Karpathy, and Lilian Weng’s personal sites. No client-side JavaScript or font download is required for the main pages. The media page retains its YouTube embeds.
+The site uses a warm paper background, serif headings, rust links, and plain article and project lists. The homepage puts the five latest articles beside two video previews on desktop; all eight articles and six videos remain on their dedicated pages. Blog & writing, Videos, Projects, and About stay visible in the main navigation at every screen size. The user wants the clarity of George Hotz, Andrej Karpathy, and Lilian Weng’s sites with an original visual identity. Avoid marketing headlines, decorative artwork, badges, and repeated calls to action. No client-side JavaScript or font download is required. Video previews link to YouTube without loading embedded players.
 
 ## Sources
 

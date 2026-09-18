@@ -1,0 +1,32 @@
+[
+  {
+    "id": "IRnTpsDYQQQ",
+    "title": "Mixture of Experts (MoE)",
+    "description": "How the architecture works, with a code implementation."
+  },
+  {
+    "id": "WlyS8qYaABw",
+    "title": "RLHF explained & coded",
+    "description": "Reinforcement learning from human feedback, including PPO."
+  },
+  {
+    "id": "rw7VUCCeNUA",
+    "title": "Understanding PaliGemma",
+    "description": "The vision-language model and fine-tuning for object detection."
+  },
+  {
+    "id": "GjAJJnKN2CY",
+    "title": "Understanding Flamingo",
+    "description": "How images and text come together for few-shot learning."
+  },
+  {
+    "id": "ALJ9uDVYJ2s",
+    "title": "Understanding GLIP",
+    "description": "Grounded language-image pre-training for object detection."
+  },
+  {
+    "id": "LLbJIzAMmCM",
+    "title": "Dynamic Heads for object detection",
+    "description": "From paper to implementation of attention across scale and context."
+  }
+]
