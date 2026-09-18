@@ -12,7 +12,7 @@
 <meta property="og:description" content="{{ .Description | default .Site.Params.description }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:type" content="{{ if and .IsPage (eq .Type "posts") }}article{{ else }}website{{ end }}">
-<meta property="og:image" content="{{ "images/my_pic.jpg" | absURL }}">
+<meta property="og:image" content="{{ "images/asad-linkedin.jpg" | absURL }}">
 <meta name="twitter:card" content="summary">
 <link rel="alternate" type="application/rss+xml" title="Asad Ismail — Writing" href="/posts/feed.xml">
 {{ $style := resources.Get "css/site.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">

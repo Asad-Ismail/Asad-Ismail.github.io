@@ -61,9 +61,7 @@ project_page = (root/'projects/index.html').read_text()
 assert all(project['url'] in project_page for project in projects)
 home = pages[root/'index.html']
 assert len(home.schemas) == 1
-assert {'writing', 'videos', 'projects'} <= home.ids
 videos = json.loads(Path('data/videos.json').read_text())
 video_links = [f"https://www.youtube.com/watch?v={video['id']}" for video in videos]
 assert set(video_links) <= set(pages[root/'content/index.html'].links)
-assert set(video_links[:2]) <= set(home.links)
 print(f'PASS: {len(pages)} HTML pages, all internal links/assets, heading structure, JSON-LD, {expected_posts} articles, {len(projects)} projects, {len(videos)} videos, main navigation')
