@@ -22,7 +22,7 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header wrap">
-  <a class="site-name" href="/">Asad Ismail<span aria-hidden="true">.</span></a>
+  <a class="site-name" href="/">{{ partial "ai-orbit.html" . }}<span>Asad Ismail<span class="site-name-dot" aria-hidden="true">.</span></span></a>
   <nav aria-label="Main navigation">
     <a href="/posts/" {{ if eq .Section "posts" }}aria-current="page"{{ end }}>Blog &amp; writing</a>
     <a href="/content/" {{ if eq .RelPermalink "/content/" }}aria-current="page"{{ end }}>Videos</a>
