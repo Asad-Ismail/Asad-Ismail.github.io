@@ -35,8 +35,8 @@ style = "github-dark"
 [params]
   enableFontAwesome = true
   author = "Asad Ismail"
-  info = "Senior AI Engineer at Prosus | Agents, evaluation, inference"
-  description = "Asad Ismail — Senior AI Engineer at Prosus. Building AI agents, memory, evaluations, and inference systems. Writing and open-source projects."
+  info = "Senior AI Engineer at Prosus | End-to-end AI/ML systems"
+  description = "Asad Ismail builds end-to-end AI/ML systems: model training, fine-tuning, distillation, and deployment in production and on edge devices."
   keywords = "machine learning, mlops, computer vision, deep learning, llm, pytorch, tensorflow"
   #avatarurl = "images/my_pic.jpg"
   gravatar = "asadismaeel@gmail.com"

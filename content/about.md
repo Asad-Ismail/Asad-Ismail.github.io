@@ -1,12 +1,14 @@
 ---
 title: "Hi, I’m Asad."
-description: "An AI engineer who likes understanding how things work — and making them work in the real world."
+description: "Building AI/ML systems end to end: training, fine-tuning, distillation, evaluation, and deployment in production and on edge devices."
 ---
-I’m a Senior AI Engineer at **Prosus**, based in Rotterdam. I work on **Toqan**: autonomous agents, long-term memory, evaluation, and the inference systems behind them.
+I build **AI and machine learning systems, end to end**. My work covers training, fine-tuning, and distilling models, evaluating them, and deploying them in production and on edge devices.
 
-My path here runs through robotics, automotive perception, and computer vision for agriculture. Across those fields, I’ve worked on the same practical problem: turning research into systems that hold up when the inputs, users, and constraints get messy.
+I’m currently a Senior AI Engineer at **Prosus**, based in Rotterdam, working on **Toqan**: autonomous agents, long-term memory, evaluation, and inference. My earlier work spans robotics, automotive perception, and computer vision for agriculture.
 
 ## What I work on
+
+**Model development.** Training and fine-tuning models for specific tasks, then distilling them into smaller models for efficient deployment.
 
 **Agents and memory.** Building systems that can use tools, carry context across sessions, and learn from experience. My public work includes [MemEval and PropMem](https://github.com/ProsusAI/MemEval), and my personal [PRISM-Memory](https://github.com/Asad-Ismail/prism-memory) project.
 
