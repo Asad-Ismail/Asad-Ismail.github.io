@@ -4,7 +4,7 @@ description: "Building AI/ML systems end to end: training, fine-tuning, distilla
 ---
 I build **AI and machine learning systems, end to end**. My work covers training, fine-tuning, and distilling models, evaluating them, and deploying them in production and on edge devices.
 
-I’m currently a Senior AI Engineer at **Prosus**, based in Rotterdam, working on **Toqan**: autonomous agents, long-term memory, evaluation, and inference. My earlier work spans robotics, automotive perception, and computer vision for agriculture.
+I’m currently a Senior AI Engineer at **Prosus**, working on **Toqan**: autonomous agents, long-term memory, evaluation, and inference. My earlier work spans robotics, automotive perception, and computer vision for agriculture.
 
 ## What I work on
 
